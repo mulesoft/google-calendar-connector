@@ -18,13 +18,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Connector;
-import org.mule.api.annotations.Paged;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.lifecycle.Start;
 import org.mule.api.annotations.oauth.OAuth2;
 import org.mule.api.annotations.oauth.OAuthAccessToken;
+import org.mule.api.annotations.oauth.OAuthAccessTokenIdentifier;
 import org.mule.api.annotations.oauth.OAuthAuthorizationParameter;
 import org.mule.api.annotations.oauth.OAuthConsumerKey;
 import org.mule.api.annotations.oauth.OAuthConsumerSecret;
@@ -42,19 +45,16 @@ import org.mule.module.google.calendar.model.FreeBusy;
 import org.mule.module.google.calendar.model.Scope;
 import org.mule.module.google.calendar.model.batch.CalendarBatchCallback;
 import org.mule.module.google.calendar.model.batch.EventBatchCallback;
-import org.mule.module.google.calendar.transformer.BatchResponseToBulkOperationTransformer;
 import org.mule.modules.google.AbstractGoogleOAuthConnector;
 import org.mule.modules.google.AccessType;
 import org.mule.modules.google.ForcePrompt;
-import org.mule.modules.google.GoogleUserIdExtractor;
+import org.mule.modules.google.IdentifierPolicy;
 import org.mule.modules.google.api.client.batch.BatchResponse;
 import org.mule.modules.google.api.client.batch.VoidBatchCallback;
 import org.mule.modules.google.api.datetime.DateTimeConstants;
 import org.mule.modules.google.api.datetime.DateTimeUtils;
-import org.mule.modules.google.api.pagination.TokenBasedPagingDelegate;
+import org.mule.modules.google.api.pagination.PaginationUtils;
 import org.mule.modules.google.oauth.invalidation.OAuthTokenExpiredException;
-import org.mule.streaming.PagingConfiguration;
-import org.mule.streaming.PagingDelegate;
 
 import com.google.api.client.googleapis.batch.BatchRequest;
 import com.google.api.services.calendar.Calendar.Calendars;
@@ -69,7 +69,7 @@ import com.google.api.services.calendar.model.FreeBusyRequestItem;
  *
  * @author mariano.gonzalez@mulesoft.com
  */
-@Connector(name="google-calendars", schemaVersion="1.0", friendlyName="Google Calendars", minMuleVersion="3.5", configElementName="config-with-oauth")
+@Connector(name="google-calendars", schemaVersion="1.0", friendlyName="Google Calendars", minMuleVersion="3.4", configElementName="config-with-oauth")
 @OAuth2(
 		authorizationUrl = "https://accounts.google.com/o/oauth2/auth",
 		accessTokenUrl = "https://accounts.google.com/o/oauth2/token",
@@ -84,6 +84,8 @@ import com.google.api.services.calendar.model.FreeBusyRequestItem;
 		}
 )
 public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
+	
+	public static final String NEXT_PAGE_TOKEN = "GoogleCalendar_NEXT_PAGE_TOKEN";
 	
 	/**
      * The OAuth2 consumer key 
@@ -117,6 +119,19 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     private String scope;
     
     /**
+     * This policy represents which id we want to use to represent each google account.
+     * 
+     * PROFILE means that we want the google profile id. That means, the user's primary key in google's DB.
+     * This is a long number represented as a string.
+     * 
+     * EMAIL means you want to use the account's email address
+     */
+    @Configurable
+    @Optional
+    @Default("EMAIL")
+    private IdentifierPolicy identifierPolicy = IdentifierPolicy.EMAIL;
+    
+    /**
      * Factory to instantiate the underlying google client.
      * Usually you don't need to override this. Most common
      * use case of a custom value here is testing.
@@ -143,13 +158,16 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 		if (this.clientFactory == null) {
 			this.clientFactory = new DefaultGoogleCalendarClientFactory();
 		}
-		this.registerTransformer(new BatchResponseToBulkOperationTransformer());
+	}
+	
+	@OAuthAccessTokenIdentifier
+	public String getAccessTokenId() {
+		return this.identifierPolicy.getId(this);
 	}
 	
 	@OAuthPostAuthorization
 	public void postAuth() {
 		this.client = this.clientFactory.newClient(this.getAccessToken(), this.getApplicationName());
-		GoogleUserIdExtractor.fetchAndPublishAsFlowVar(this);
 	}
 	
     /**
@@ -171,40 +189,41 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     }
     
     /**
-     * Returns a paginated iterator with instances of {@link org.mule.module.google.calendar.model.CalendarList} listing the
+     * Returns an instance of {@link org.mule.module.google.calendar.model.CalendarList} listing the
      * calendars of the user that owns the OAuth access token.
      * 
      * Optional parameters are not considered in the search if not specified.
      * 
+     * For supporting google's paging mechanism, the next page token is store on the message property
+     * &quot;GoogleCalendar_NEXT_PAGE_TOKEN&quot;. If there isn't a next page, then the property is removed
+     * 
      * {@sample.xml ../../../doc/GoogleCalendarConnector.xml.sample google-calendars:get-calendar-list}
      * 
+     * @param message the current mule message
+     * @param maxResults the max number of results you want to get
+     * @param pageToken Token specifying which result page to return
      * @param showHidden if true, hidden calendars will be returned
-     * @param pagingConfiguration the paging configuration object
-     * @return a paginated iterator with instances of {@link org.mule.module.google.calendar.model.CalendarList}
+     * @return a list with instances of {@link org.mule.module.google.calendar.model.CalendarList}
      * @throws IOException if there's a communication error
      */
     @Processor
+    @Inject
     @OAuthProtected
 	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    @Paged
-    public PagingDelegate<CalendarList> getCalendarList(
-    		final @Optional @Default("false") boolean showHidden,
-    		final PagingConfiguration pagingConfiguration) throws IOException {
+    public List<CalendarList> getCalendarList(
+    		MuleMessage message,
+    		@Optional @Default("100") int maxResults,
+    		@Optional String pageToken,
+    		@Optional @Default("false") boolean showHidden) throws IOException {
+
+    	com.google.api.services.calendar.Calendar.CalendarList.List calendars = this.client.calendarList().list();
+    	com.google.api.services.calendar.model.CalendarList list = calendars.setMaxResults(maxResults)
+    		.setPageToken(pageToken)
+    		.setShowHidden(showHidden)
+    		.execute();
     	
-    	return new TokenBasedPagingDelegate<CalendarList>() {
-    		
-    		@Override
-    		public List<CalendarList> doGetPage() throws IOException {
-				com.google.api.services.calendar.Calendar.CalendarList.List calendars = client.calendarList().list();
-				com.google.api.services.calendar.model.CalendarList list = calendars.setMaxResults(pagingConfiguration.getFetchSize())
-						.setPageToken(this.getPageToken())
-						.setShowHidden(showHidden)
-						.execute();
-				
-				setPageToken(list.getNextPageToken());
-				return CalendarList.valueOf(list.getItems(), CalendarList.class);
-    		}
-		};
+    	this.saveNextPageToken(list, message);
+    	return CalendarList.valueOf(list.getItems(), CalendarList.class);
     }
     
     /**
@@ -324,13 +343,19 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     /**
      * Searchs and returns events matching the criteria parameters. If a criteria is not specified, then it is not applied
      * 
+     * For supporting google's paging mechanism, the next page token is stored on the message property
+     * &quot;GoogleCalendar_NEXT_PAGE_TOKEN&quot;. If there isn't a next page, then the property is removed
+     * 
      * {@sample.xml ../../../doc/GoogleCalendarConnector.xml.sample google-calendars:get-events}
      * 
+     * @param message the current mule message
      * @param calendarId the id of the colendar that contains the events
      * @param icalUID Specifies iCalendar UID (iCalUID) of events to be included in the response
      * @param maxAttendees The maximum number of attendees to include in the response. If there are more than the
      *                     specified number of attendees, only the participant is returned.
+     * @param maxResults Maximum number of events returned on one result page
      * @param orderBy The order of the events returned in the result
+     * @param pageToken Token specifying which result page to return
      * @param query Free text search terms to find events that match these terms in any field, except for
      *               extended properties
      * @param showDeleted Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.
@@ -342,56 +367,50 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      * @param timezone Timezone in which timeMin, timeMax and lastUpdated is to be considered on
      * @param lastUpdated Lower bound timestamp for an event's last modification time to filter by
      * @param datetimeFormat The timestamp format for timeMin, timeMax and lastUpdated. It defaults to RFC 3369 (yyyy-MM-dd'T'HH:mm:ssZ)
-     * @param pagingConfiguration the paging configuration object
-     * @return a paginated iterator of {@link org.mule.module.google.calendar.model.Event}
+     * @return a list of {@link org.mule.module.google.calendar.model.Event}
      * @throws IOException if there's a communication error
      */
     @Processor
     @OAuthProtected
 	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    @Paged
-    public PagingDelegate<Event> getEvents(
-    		final String calendarId,
-    		final @Optional String icalUID,
-    		final @Optional Integer maxAttendees,
-    		final @Optional String orderBy,
-    		final @Optional String query,
-    		final @Optional @Default("false") boolean showDeleted,
-    		final @Optional @Default("false") boolean showHiddenInvitations,
-    		final @Optional @Default("true") boolean singleEvents,
-    		final @Optional String timeMin,
-    		final @Optional String timeMax,
-    		final @Optional @Default(DateTimeConstants.RFC3339) String datetimeFormat,
-    		final @Optional @Default("UTC") String timezone,
-    		final @Optional String lastUpdated,
-    		final PagingConfiguration pagingConfiguration) throws IOException {
+    @Inject
+    public List<Event> getEvents(
+    		MuleMessage message,
+    		String calendarId,
+    		@Optional String icalUID,
+    		@Optional Integer maxAttendees,
+    		@Optional Integer maxResults,
+    		@Optional String orderBy,
+    		@Optional @Default("#[flowVars['GoogleCalendar_NEXT_PAGE_TOKEN']]") String pageToken,
+    		@Optional String query,
+    		@Optional @Default("false") boolean showDeleted,
+    		@Optional @Default("false") boolean showHiddenInvitations,
+    		@Optional @Default("true") boolean singleEvents,
+    		@Optional String timeMin,
+    		@Optional String timeMax,
+    		@Optional @Default(DateTimeConstants.RFC3339) String datetimeFormat,
+    		@Optional @Default("UTC") String timezone,
+    		@Optional String lastUpdated) throws IOException {
     	
-    	return new TokenBasedPagingDelegate<Event>() {
-    		
-    		@Override
-    		protected List<Event> doGetPage() throws IOException {
-    			com.google.api.services.calendar.Calendar.Events.List events = client.events().list(calendarId);
-    			
-    			com.google.api.services.calendar.model.Events result = events.setICalUID(icalUID)
-    					.setMaxAttendees(maxAttendees)
-    					.setMaxResults(pagingConfiguration.getFetchSize())
-    					.setOrderBy(orderBy)
-    					.setPageToken(this.getPageToken())
-    					.setQ(query)
-    					.setShowDeleted(showDeleted)
-    					.setShowHiddenInvitations(showHiddenInvitations)
-    					.setSingleEvents(singleEvents)
-    					.setTimeMax(DateTimeUtils.parseDateTime(timeMax, datetimeFormat, timezone))
-    					.setTimeMin(DateTimeUtils.parseDateTime(timeMin, datetimeFormat, timezone))
-    					.setTimeZone(timezone)
-    					.setUpdatedMin(DateTimeUtils.parseDateTime(lastUpdated, datetimeFormat, timezone))
-    					.execute();
-    			
-    			this.setPageToken(result.getNextPageToken());
-    			return Event.valueOf(result.getItems(), Event.class);
-    		}
-		};
+    	com.google.api.services.calendar.Calendar.Events.List events = this.client.events().list(calendarId);
     	
+    	com.google.api.services.calendar.model.Events result = events.setICalUID(icalUID)
+	    	.setMaxAttendees(maxAttendees)
+	    	.setMaxResults(maxResults)
+	    	.setOrderBy(orderBy)
+	    	.setPageToken(pageToken)
+	    	.setQ(query)
+	    	.setShowDeleted(showDeleted)
+	    	.setShowHiddenInvitations(showHiddenInvitations)
+	    	.setSingleEvents(singleEvents)
+	    	.setTimeMax(DateTimeUtils.parseDateTime(timeMax, datetimeFormat, timezone))
+	    	.setTimeMin(DateTimeUtils.parseDateTime(timeMin, datetimeFormat, timezone))
+	    	.setTimeZone(timezone)
+	    	.setUpdatedMin(DateTimeUtils.parseDateTime(lastUpdated, datetimeFormat, timezone))
+	    	.execute();
+    	
+    	this.saveNextPageToken(result, message);
+    	return Event.valueOf(result.getItems(), Event.class);
     }
     
     /**
@@ -640,48 +659,47 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      * For recurring events, it returns one instance of
      * {@link org.mule.module.google.calendar.model.Event} for each recurrence instance
      * 
+     * For supporting google's paging mechanism, the next page token is store on the message property
+     * &quot;GoogleCalendar_NEXT_PAGE_TOKEN&quot;. If there isn't a next page, then the property is removed
+     * 
      * {@sample.xml ../../../doc/GoogleCalendarConnector.xml.sample google-calendars:get-instances}
      * 
+     * @param message the current mule message
      * @param calendarId the id of the calendar containing the recurrent event
      * @param eventId the id of a recurrent event
      * @param maxAttendess The maximum number of attendees to include in the response. If there are more than the
      * 						specified number of attendees, only the participant is returned.
+     * @param maxResults Maximum number of events returned on one result page
      * @param showDeleted Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.
      * @param timezone Time zone used in the response
      * @param originalStart The original start time of the instance in the result
-     * @param pagingConfiguration the paging configuration object
-     * @return an auto paginated iterator of {@link org.mule.module.google.calendar.model.Event}
+     * @return a list with instances of {@link org.mule.module.google.calendar.model.Event}
      * @throws IOException if there's a communication error
      */
     @Processor
     @OAuthProtected
 	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    @Paged
-    public PagingDelegate<Event> getInstances(
-    				final String calendarId,
-    				final String eventId,
-    				final @Optional Integer maxAttendess,
-    				final @Optional @Default("false") boolean showDeleted,
-    				final @Optional @Default("UTC") String timezone,
-    				final @Optional String originalStart,
-    				final PagingConfiguration pagingConfiguration) throws IOException {
+    @Inject
+    public List<Event> getInstances(
+    				MuleMessage message,
+    				String calendarId,
+    				String eventId,
+    				@Optional Integer maxAttendess,
+    				@Optional Integer maxResults,
+    				@Optional @Default("false") boolean showDeleted,
+    				@Optional @Default("UTC") String timezone,
+    				@Optional String originalStart) throws IOException {
     	
-    	return new TokenBasedPagingDelegate<Event>() {
-    		
-    		@Override
-    		protected List<Event> doGetPage() throws IOException {
-    			com.google.api.services.calendar.model.Events instances = client.events().instances(calendarId, eventId)
-    					.setMaxAttendees(maxAttendess)
-    					.setMaxResults(pagingConfiguration.getFetchSize())
-    					.setOriginalStart(originalStart)
-    					.setShowDeleted(showDeleted)
-    					.setTimeZone(timezone)
-    					.execute();
-    			
-    			this.setPageToken(instances.getNextPageToken());
-    			return Event.valueOf(instances.getItems(), Event.class);
-    		}
-		};
+    	com.google.api.services.calendar.model.Events instances = this.client.events().instances(calendarId, eventId)
+    			.setMaxAttendees(maxAttendess)
+    			.setMaxResults(maxResults)
+    			.setOriginalStart(originalStart)
+    			.setShowDeleted(showDeleted)
+    			.setTimeZone(timezone)
+    			.execute();
+    	
+    	this.saveNextPageToken(instances, message);
+    	return Event.valueOf(instances.getItems(), Event.class);
     }
     
     /**
@@ -890,6 +908,16 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     	return new AclRule(this.client.acl().update(calendarId, ruleId, aclRule.wrapped()).execute());
     }
     
+    private com.google.api.services.calendar.model.Events saveNextPageToken(com.google.api.services.calendar.model.Events events, MuleMessage message) {
+    	PaginationUtils.savePageToken(NEXT_PAGE_TOKEN, events.getNextPageToken(), message);
+    	return events;
+    }
+    
+    private com.google.api.services.calendar.model.CalendarList saveNextPageToken(com.google.api.services.calendar.model.CalendarList list, MuleMessage message) {
+    	PaginationUtils.savePageToken(NEXT_PAGE_TOKEN, list.getNextPageToken(), message);
+    	return list;
+    }
+    
 	public void setScope(String scope) {
 		this.scope = scope;
 	}
@@ -938,4 +966,13 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	public void setClientFactory(GoogleCalendarClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
+
+	public IdentifierPolicy getIdentifierPolicy() {
+		return identifierPolicy;
+	}
+
+	public void setIdentifierPolicy(IdentifierPolicy identifierPolicy) {
+		this.identifierPolicy = identifierPolicy;
+	}
+	
 }

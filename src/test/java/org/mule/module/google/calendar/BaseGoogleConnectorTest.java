@@ -60,4 +60,10 @@ public abstract class BaseGoogleConnectorTest<T> extends TestCase {
 		return (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
+	protected abstract String getNextPageTokenKey();
+	
+	protected void assertPagination() {
+		Mockito.verify(this.message, Mockito.times(1)).setInvocationProperty(Mockito.eq(this.getNextPageTokenKey()), Mockito.any());
+	}
+	
 }
