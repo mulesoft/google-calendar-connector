@@ -1,0 +1,93 @@
+<!-- BEGIN_INCLUDE(google-calendars:create-calendar) -->
+    <google-calendars:create-calendar />
+<!-- END_INCLUDE(google-calendars:create-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-calendar-list) -->
+    <google-calendars:get-calendar-list showHidden="true" />
+<!-- END_INCLUDE(google-calendars:get-calendar-list) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-calendar-list-by-id) -->
+    <google-calendars:get-calendar-list-by-id id="someId" />
+<!-- END_INCLUDE(google-calendars:get-calendar-list-by-id) -->
+<!-- BEGIN_INCLUDE(google-calendars:delete-calendar-list) -->
+    <google-calendars:delete-calendar-list id="someId"/>
+<!-- END_INCLUDE(google-calendars:delete-calendar-list) -->
+<!-- BEGIN_INCLUDE(google-calendars:update-calendar-list) -->
+    <google-calendars:update-calendar-list id="someId"/>
+<!-- END_INCLUDE(google-calendars:update-calendar-list) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-calendar-by-id) -->
+    <google-calendars:get-calendar-by-id id="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:get-calendar-by-id) -->
+<!-- BEGIN_INCLUDE(google-calendars:update-calendar) -->
+    <google-calendars:update-calendar id="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:update-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:delete-calendar) -->
+    <google-calendars:delete-calendar id="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:delete-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:clear-calendar) -->
+    <google-calendars:clear-calendar id="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:clear-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-events) -->
+    <google-calendars:get-events calendarId="mariano.gonzalez@mulesoft.com" timeMin="2012-01-01T00:00:00Z"/>
+<!-- END_INCLUDE(google-calendars:get-events) -->
+<!-- BEGIN_INCLUDE(google-calendars:import-event) -->
+    <google-calendars:import-event calendarId="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:import-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:delete-event) -->
+    <google-calendars:delete-event calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/>
+<!-- END_INCLUDE(google-calendars:delete-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:delete-event) -->
+    <google-calendars:delete-event calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/>
+<!-- END_INCLUDE(google-calendars:delete-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-event-by-id) -->
+    <google-calendars:get-event-by-id calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/>
+<!-- END_INCLUDE(google-calendars:get-event-by-id) -->
+<!-- BEGIN_INCLUDE(google-calendars:insert-event) -->
+    <google-calendars:insert-event calendarId="mariano.gonzalez@mulesoft.com" />
+<!-- END_INCLUDE(google-calendars:insert-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-insert-event) -->
+    <google-calendars:batch-insert-event calendarId="mariano.gonzalez@mulesoft.com" />
+<!-- END_INCLUDE(google-calendars:batch-insert-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-update-event) -->
+    <google-calendars:batch-update-event calendarId="mariano.gonzalez@mulesoft.com" />
+<!-- END_INCLUDE(google-calendars:batch-update-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-delete-event) -->
+    <google-calendars:batch-delete-event calendarId="mariano.gonzalez@mulesoft.com" />
+<!-- END_INCLUDE(google-calendars:batch-delete-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-insert-calendar) -->
+    <google-calendars:batch-insert-calendar />
+<!-- END_INCLUDE(google-calendars:batch-insert-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-update-calendar) -->
+    <google-calendars:batch-update-calendar /> 
+<!-- END_INCLUDE(google-calendars:batch-update-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:batch-delete-calendar) -->
+    <google-calendars:batch-delete-calendar />
+<!-- END_INCLUDE(google-calendars:batch-delete-calendar) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-instances) -->
+    <google-calendars:get-instances calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/>
+<!-- END_INCLUDE(google-calendars:get-instances) -->
+<!-- BEGIN_INCLUDE(google-calendars:move-event) -->
+    <google-calendars:move-event sourceCalendarId="#[map-payload:source]" eventId="#[map-payload:event]" targetCalendarId="#[map-payload:target]" />
+<!-- END_INCLUDE(google-calendars:move-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:quick-add-event) -->
+    <google-calendars:quick-add-event calendarId="#[map-payload:calendarId]" text="#[map-payload:text]" />
+<!-- END_INCLUDE(google-calendars:quick-add-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:update-event) -->
+    <google-calendars:update-event calendarId="mariano.gonzalez@mulesoft.com" eventId="someEventId"/>
+<!-- END_INCLUDE(google-calendars:update-event) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-free-time) -->
+    <google-calendars:get-free-time timeMin="2012-06-18T00:00:00Z" timeMax="2012-06-19T00:00:00Z"/>
+<!-- END_INCLUDE(google-calendars:get-free-time) -->
+<!-- BEGIN_INCLUDE(google-calendars:insert-acl-rule) -->
+    <google-calendars:insert-acl-rule calendarId="mariano.gonzalez@mulesoft.com" role="writer" scope="someuser@gmail.com" scopeType="USER"/>
+<!-- END_INCLUDE(google-calendars:insert-acl-rule) -->
+<!-- BEGIN_INCLUDE(google-calendars:delete-acl-rule) -->
+    <google-calendars:delete-acl-rule calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" />
+<!-- END_INCLUDE(google-calendars:delete-acl-rule) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-acl-rule-by-id) -->
+    <google-calendars:get-acl-rule-by-id calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" />
+<!-- END_INCLUDE(google-calendars:get-acl-rule-by-id) -->
+<!-- BEGIN_INCLUDE(google-calendars:get-all-acl-rules) -->
+    <google-calendars:get-all-acl-rules calendarId="mariano.gonzalez@mulesoft.com"/>
+<!-- END_INCLUDE(google-calendars:get-all-acl-rules) -->
+<!-- BEGIN_INCLUDE(google-calendars:update-acl-rule) -->
+    <google-calendars:update-acl-rule calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" />
+<!-- END_INCLUDE(google-calendars:update-acl-rule) -->
