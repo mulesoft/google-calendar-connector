@@ -26,7 +26,7 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.mule.modules</groupId>
+			<groupId>com.mulesoft.modules</groupId>
 			<artifactId>mule-module-google-api-commons</artifactId>
 			<version>${google.commons.version}</version>
 		</dependency>
