@@ -65,49 +65,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -254,6 +211,10 @@
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/agents/package-summary.html">org.mule.module.google.calendar.agents</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/basic/package-summary.html">org.mule.module.google.calendar.basic</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/callback/package-summary.html">org.mule.module.google.calendar.callback</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/config/package-summary.html">org.mule.module.google.calendar.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/connection/package-summary.html">org.mule.module.google.calendar.connection</a></li>
@@ -266,9 +227,9 @@
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/oauth/package-summary.html">org.mule.module.google.calendar.oauth</a></li>
     <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
+  <a href="../../../../../../../java/org/mule/module/google/calendar/process/package-summary.html">org.mule.module.google.calendar.process</a></li>
     <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/transformer/package-summary.html">org.mule.module.google.calendar.transformer</a></li>
+  <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/transformers/package-summary.html">org.mule.module.google.calendar.transformers</a></li>
     <li class="api apilevel-">
@@ -283,6 +244,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="selected api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/adapters/GoogleCalendarConnectorCapabilitiesAdapter.html">GoogleCalendarConnectorCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/adapters/GoogleCalendarConnectorHttpCallbackAdapter.html">GoogleCalendarConnectorHttpCallbackAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/adapters/GoogleCalendarConnectorLifecycleAdapter.html">GoogleCalendarConnectorLifecycleAdapter</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/adapters/GoogleCalendarConnectorMetadataAdapater.html">GoogleCalendarConnectorMetadataAdapater</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/adapters/GoogleCalendarConnectorOAuth2Adapter.html">GoogleCalendarConnectorOAuth2Adapter</a></li>
@@ -334,15 +296,6 @@
    
   
   
-  
-   
-  
-  
-
-  
-   
-  
-  
    
   
   
@@ -354,6 +307,10 @@
    
   
   
+   
+  
+  
+   
   
   
 
@@ -447,7 +404,7 @@ Summary:
   
       implements 
       
-        Capabilities 
+        <a href="../../../../../../../java/org/mule/module/google/calendar/basic/Capabilities.html">Capabilities</a> 
       
   
   
@@ -634,6 +591,35 @@ Summary:
   <div style="clear:left;">Inherited Constants</div></th></tr>
 
 
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-org.mule.module.google.calendar.GoogleCalendarConnector" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-org.mule.module.google.calendar.GoogleCalendarConnector-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html">org.mule.module.google.calendar.GoogleCalendarConnector</a>
+<div id="inherited-constants-org.mule.module.google.calendar.GoogleCalendarConnector">
+  <div id="inherited-constants-org.mule.module.google.calendar.GoogleCalendarConnector-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-constants-org.mule.module.google.calendar.GoogleCalendarConnector-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#NEXT_PAGE_TOKEN">NEXT_PAGE_TOKEN</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -664,8 +650,6 @@ org.mule.modules.google.AbstractGoogleOAuthConnector
   </div>
 </div>
 </td></tr>
-
-
 
 
 
@@ -778,6 +762,17 @@ org.mule.modules.google.AbstractGoogleOAuthConnector
           private
           
           
+          IdentifierPolicy</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#identifierPolicy">identifierPolicy</a></td>
+          <td class="jd-descrcol" width="100%">This policy represents which id we want to use to represent each google account.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
           String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#scope">scope</a></td>
           <td class="jd-descrcol" width="100%">The OAuth scopes you want to request
@@ -814,17 +809,6 @@ org.mule.modules.google.AbstractGoogleOAuthConnector
           private
           
           
-          MuleContext</nobr></td>
-          <td class="jd-linkcol">muleContext</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          
-          
           String</nobr></td>
           <td class="jd-linkcol">userId</td>
           <td class="jd-descrcol" width="100%"></td>
@@ -835,8 +819,6 @@ org.mule.modules.google.AbstractGoogleOAuthConnector
   </div>
 </div>
 </td></tr>
-
-
 
 
 
@@ -893,7 +875,7 @@ org.mule.modules.google.AbstractGoogleOAuthConnector
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/adapters/GoogleCalendarConnectorCapabilitiesAdapter.html#isCapableOf(org.mule.api.devkit.capability.ModuleCapability)">isCapableOf</a></span>(ModuleCapability capability)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/adapters/GoogleCalendarConnectorCapabilitiesAdapter.html#isCapableOf(org.mule.module.google.calendar.basic.Capability)">isCapableOf</a></span>(<a href="../../../../../../../java/org/mule/module/google/calendar/basic/Capability.html">Capability</a> capability)</nobr>
         
         <div class="jd-descrdiv">Returns true if this module implements such capability
  
@@ -1200,6 +1182,22 @@ From class
             
             
             
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getAccessTokenId()">getAccessTokenId</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
             <a href="../../../../../../../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1213,7 +1211,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1233,7 +1231,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1249,7 +1247,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1269,26 +1267,26 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
             
             
             
-            PagingDelegate&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a>&gt;</nobr>
+            List&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarList(boolean, org.mule.streaming.PagingConfiguration)">getCalendarList</a></span>(boolean showHidden, PagingConfiguration pagingConfiguration)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarList(org.mule.api.MuleMessage, int, java.lang.String, boolean)">getCalendarList</a></span>(MuleMessage message, int maxResults, String pageToken, boolean showHidden)</nobr>
         
-        <div class="jd-descrdiv">Returns a paginated iterator with instances of <code><a href="../../../../../../../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> listing the
+        <div class="jd-descrdiv">Returns an instance of <code><a href="../../../../../../../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> listing the
  calendars of the user that owns the OAuth access token.</div>
   
   </td></tr>
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1306,7 +1304,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1322,7 +1320,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1338,7 +1336,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1354,7 +1352,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1374,17 +1372,17 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
             
             
             
-            PagingDelegate&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</nobr>
+            List&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getEvents</a></span>(String calendarId, String icalUID, Integer maxAttendees, String orderBy, String query, boolean showDeleted, boolean showHiddenInvitations, boolean singleEvents, String timeMin, String timeMax, String datetimeFormat, String timezone, String lastUpdated, PagingConfiguration pagingConfiguration)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">getEvents</a></span>(MuleMessage message, String calendarId, String icalUID, Integer maxAttendees, Integer maxResults, String orderBy, String pageToken, String query, boolean showDeleted, boolean showHiddenInvitations, boolean singleEvents, String timeMin, String timeMax, String datetimeFormat, String timezone, String lastUpdated)</nobr>
         
         <div class="jd-descrdiv">Searchs and returns events matching the criteria parameters.</div>
   
@@ -1392,7 +1390,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1412,6 +1410,22 @@ From class
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            IdentifierPolicy</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getIdentifierPolicy()">getIdentifierPolicy</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
@@ -1419,15 +1433,16 @@ From class
             
             
             
-            PagingDelegate&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</nobr>
+            List&lt;<a href="../../../../../../../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getInstances</a></span>(String calendarId, String eventId, Integer maxAttendess, boolean showDeleted, String timezone, String originalStart, PagingConfiguration pagingConfiguration)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#getInstances(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, boolean, java.lang.String, java.lang.String)">getInstances</a></span>(MuleMessage message, String calendarId, String eventId, Integer maxAttendess, Integer maxResults, boolean showDeleted, String timezone, String originalStart)</nobr>
         
         <div class="jd-descrdiv">For recurring events, it returns one instance of
  <code><a href="../../../../../../../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> for each recurrence instance
  
- </div>
+ For supporting google's paging mechanism, the next page token is store on the message property
+ &quot;GoogleCalendar_NEXT_PAGE_TOKEN&quot;.</div>
   
   </td></tr>
 
@@ -1671,13 +1686,29 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#setScope(java.lang.String)">setScope</a></span>(String scope)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#setIdentifierPolicy(org.mule.modules.google.IdentifierPolicy)">setIdentifierPolicy</a></span>(IdentifierPolicy identifierPolicy)</nobr>
         
   </td></tr>
 
 
 	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/GoogleCalendarConnector.html#setScope(java.lang.String)">setScope</a></span>(String scope)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1697,7 +1728,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1715,7 +1746,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1733,7 +1764,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1800,22 +1831,6 @@ From class
             
             
             
-            MuleContext</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getMuleContext</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
             String</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
@@ -1825,39 +1840,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">registerTransformer</span>(Transformer arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -2083,61 +2066,19 @@ From class
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.context.MuleContextAware" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.context.MuleContextAware-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.module.google.calendar.basic.Capabilities" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.module.google.calendar.basic.Capabilities-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From interface
 
-  org.mule.api.context.MuleContextAware
+  <a href="../../../../../../../org/mule/module/google/calendar/basic/Capabilities.html">org.mule.module.google.calendar.basic.Capabilities</a>
 
-<div id="inherited-methods-org.mule.api.context.MuleContextAware">
-  <div id="inherited-methods-org.mule.api.context.MuleContextAware-list"
+<div id="inherited-methods-org.mule.module.google.calendar.basic.Capabilities">
+  <div id="inherited-methods-org.mule.module.google.calendar.basic.Capabilities-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.api.context.MuleContextAware-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.api.devkit.capability.Capabilities" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.api.devkit.capability.Capabilities-trigger"
-          src="../../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From interface
-
-  org.mule.api.devkit.capability.Capabilities
-
-<div id="inherited-methods-org.mule.api.devkit.capability.Capabilities">
-  <div id="inherited-methods-org.mule.api.devkit.capability.Capabilities-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.api.devkit.capability.Capabilities-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.module.google.calendar.basic.Capabilities-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2153,8 +2094,11 @@ From interface
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isCapableOf</span>(ModuleCapability arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/basic/Capabilities.html#isCapableOf(org.mule.module.google.calendar.basic.Capability)">isCapableOf</a></span>(<a href="../../../../../../../java/org/mule/module/google/calendar/basic/Capability.html">Capability</a> capability)</nobr>
         
+        <div class="jd-descrdiv">Returns true if this module implements such
+ capability</div>
+  
   </td></tr>
 
 
@@ -2244,7 +2188,7 @@ From interface
 
 
 
-<A NAME="isCapableOf(org.mule.api.devkit.capability.ModuleCapability)"></A>
+<A NAME="isCapableOf(org.mule.module.google.calendar.basic.Capability)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2257,7 +2201,7 @@ From interface
         boolean
       </span>
       <span class="sympad">isCapableOf</span>
-      <span class="normal">(ModuleCapability capability)</span>
+      <span class="normal">(<a href="../../../../../../../java/org/mule/module/google/calendar/basic/Capability.html">Capability</a> capability)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2277,9 +2221,14 @@ From interface
       <table class="jd-tagtable">
         <tr>
           <th>capability</td>
-          <td></td>
+          <td>The capability to test for</td>
         </tr>
       </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>True if it does, false otherwise
+</li></ul>
   </div>
 
     </div>

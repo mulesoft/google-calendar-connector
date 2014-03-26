@@ -4,20 +4,20 @@ package org.mule.module.google.calendar.adapters;
 import javax.annotation.Generated;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
-import org.mule.api.devkit.ProcessAdapter;
-import org.mule.api.devkit.ProcessTemplate;
-import org.mule.api.devkit.ProcessTemplate;
 import org.mule.api.processor.MessageProcessor;
 import org.mule.api.routing.filter.Filter;
 import org.mule.module.google.calendar.GoogleCalendarConnector;
-import org.mule.security.oauth.callback.ProcessCallback;
+import org.mule.module.google.calendar.process.ProcessAdapter;
+import org.mule.module.google.calendar.process.ProcessCallback;
+import org.mule.module.google.calendar.process.ProcessTemplate;
+import org.mule.module.google.calendar.process.ProcessTemplate;
 
 
 /**
  * A <code>GoogleCalendarConnectorProcessAdapter</code> is a wrapper around {@link GoogleCalendarConnector } that enables custom processing strategies.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:31:10-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.4.3", date = "2014-03-26T12:32:33-05:00", comments = "Build 3.4.3.1620.30ea288")
 public class GoogleCalendarConnectorProcessAdapter
     extends GoogleCalendarConnectorLifecycleAdapter
     implements ProcessAdapter<GoogleCalendarConnectorCapabilitiesAdapter>

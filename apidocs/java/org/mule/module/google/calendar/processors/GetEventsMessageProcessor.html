@@ -65,49 +65,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -254,6 +211,10 @@
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/agents/package-summary.html">org.mule.module.google.calendar.agents</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/basic/package-summary.html">org.mule.module.google.calendar.basic</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/callback/package-summary.html">org.mule.module.google.calendar.callback</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/config/package-summary.html">org.mule.module.google.calendar.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/connection/package-summary.html">org.mule.module.google.calendar.connection</a></li>
@@ -265,10 +226,10 @@
   <a href="../../../../../../../java/org/mule/module/google/calendar/model/batch/package-summary.html">org.mule.module.google.calendar.model.batch</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/oauth/package-summary.html">org.mule.module.google.calendar.oauth</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/process/package-summary.html">org.mule.module.google.calendar.process</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
-    <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/transformer/package-summary.html">org.mule.module.google.calendar.transformer</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/transformers/package-summary.html">org.mule.module.google.calendar.transformers</a></li>
     <li class="api apilevel-">
@@ -283,7 +244,9 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a></li>
-          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html">AbstractExpressionEvaluator</a></li>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;</li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteCalendarMessageProcessor.html">BatchDeleteCalendarMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteEventMessageProcessor.html">BatchDeleteEventMessageProcessor</a></li>
@@ -358,11 +321,6 @@
 <div id="api-info-block">
 
 
-
-  
-  
-  
-  
 
   
    
@@ -544,11 +502,7 @@ Summary:
   
 
   
-  
-  
-
-  
-    extends <a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a><br/>
+    extends <a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;<br/>
   
   
   
@@ -556,6 +510,14 @@ Summary:
   
   
       implements 
+      
+        Disposable 
+      
+        Initialisable 
+      
+        Startable 
+      
+        Stoppable 
       
         MessageProcessor 
       
@@ -575,7 +537,7 @@ Summary:
 
     <tr>
         
-        <td colspan="6" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="5" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -583,7 +545,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="5" class="jd-inheritance-class-cell">org.mule.devkit.processor.ExpressionEvaluatorSupport</td>
+        <td colspan="4" class="jd-inheritance-class-cell"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html">org.mule.module.google.calendar.processors.AbstractExpressionEvaluator</a></td>
     </tr>
     
 
@@ -593,7 +555,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="4" class="jd-inheritance-class-cell">org.mule.devkit.processor.DevkitBasedMessageProcessor</td>
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">org.mule.module.google.calendar.processors.AbstractConnectedProcessor</a></td>
     </tr>
     
 
@@ -605,27 +567,11 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
         
-        <td colspan="3" class="jd-inheritance-class-cell">org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">org.mule.module.google.calendar.processors.AbstractMessageProcessor</a>&lt;O&gt;</td>
     </tr>
     
 
     <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-        
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">org.mule.module.google.calendar.processors.AbstractPagedConnectedProcessor</a></td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;</td>
         
@@ -651,7 +597,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>GetEventsMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>GetEventsMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">getEvents(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -700,8 +646,6 @@ Summary:
 <table id="inhconstants" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Constants</div></th></tr>
-
-
 
 
 
@@ -917,6 +861,28 @@ org.mule.api.lifecycle.Stoppable
           protected
           
           
+          Integer</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#_maxResultsType">_maxResultsType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          MuleMessage</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#_messageType">_messageType</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
           String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#_orderByType">_orderByType</a></td>
           <td class="jd-descrcol" width="100%"></td>
@@ -928,8 +894,8 @@ org.mule.api.lifecycle.Stoppable
           protected
           
           
-          PagingConfiguration</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#_pagingConfigurationType">_pagingConfigurationType</a></td>
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#_pageTokenType">_pageTokenType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1072,6 +1038,28 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#maxResults">maxResults</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#message">message</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Object</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#orderBy">orderBy</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1083,7 +1071,7 @@ org.mule.api.lifecycle.Stoppable
           
           
           Object</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#pagingConfiguration">pagingConfiguration</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#pageToken">pageToken</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1178,33 +1166,59 @@ org.mule.api.lifecycle.Stoppable
   <div style="clear:left;">Inherited Fields</div></th></tr>
 
 
-
-
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.module.google.calendar.processors.AbstractMessageProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.module.google.calendar.processors.AbstractMessageProcessor-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From class
-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor
-<div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor">
-  <div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-list"
+<a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">org.mule.module.google.calendar.processors.AbstractMessageProcessor</a>
+<div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractMessageProcessor">
+  <div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractMessageProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-fields-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-summary" style="display: none;">
+  <div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractMessageProcessor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
-          private
+          protected
           
           
-          String</nobr></td>
-          <td class="jd-linkcol">fetchSize</td>
-          <td class="jd-descrcol" width="100%"></td>
+          FlowConstruct</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#flowConstruct">flowConstruct</a></td>
+          <td class="jd-descrcol" width="100%">Flow Construct
+ 
+</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          O</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#moduleObject">moduleObject</a></td>
+          <td class="jd-descrcol" width="100%">Module object
+ 
+</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          MuleContext</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#muleContext">muleContext</a></td>
+          <td class="jd-descrcol" width="100%">Mule Context
+ 
+</td>
       </tr>
       
     
@@ -1218,16 +1232,16 @@ org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor
 <tr class="api apilevel-" >
 <td colspan="12">
 
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.devkit.processor.DevkitBasedMessageProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-org.mule.devkit.processor.DevkitBasedMessageProcessor-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.mule.module.google.calendar.processors.AbstractConnectedProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>From class
-org.mule.devkit.processor.DevkitBasedMessageProcessor
-<div id="inherited-fields-org.mule.devkit.processor.DevkitBasedMessageProcessor">
-  <div id="inherited-fields-org.mule.devkit.processor.DevkitBasedMessageProcessor-list"
+<a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">org.mule.module.google.calendar.processors.AbstractConnectedProcessor</a>
+<div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractConnectedProcessor">
+  <div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-fields-org.mule.devkit.processor.DevkitBasedMessageProcessor-summary" style="display: none;">
+  <div id="inherited-fields-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -1238,51 +1252,18 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
           
           
           String</nobr></td>
-          <td class="jd-linkcol">accessTokenId</td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html#_accessTokenIdType">_accessTokenIdType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          FlowConstruct</nobr></td>
-          <td class="jd-linkcol">flowConstruct</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          Object</nobr></td>
-          <td class="jd-linkcol">moduleObject</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          protected
-          
-          
-          MuleContext</nobr></td>
-          <td class="jd-linkcol">muleContext</td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol"><nobr>
           private
           
           
-          String</nobr></td>
-          <td class="jd-linkcol">operationName</td>
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html#accessTokenId">accessTokenId</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1338,7 +1319,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             </nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#GetEventsMessageProcessor(java.lang.String)">GetEventsMessageProcessor</a></span>(String operationName)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#GetEventsMessageProcessor()">GetEventsMessageProcessor</a></span>()</nobr>
         
   </td></tr>
 
@@ -1383,29 +1364,13 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             Result&lt;MetaData&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#getGenericMetaData(org.mule.common.metadata.MetaDataKey)">getGenericMetaData</a></span>(MetaDataKey metaDataKey)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Result&lt;MetaData&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#getInputMetaData()">getInputMetaData</a></span>()</nobr>
         
   </td></tr>
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1417,24 +1382,6 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#getOutputMetaData(org.mule.common.metadata.MetaData)">getOutputMetaData</a></span>(MetaData inputMetadata)</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            PagingDelegate</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#getPagingDelegate(org.mule.api.MuleEvent, org.mule.streaming.PagingConfiguration)">getPagingDelegate</a></span>(MuleEvent event, PagingConfiguration pagingConfiguration)</nobr>
-        
-        <div class="jd-descrdiv">Invokes the MessageProcessor.</div>
-  
   </td></tr>
 
 
@@ -1464,12 +1411,12 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             
             
             
-            void</nobr>
+            MuleEvent</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setCalendarId(java.lang.Object)">setCalendarId</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#process(org.mule.api.MuleEvent)">process</a></span>(MuleEvent event)</nobr>
         
-        <div class="jd-descrdiv">Sets calendarId</div>
+        <div class="jd-descrdiv">Invokes the MessageProcessor.</div>
   
   </td></tr>
 
@@ -1485,9 +1432,45 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setCalendarId(java.lang.Object)">setCalendarId</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets calendarId</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setDatetimeFormat(java.lang.Object)">setDatetimeFormat</a></span>(Object value)</nobr>
         
         <div class="jd-descrdiv">Sets datetimeFormat</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setFlowConstruct(org.mule.api.construct.FlowConstruct)">setFlowConstruct</a></span>(FlowConstruct flowConstruct)</nobr>
+        
+        <div class="jd-descrdiv">Sets flow construct</div>
   
   </td></tr>
 
@@ -1557,9 +1540,9 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setOrderBy(java.lang.Object)">setOrderBy</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setMaxResults(java.lang.Object)">setMaxResults</a></span>(Object value)</nobr>
         
-        <div class="jd-descrdiv">Sets orderBy</div>
+        <div class="jd-descrdiv">Sets maxResults</div>
   
   </td></tr>
 
@@ -1575,15 +1558,69 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setPagingConfiguration(java.lang.Object)">setPagingConfiguration</a></span>(Object value)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setMessage(java.lang.Object)">setMessage</a></span>(Object value)</nobr>
         
-        <div class="jd-descrdiv">Sets pagingConfiguration</div>
+        <div class="jd-descrdiv">Sets message</div>
   
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext context)</nobr>
+        
+        <div class="jd-descrdiv">Set the Mule context</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setOrderBy(java.lang.Object)">setOrderBy</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets orderBy</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html#setPageToken(java.lang.Object)">setPageToken</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets pageToken</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1601,7 +1638,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1619,7 +1656,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1637,7 +1674,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1655,7 +1692,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1673,7 +1710,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1691,7 +1728,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1709,7 +1746,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1725,7 +1762,7 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
@@ -1755,97 +1792,21 @@ org.mule.devkit.processor.DevkitBasedMessageProcessor
   <div style="clear:left;">Inherited Methods</div></th></tr>
 
 
-
-
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.module.google.calendar.processors.AbstractMessageProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.module.google.calendar.processors.AbstractMessageProcessor-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From class
 
-  org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor
+  <a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">org.mule.module.google.calendar.processors.AbstractMessageProcessor</a>
 
-<div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor">
-  <div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-list"
+<div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractMessageProcessor">
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractMessageProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.streaming.processor.AbstractDevkitBasedPageableMessageProcessor-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            MuleEvent</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">doProcess</span>(MuleEvent arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            PagingDelegate&lt;?&gt;</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getPagingDelegate</span>(MuleEvent arg0, PagingConfiguration arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setFetchSize</span>(String arg0)</nobr>
-        
-  </td></tr>
-
-
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.devkit.processor.DevkitBasedMessageProcessor" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.devkit.processor.DevkitBasedMessageProcessor-trigger"
-          src="../../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From class
-
-  org.mule.devkit.processor.DevkitBasedMessageProcessor
-
-<div id="inherited-methods-org.mule.devkit.processor.DevkitBasedMessageProcessor">
-  <div id="inherited-methods-org.mule.devkit.processor.DevkitBasedMessageProcessor-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-org.mule.devkit.processor.DevkitBasedMessageProcessor-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractMessageProcessor-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -1858,43 +1819,13 @@ From class
             
             
             
-            void</nobr>
+            O</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">dispose</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#findOrCreate(java.lang.Class, boolean, org.mule.api.MuleEvent)">findOrCreate</a></span>(Class moduleClass, boolean shouldAutoCreate, MuleEvent muleEvent)</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            abstract
-            
-            
-            
-            
-            MuleEvent</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">doProcess</span>(MuleEvent arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">findOrCreate</span>(Class&lt;?&gt; arg0, boolean arg1, MuleEvent arg2)</nobr>
-        
+        <div class="jd-descrdiv">Obtains the expression manager from the Mule context and initialises the connector.</div>
+  
   </td></tr>
 
 
@@ -1904,93 +1835,37 @@ From class
             
             
             
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAccessTokenId</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
             
             
             FlowConstruct</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getFlowConstruct</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#getFlowConstruct()">getFlowConstruct</a></span>()</nobr>
         
+        <div class="jd-descrdiv">Retrieves flowConstruct
+ 
+</div>
+  
   </td></tr>
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             
             
-            final
+            
             
             
             MuleContext</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getMuleContext</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#getMuleContext()">getMuleContext</a></span>()</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">initialise</span>()</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">overwritePayload</span>(MuleEvent arg0, Object arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            MuleEvent</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">process</span>(MuleEvent arg0)</nobr>
-        
+        <div class="jd-descrdiv">Retrieves muleContext
+ 
+</div>
+  
   </td></tr>
 
 
@@ -2005,8 +1880,12 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setAccessTokenId</span>(String arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#overwritePayload(org.mule.api.MuleEvent, java.lang.Object)">overwritePayload</a></span>(MuleEvent event, Object resultPayload)</nobr>
         
+        <div class="jd-descrdiv">Overwrites the event payload with the specified one
+ 
+</div>
+  
   </td></tr>
 
 
@@ -2015,46 +1894,16 @@ From class
         <td class="jd-typecol"><nobr>
             
             
-            final
             
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setFlowConstruct</span>(FlowConstruct arg0)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
             
             
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setModuleObject</span>(Object arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#setFlowConstruct(org.mule.api.construct.FlowConstruct)">setFlowConstruct</a></span>(FlowConstruct value)</nobr>
         
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">setMuleContext</span>(MuleContext arg0)</nobr>
-        
+        <div class="jd-descrdiv">Sets flowConstruct</div>
+  
   </td></tr>
 
 
@@ -2069,8 +1918,10 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">start</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#setModuleObject(O)">setModuleObject</a></span>(O value)</nobr>
         
+        <div class="jd-descrdiv">Sets moduleObject</div>
+  
   </td></tr>
 
 
@@ -2085,8 +1936,10 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">stop</span>()</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractMessageProcessor.html#setMuleContext(org.mule.api.MuleContext)">setMuleContext</a></span>(MuleContext value)</nobr>
         
+        <div class="jd-descrdiv">Sets muleContext</div>
+  
   </td></tr>
 
 
@@ -2099,19 +1952,83 @@ From class
 
 <tr class="api apilevel-" >
 <td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.devkit.processor.ExpressionEvaluatorSupport" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-org.mule.devkit.processor.ExpressionEvaluatorSupport-trigger"
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.module.google.calendar.processors.AbstractConnectedProcessor" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-trigger"
           src="../../../../../../../assets/images/triangle-closed.png"
           class="jd-expando-trigger-img" /></a>
 From class
 
-  org.mule.devkit.processor.ExpressionEvaluatorSupport
+  <a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">org.mule.module.google.calendar.processors.AbstractConnectedProcessor</a>
 
-<div id="inherited-methods-org.mule.devkit.processor.ExpressionEvaluatorSupport">
-  <div id="inherited-methods-org.mule.devkit.processor.ExpressionEvaluatorSupport-list"
+<div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractConnectedProcessor">
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-list"
         class="jd-inheritedlinks">
   </div>
-  <div id="inherited-methods-org.mule.devkit.processor.ExpressionEvaluatorSupport-summary" style="display: none;">
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractConnectedProcessor-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html#getAccessTokenId()">getAccessTokenId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Retrieves accessTokenId
+ 
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html#setAccessTokenId(java.lang.Object)">setAccessTokenId</a></span>(Object value)</nobr>
+        
+        <div class="jd-descrdiv">Sets accessTokenId</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.mule.module.google.calendar.processors.AbstractExpressionEvaluator" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.mule.module.google.calendar.processors.AbstractExpressionEvaluator-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html">org.mule.module.google.calendar.processors.AbstractExpressionEvaluator</a>
+
+<div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractExpressionEvaluator">
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractExpressionEvaluator-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.mule.module.google.calendar.processors.AbstractExpressionEvaluator-summary" style="display: none;">
     <table class="jd-sumtable-expando">
     
 
@@ -2127,8 +2044,10 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">computeClassHierarchy</span>(Class arg0, List arg1)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#computeClassHierarchy(java.lang.Class, java.util.List)">computeClassHierarchy</a></span>(Class clazz, List classes)</nobr>
         
+        <div class="jd-descrdiv">Get all superclasses and interfaces recursively.</div>
+  
   </td></tr>
 
 
@@ -2143,7 +2062,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">evaluate</span>(TemplateParser.PatternInfo arg0, ExpressionManager arg1, MuleMessage arg2, Object arg3)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#evaluate(org.mule.util.TemplateParser.PatternInfo, org.mule.api.expression.ExpressionManager, org.mule.api.MuleMessage, java.lang.Object)">evaluate</a></span>(TemplateParser.PatternInfo patternInfo, ExpressionManager expressionManager, MuleMessage muleMessage, Object source)</nobr>
         
   </td></tr>
 
@@ -2159,7 +2078,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">evaluateAndTransform</span>(MuleContext arg0, MuleEvent arg1, Type arg2, String arg3, Object arg4)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#evaluateAndTransform(org.mule.api.MuleContext, org.mule.api.MuleMessage, java.lang.reflect.Type, java.lang.String, java.lang.Object)">evaluateAndTransform</a></span>(MuleContext muleContext, MuleMessage muleMessage, Type expectedType, String expectedMimeType, Object source)</nobr>
         
   </td></tr>
 
@@ -2175,39 +2094,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">evaluateAndTransform</span>(MuleContext arg0, MuleMessage arg1, Type arg2, String arg3, Object arg4)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            String</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">getAccessTokenId</span>(MuleEvent arg0, MessageProcessor arg1, OAuth2Manager&lt;?&gt; arg2)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            boolean</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isAssignableFrom</span>(Type arg0, Class arg1)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#evaluateAndTransform(org.mule.api.MuleContext, org.mule.api.MuleEvent, java.lang.reflect.Type, java.lang.String, java.lang.Object)">evaluateAndTransform</a></span>(MuleContext muleContext, MuleEvent event, Type expectedType, String expectedMimeType, Object source)</nobr>
         
   </td></tr>
 
@@ -2223,7 +2110,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isList</span>(Type arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#isAssignableFrom(java.lang.reflect.Type, java.lang.Class)">isAssignableFrom</a></span>(Type expectedType, Class clazz)</nobr>
         
   </td></tr>
 
@@ -2239,7 +2126,7 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isListClass</span>(Class arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#isList(java.lang.reflect.Type)">isList</a></span>(Type type)</nobr>
         
   </td></tr>
 
@@ -2255,8 +2142,10 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isMap</span>(Type arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#isListClass(java.lang.Class)">isListClass</a></span>(Class clazz)</nobr>
         
+        <div class="jd-descrdiv">Checks whether the specified class parameter is an instance of List</div>
+  
   </td></tr>
 
 
@@ -2271,7 +2160,41 @@ From class
             boolean</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">isMapClass</span>(Class arg0)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#isMap(java.lang.reflect.Type)">isMap</a></span>(Type type)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#isMapClass(java.lang.Class)">isMapClass</a></span>(Class clazz)</nobr>
+        
+        <div class="jd-descrdiv">Checks whether the specified class parameter is an instance of Map</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#transform(org.mule.api.MuleContext, org.mule.api.MuleMessage, java.lang.reflect.Type, java.lang.String, java.lang.Object)">transform</a></span>(MuleContext muleContext, MuleMessage message, Type expectedType, String expectedMimeType, Object source)</nobr>
         
   </td></tr>
 
@@ -2287,7 +2210,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(MuleMessage arg0, Type arg1, Object arg2)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#transform(org.mule.api.MuleContext, org.mule.api.MuleEvent, java.lang.reflect.Type, java.lang.String, java.lang.Object)">transform</a></span>(MuleContext muleContext, MuleEvent event, Type expectedType, String expectedMimeType, Object source)</nobr>
         
   </td></tr>
 
@@ -2303,23 +2226,7 @@ From class
             Object</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(MuleContext arg0, MuleEvent arg1, Type arg2, String arg3, Object arg4)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            
-            
-            
-            Object</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">transform</span>(MuleContext arg0, MuleMessage arg1, Type arg2, String arg3, Object arg4)</nobr>
+        <span class="sympad"><a href="../../../../../../../org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html#transform(org.mule.api.MuleMessage, java.lang.reflect.Type, java.lang.Object)">transform</a></span>(MuleMessage muleMessage, Type expectedType, Object source)</nobr>
         
   </td></tr>
 
@@ -3070,6 +2977,66 @@ From interface
 
 
 
+<A NAME="_maxResultsType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Integer
+      </span>
+        _maxResultsType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="_messageType"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        MuleMessage
+      </span>
+        _messageType
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="_orderByType"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -3100,7 +3067,7 @@ From interface
 
 
 
-<A NAME="_pagingConfigurationType"></A>
+<A NAME="_pageTokenType"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3108,9 +3075,9 @@ From interface
         protected 
          
          
-        PagingConfiguration
+        String
       </span>
-        _pagingConfigurationType
+        _pageTokenType
     </h4>
       <div class="api-level">
         
@@ -3490,6 +3457,66 @@ From interface
 
 
 
+<A NAME="maxResults"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Object
+      </span>
+        maxResults
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="message"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Object
+      </span>
+        message
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="orderBy"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -3520,7 +3547,7 @@ From interface
 
 
 
-<A NAME="pagingConfiguration"></A>
+<A NAME="pageToken"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3530,7 +3557,7 @@ From interface
          
         Object
       </span>
-        pagingConfiguration
+        pageToken
     </h4>
       <div class="api-level">
         
@@ -3769,7 +3796,7 @@ From interface
 
 
 
-<A NAME="GetEventsMessageProcessor(java.lang.String)"></A>
+<A NAME="GetEventsMessageProcessor()"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3782,7 +3809,7 @@ From interface
         
       </span>
       <span class="sympad">GetEventsMessageProcessor</span>
-      <span class="normal">(String operationName)</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3795,15 +3822,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>operationName</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>
@@ -3850,46 +3868,6 @@ From interface
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<A NAME="getGenericMetaData(org.mule.common.metadata.MetaDataKey)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        Result&lt;MetaData&gt;
-      </span>
-      <span class="sympad">getGenericMetaData</span>
-      <span class="normal">(MetaDataKey metaDataKey)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>metaDataKey</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
 
     </div>
 </div>
@@ -3966,59 +3944,6 @@ From interface
 </div>
 
 
-<A NAME="getPagingDelegate(org.mule.api.MuleEvent, org.mule.streaming.PagingConfiguration)"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        PagingDelegate
-      </span>
-      <span class="sympad">getPagingDelegate</span>
-      <span class="normal">(MuleEvent event, PagingConfiguration pagingConfiguration)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Invokes the MessageProcessor.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>event</td>
-          <td>MuleEvent to be processed</td>
-        </tr>
-        <tr>
-          <th>pagingConfiguration</td>
-          <td></td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th>Exception</td>
-            <td></td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <A NAME="initialise()"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -4050,6 +3975,55 @@ From interface
       <table class="jd-tagtable">  
         <tr>
             <th>InitialisationException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="process(org.mule.api.MuleEvent)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        MuleEvent
+      </span>
+      <span class="sympad">process</span>
+      <span class="normal">(MuleEvent event)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Invokes the MessageProcessor.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>event</td>
+          <td>MuleEvent to be processed</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>MuleException</td>
             <td></td>
         </tr>
       </table>
@@ -4132,6 +4106,47 @@ From interface
         <tr>
           <th>value</td>
           <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setFlowConstruct(org.mule.api.construct.FlowConstruct)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFlowConstruct</span>
+      <span class="normal">(FlowConstruct flowConstruct)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets flow construct</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>flowConstruct</td>
+          <td>Flow construct to set
 </td>
         </tr>
       </table>
@@ -4264,6 +4279,129 @@ From interface
 </div>
 
 
+<A NAME="setMaxResults(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMaxResults</span>
+      <span class="normal">(Object value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets maxResults</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setMessage(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMessage</span>
+      <span class="normal">(Object value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets message</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>value</td>
+          <td>Value to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setMuleContext(org.mule.api.MuleContext)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMuleContext</span>
+      <span class="normal">(MuleContext context)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set the Mule context</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>context</td>
+          <td>Mule context to set
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <A NAME="setOrderBy(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -4305,7 +4443,7 @@ From interface
 </div>
 
 
-<A NAME="setPagingConfiguration(java.lang.Object)"></A>
+<A NAME="setPageToken(java.lang.Object)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4317,7 +4455,7 @@ From interface
          
         void
       </span>
-      <span class="sympad">setPagingConfiguration</span>
+      <span class="sympad">setPageToken</span>
       <span class="normal">(Object value)</span>
     </h4>
       <div class="api-level">
@@ -4330,7 +4468,7 @@ From interface
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Sets pagingConfiguration</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Sets pageToken</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

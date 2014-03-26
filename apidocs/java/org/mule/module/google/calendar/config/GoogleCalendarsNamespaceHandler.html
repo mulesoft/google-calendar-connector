@@ -65,49 +65,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -253,6 +210,10 @@
   <a href="../../../../../../../java/org/mule/module/google/calendar/adapters/package-summary.html">org.mule.module.google.calendar.adapters</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/agents/package-summary.html">org.mule.module.google.calendar.agents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/basic/package-summary.html">org.mule.module.google.calendar.basic</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/callback/package-summary.html">org.mule.module.google.calendar.callback</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/config/package-summary.html">org.mule.module.google.calendar.config</a></li>
     <li class="api apilevel-">
@@ -266,9 +227,9 @@
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/oauth/package-summary.html">org.mule.module.google.calendar.oauth</a></li>
     <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
+  <a href="../../../../../../../java/org/mule/module/google/calendar/process/package-summary.html">org.mule.module.google.calendar.process</a></li>
     <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/transformer/package-summary.html">org.mule.module.google.calendar.transformer</a></li>
+  <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/transformers/package-summary.html">org.mule.module.google.calendar.transformers</a></li>
     <li class="api apilevel-">
@@ -279,9 +240,15 @@
           <div id="classes-nav">
             <ul>
               
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/AbstractDefinitionParser.ParseDelegate.html">AbstractDefinitionParser.ParseDelegate</a>&lt;T&gt;</li>
+      </ul>
+    </li>
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/AbstractDefinitionParser.html">AbstractDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/AuthorizeDefinitionParser.html">AuthorizeDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/BatchDeleteCalendarDefinitionParser.html">BatchDeleteCalendarDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/BatchDeleteEventDefinitionParser.html">BatchDeleteEventDefinitionParser</a></li>
@@ -311,8 +278,6 @@
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/InsertEventDefinitionParser.html">InsertEventDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/MoveEventDefinitionParser.html">MoveEventDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/QuickAddEventDefinitionParser.html">QuickAddEventDefinitionParser</a></li>
-          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/RestoreAccessTokenCallbackFactoryBean.html">RestoreAccessTokenCallbackFactoryBean</a></li>
-          <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/SaveAccessTokenCallbackFactoryBean.html">SaveAccessTokenCallbackFactoryBean</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/UnauthorizeDefinitionParser.html">UnauthorizeDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/UpdateAclRuleDefinitionParser.html">UpdateAclRuleDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/config/UpdateCalendarDefinitionParser.html">UpdateCalendarDefinitionParser</a></li>
@@ -396,11 +361,8 @@ Summary:
 
 
 
-  <a href="#lfields">Fields</a>
-  
 
-
-  &#124; <a href="#inhfields">Inherited Fields</a>
+  <a href="#inhfields">Inherited Fields</a>
   
 
 
@@ -546,26 +508,6 @@ Summary:
 
 
 
-
-
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
-
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol"><nobr>
-          private
-          static
-          
-          Logger</nobr></td>
-          <td class="jd-linkcol"><a href="../../../../../../../org/mule/module/google/calendar/config/GoogleCalendarsNamespaceHandler.html#logger">logger</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
 
 
 
@@ -1114,43 +1056,6 @@ From interface
 
 
 <!-- Fields -->
-
-
-<!-- ========= FIELD DETAIL ======== -->
-<h2>Fields</h2>
-
-
-
-
-<A NAME="logger"></A>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        private 
-        static 
-         
-        Logger
-      </span>
-        logger
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
 
 
 <!-- Public ctors -->

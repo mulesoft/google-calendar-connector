@@ -2,16 +2,16 @@
 package org.mule.module.google.calendar.adapters;
 
 import javax.annotation.Generated;
-import org.mule.api.devkit.capability.Capabilities;
-import org.mule.api.devkit.capability.ModuleCapability;
 import org.mule.module.google.calendar.GoogleCalendarConnector;
+import org.mule.module.google.calendar.basic.Capabilities;
+import org.mule.module.google.calendar.basic.Capability;
 
 
 /**
  * A <code>GoogleCalendarConnectorCapabilitiesAdapter</code> is a wrapper around {@link GoogleCalendarConnector } that implements {@link org.mule.api.Capabilities} interface.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:31:10-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.4.3", date = "2014-03-26T12:32:33-05:00", comments = "Build 3.4.3.1620.30ea288")
 public class GoogleCalendarConnectorCapabilitiesAdapter
     extends GoogleCalendarConnector
     implements Capabilities
@@ -22,11 +22,11 @@ public class GoogleCalendarConnectorCapabilitiesAdapter
      * Returns true if this module implements such capability
      * 
      */
-    public boolean isCapableOf(ModuleCapability capability) {
-        if (capability == ModuleCapability.LIFECYCLE_CAPABLE) {
+    public boolean isCapableOf(Capability capability) {
+        if (capability == Capability.LIFECYCLE_CAPABLE) {
             return true;
         }
-        if (capability == ModuleCapability.OAUTH2_CAPABLE) {
+        if (capability == Capability.OAUTH2_CAPABLE) {
             return true;
         }
         return false;

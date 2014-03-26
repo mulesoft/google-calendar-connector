@@ -2,16 +2,30 @@
 package org.mule.module.google.calendar.processors;
 
 import javax.annotation.Generated;
-import org.mule.devkit.processor.DevkitBasedMessageProcessor;
 
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:31:10-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.4.3", date = "2014-03-26T12:32:33-05:00", comments = "Build 3.4.3.1620.30ea288")
 public abstract class AbstractConnectedProcessor
-    extends DevkitBasedMessageProcessor
+    extends AbstractExpressionEvaluator
 {
 
+    private Object accessTokenId;
+    private String _accessTokenIdType;
 
-    public AbstractConnectedProcessor(String operationName) {
-        super(operationName);
+    /**
+     * Retrieves accessTokenId
+     * 
+     */
+    public Object getAccessTokenId() {
+        return this.accessTokenId;
+    }
+
+    /**
+     * Sets accessTokenId
+     * 
+     * @param value Value to set
+     */
+    public void setAccessTokenId(Object value) {
+        this.accessTokenId = value;
     }
 
 }
