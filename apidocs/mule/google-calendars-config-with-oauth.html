@@ -1,0 +1,4408 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Google Calendars Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>
+
+  GoogleCalendarConnector
+
+
+| Google Calendars Connector
+
+</title>
+<link href="../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-toc.js" type="text/javascript"></script>
+<script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../", "../assets/");
+</script>
+<script src="../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Google Calendars Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Google Calendars Connector</span>
+    
+    <ul id="header-tabs" class="mule">
+    
+    	<li id="guide"><a href="../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    
+    	<li id="java"><a href="../java/packages.html">
+	    	<span class="en">Java API Reference</span>
+    	</a></li>
+    
+    	<li id="mule"><a href="../mule/modules.html">
+	    	<span class="en">Mule API Reference</span>
+    	</a></li>
+    
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../')"
+                      onkeyup="return search_changed(event, false, '../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+<div class="g-unit" id="all-content">
+
+<div id="api-info-block">
+
+<div class="sum-details-links">
+
+Summary:
+<a href="#lconfig">Configuration</a>
+
+
+
+</div><!-- end sum-details-links -->
+
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF MODULE DATA ======== -->
+
+<div id="jd-header">
+    org.mule.modules
+<h1>mule-module-google-calendar</h1>
+    config-with-oauth
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+<br/>
+
+<div class="jd-tagdata">
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/google-calendars</td>
+        </tr><tr>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/google-calendars/current/mule-google-calendars.xsd&nbsp;&nbsp;(<a href="google-calendars-schema.html">View Schema</a>)</td>
+        </tr>
+<tr>
+          <th>Schema Version</th><td>1.0</td>
+        </tr>
+<tr>
+          <th>Minimum Mule Version</th><td>3.5</td>
+        </tr>
+    </tbody></table>
+  </div>
+
+<div class="jd-descr">
+
+
+<h2>Module Overview</h2>
+<p>Google Calendars Cloud connector.
+ This connector covers almost all the Google Calendar API v3 using OAuth2 for authentication.</p>
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+<!-- Config -->
+
+<!-- =========== CONFIG SUMMARY =========== -->
+<table id="lconfig" class="jd-sumtable"><tr><th colspan="12">Configuration</th></tr>
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#config-with-oauth">&lt;google-calendars:config-with-oauth&gt;</a></nobr>
+        <div class="jd-descrdiv">Configure an instance of this module</div>
+  </td></tr>
+</table>
+
+
+
+<table id="promethods" class="jd-sumtable">
+<tr><th colspan="12">Message Processors<br/><span style="font-weight: 200;"></span></th></tr>
+    
+    
+    <!-- ========== MESSAGE PROCESSOR SUMMARY =========== -->
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-delete-calendar">&lt;google-calendars:batch-delete-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes many events in a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-delete-event">&lt;google-calendars:batch-delete-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes many events in a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-insert-calendar">&lt;google-calendars:batch-insert-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts many calendars in a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-insert-event">&lt;google-calendars:batch-insert-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts many events as a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-update-calendar">&lt;google-calendars:batch-update-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates many calendars in a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#batch-update-event">&lt;google-calendars:batch-update-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates many events in a batch
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#clear-calendar">&lt;google-calendars:clear-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Clears all the events on the calendar referenced by id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#create-calendar">&lt;google-calendars:create-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts a new calendar associated with the user that owns the current OAuth token
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#delete-acl-rule">&lt;google-calendars:delete-acl-rule&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes an ACL rule on a calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#delete-calendar">&lt;google-calendars:delete-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes a particular calendar referenced by id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#delete-calendar-list">&lt;google-calendars:delete-calendar-list&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes a calendar list referenced by id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#delete-event">&lt;google-calendars:delete-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Deletes an event from a specified calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-acl-rule-by-id">&lt;google-calendars:get-acl-rule-by-id&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Retrieves a Rule by Id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-all-acl-rules">&lt;google-calendars:get-all-acl-rules&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Returns all the Acl rules for a particular calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-calendar-by-id">&lt;google-calendars:get-calendar-by-id&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Returns a particular calendar specified by id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-calendar-list">&lt;google-calendars:get-calendar-list&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Returns a paginated iterator with instances of <code><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> listing the
+ calendars of the user that owns the OAuth access token.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-calendar-list-by-id">&lt;google-calendars:get-calendar-list-by-id&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Returns a particular calendar list identified by id.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-event-by-id">&lt;google-calendars:get-event-by-id&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Retrieves an event by id
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-events">&lt;google-calendars:get-events&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Searchs and returns events matching the criteria parameters.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-free-time">&lt;google-calendars:get-free-time&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Returns the free time the authenticated user has between two times
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#get-instances">&lt;google-calendars:get-instances&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">For recurring events, it returns one instance of
+ <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> for each recurrence instance
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#import-event">&lt;google-calendars:import-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Imports the given event into a calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#insert-acl-rule">&lt;google-calendars:insert-acl-rule&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts a new ACL rule in a calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#insert-event">&lt;google-calendars:insert-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Inserts the given event into an specified calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#move-event">&lt;google-calendars:move-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Moves a calendar form one calendar to another
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#quick-add-event">&lt;google-calendars:quick-add-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Shortcut method for creating an event with nothing but a description text.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#update-acl-rule">&lt;google-calendars:update-acl-rule&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates a rule on a given calendar
+ 
+ </div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#update-calendar">&lt;google-calendars:update-calendar&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates a calendar referenced by id with the content of one specified or taken from the message payload.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#update-calendar-list">&lt;google-calendars:update-calendar-list&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates a calendar list referenced by id with the content of one specified or taken from the message payload.</div>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../mule/google-calendars-config-with-oauth.html#update-event">&lt;google-calendars:update-event&gt;</a></nobr>
+        
+        <div class="jd-descrdiv">Updates an event.</div>
+        
+  </td></tr>
+
+
+
+    
+    
+    
+</table>
+
+
+
+
+
+
+
+
+
+
+
+</div><!-- jd-descr (summary) -->
+
+
+<!-- ========= CONFIGURATION DETAIL ======== -->
+<A NAME="config-with-oauth"></A>
+<h2>Configuration</h2>
+<p>To use the this module within a flow the namespace to the module must be included. The resulting flow will look
+similar to the following:</p>
+<pre>
+&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:google-calendars="http://www.mulesoft.org/schema/mule/google-calendars"
+      xsi:schemaLocation="
+               http://www.mulesoft.org/schema/mule/core
+               http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+               http://www.mulesoft.org/schema/mule/google-calendars
+               http://www.mulesoft.org/schema/mule/google-calendars/current/mule-google-calendars.xsd"&gt;
+
+      &lt;!-- here goes your flows and configuration elements --&gt;
+
+&lt;/mule&gt;
+</pre>
+
+<p>This module is configured using the <i>config</i> element. This element must be placed outside of your flows and at
+the root of your Mule application. You can create as many configurations as you deem necessary as long as each carries
+its own name.</p>
+<p>Each message processor, message source or transformer carries a <i>config-ref</i> attribute that allows the invoker to
+specify which configuration to use.</p>
+<table id="lconfig" class="jd-sumtable">
+<tr><th colspan="12">Attributes</th></tr>
+<tr><th>Type</th><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+<td class="jd-typecol"><nobr>xs:string</nobr></td>
+<td class="jd-linkcol"><nobr>name</nobr></td>
+<td class="jd-descrcol"></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Give a name to this configuration so it can be later referenced.</td>
+<td/><td/><td/>
+
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>applicationName</nobr></td>
+          <td class="jd-descrcol">Mule-GoogleCalendarConnector/1.0</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Application name registered on Google API console
+</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          </nobr></td>
+          <td class="jd-linkcol"><nobr>clientFactory</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Factory to instantiate the underlying google client.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>consumerKey</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%">The OAuth2 consumer key 
+</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>consumerSecret</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%">The OAuth2 consumer secret 
+</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>scope</nobr></td>
+          <td class="jd-descrcol">https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The OAuth scopes you want to request
+</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+      </tr>
+      
+    
+    
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>authorizationUrl</nobr></td>
+          <td class="jd-descrcol">https://accounts.google.com/o/oauth2/auth</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The URL defined by the Service Provider where the resource owner will be redirected to grant authorization to the connector</td>
+      </tr>
+      
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>xs:string</nobr></td>
+          <td class="jd-linkcol"><nobr>accessTokenUrl</nobr></td>
+          <td class="jd-descrcol">https://accounts.google.com/o/oauth2/token</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The URL defined by the Service Provider to obtain an access token</td>
+      </tr>
+      
+    
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========= OAUTH2 DETAIL ======== -->
+<h2>OAuth2</h2>
+<p>This connector uses OAuth2 as an authorization and authentication mechanism. All the message processors or sources that require the connector
+to be authorized by the service provider will throw a NotAuthorizedException until the connector is authorized properly.</p>
+<p>Authorizing the connector is a simple process of calling:</p>
+<pre>
+    &lt;google-calendars:authorize/&gt;
+</pre>
+<p>The call to authorize the message processor must be made though a message coming from an HTTP inbound endpoint as the authorize process will
+ reply with a redirect to the service provider. The following is an example of how to use it in a flow with an HTTP inbound endpoint:</p>
+<pre>
+    &lt;flow name="authorizationAndAuthenticationFlow"&gt;
+        &lt;http:inbound-endpoint host="localhost" port="8080" path="oauth-authorize"/&gt;
+        &lt;google-calendars:authorize/&gt;
+    &lt;/flow&gt;
+</pre>
+<p>If you hit that endpoint via a web-browser it will initiate the OAuth dance, redirecting the user to the service provider page
+and creating a callback endpoint so the service provider can call us back once the user has been authenticated. Once the callback
+gets called then the connector will switch to an authorized state and any message processor or source that requires authentication
+can be called.</p>
+<p>The authorize message processor supports the following attributes:</p>
+<table id="lconfig" class="jd-sumtable">
+<tr><th colspan="12">Authorize Attributes</th></tr>
+<tr><th>Name</th><th>Default Value</th><th>Description</th></tr>
+
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-linkcol"><nobr>access_type</nobr></td>
+          <td class="jd-descrcol"><nobr>online</nobr></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Indicates if your application needs to access a Google API when the user is not present at the browser.  Use offline to get a refresh token and use that when the user is not at the browser. Default is online</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-linkcol"><nobr>force_prompt</nobr></td>
+          <td class="jd-descrcol"><nobr>auto</nobr></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Indicates if google should remember that an app has been authorized or if each should ask authorization every time.  Use force to request authorization every time or auto to only do it the first time. Default is auto</td>
+      </tr>
+      
+    
+
+    
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-linkcol"><nobr>authorizationUrl</nobr></td>
+          <td class="jd-descrcol">https://accounts.google.com/o/oauth2/auth</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The URL defined by the Service Provider where the resource owner will be redirected to grant authorization to the connector</td>
+      </tr>
+      
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-linkcol"><nobr>accessTokenUrl</nobr></td>
+          <td class="jd-descrcol">https://accounts.google.com/o/oauth2/token</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The URL defined by the Service Provider to obtain an access token</td>
+      </tr>
+      
+        <tr class=" api apilevel-" >
+          <td class="jd-linkcol"><nobr>accessTokenId</nobr></td>
+          <td class="jd-descrcol">&nbsp;</td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The Id with which the obtained access token will be stored. If not provided, then it will be the config name</td>
+        </tr>
+        
+    
+
+</table>
+<h3>After Authorization</h3>
+<p>The <i>authorize</i> message processor is an intercepting one. If something that requires authentication is requested but the connector
+is not authorized yet, the authorize message processor will be triggered. It will redirect the user to the service provider so that he can authorize
+the connector. This is why the authorize message processor needs to be behind an <i>http:inbound-endpoint</i>. Once authentication and authorization
+are successful, the service provider will respond to the connector with a callback. The connector will extract information from this callback, set
+its own internal state to authorized, and then move on to executing anything that had been interrupted by the authorization method.</p>
+<pre>
+  &lt;flow name="authorizationAndAuthenticationFlow"&gt;
+      &lt;http:inbound-endpoint host="localhost" port="8080" path="oauth-authorize"/&gt;
+      &lt;google-calendars:authorize/&gt;
+      &lt;http:response-builder status="200"&gt;
+          &lt;set-payload value="You have successfully authorized the connector"/&gt;
+      &lt;/http:response-builder&gt;
+  &lt;/flow&gt;
+</pre>
+<p>In the above example we added the <i>http:response-builder</i> (keep in mind that this element is available only in Mule 3.3.0 and later). If
+the connector is not yet authorized, the execution of the response builder will be delayed until the callback is received.</p>
+<p>On the other hand, if the connector had already been <i>authorized</i> before, then the flow execution will not be delayed; it will
+continue and the <i>http:response-builder</i> will get executed right away rather than after the callback.</p>
+<h3>Error Handling during Authorization</h3>
+<p>If for any reason, an error occurs while processing the callback, the exception strategy of the flow containing the authorize will be executed.
+So, if the callback sent the wrong information you can handle that situation by setting up an exception strategy as follows:</p>
+<pre>
+  &lt;flow name="authorizationAndAuthenticationFlow"&gt;
+      &lt;http:inbound-endpoint host="localhost" port="8080" path="oauth-authorize"/&gt;
+      &lt;google-calendars:authorize/&gt;
+      &lt;http:response-builder status="200"&gt;
+          &lt;set-payload value="You have successfully authorized the connector"/&gt;
+      &lt;/http:response-builder&gt;
+      &lt;catch-exception-strategy&gt;
+         &lt;http:response-builder status="404"&gt;
+             &lt;set-payload value="An error has occurred authorizing the connector"/&gt;
+         &lt;/http:response-builder&gt;
+      &lt;/catch-exception-strategy&gt;
+  &lt;/flow&gt;
+</pre>
+<p> What happens if a tenant who is not yet authorized wants to perform an OAuth protected operation? You can set this with the <b>onNoToken</b> property: </p>
+<pre>
+&lt;google-calendars:config name=&quot;google-calendarss&quot; consumerKey=&quot;${consumerKey}&quot; consumerSecret=&quot;${consumerSecret}&quot; onNoToken=&quot;[STOP_FLOW|EXCEPTION]&quot;&gt;
+    &lt;google-calendars:oauth-callback-config connector-ref=&quot;${oauth.http.connector}&quot; domain=&quot;${oauth.url}&quot; localPort=&quot;${https.port}&quot; async=&quot;false&quot; path=&quot;oauth2callback&quot; /&gt;
+&lt;/google-calendars:config-with-oauth&gt;
+</pre>
+<p>The <b>onNoToken</b> property can be set to two different values:</p>
+<ul>
+<li>STOP_FLOW: acts as a filter and kills the execution of the flow</li>
+<li>EXCEPTION: throws an exception informing that the token is still not acquired</li>
+</ul>
+<h3>Unauthorize</h3>
+<p>Once this connector has been authorized further calls to the <i>authorize</i> message processor will be no-ops.
+If you wish to reset the state of the connector back to a non-authorized state you must call:</p>
+<pre>
+    &lt;google-calendars:unauthorize/&gt;
+</pre>
+<p>Keep in mind that after the connector is unauthorized all future calls that attempt to access protected resources will fail until
+ the connector is re-authorized.</p>
+<h3>Callback Customization</h3>
+<p>As mentioned earlier, once authorize gets called and before we redirect the user to the service provider, we create a callback endpoint.
+The callback endpoint will get called automatically by the service provider once the user is authenticated and he grants authorization to
+the connector to access his private information.</p>
+<p>The callback can be customized in the config element of the this connector as follows:</p>
+<pre>
+    &lt;google-calendars:config&gt;
+        &lt;google-calendars:oauth-callback-config domain="${fullDomain}" localPort="${http.port}" remotePort="80" defaultAccessTokenId="#[message.inboundProperties['tenantId']]" /&gt;
+    &lt;/google-calendars:config&gt;
+</pre>
+<p>The <i>oauth-callback-config</i> element can be used to customize the endpoint that gets created for the callback. It
+features the following attributes:</p>
+<table id="lconfig" class="jd-sumtable">
+<tr><th colspan="12">OAuth Callback Config Attributes</th></tr>
+<tr><th>Name</th><th>Description</th></tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>connector-ref</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Reference to a user-defined HTTP connector.</td>
+</tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>domain</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The domain portion of the callback URL. This is usually something like xxx.cloudhub.io if you are deploying to CloudHub for example.</td>
+</tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>localPort</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The local port number that the endpoint will listen on. Normally 80, in the case of CloudHub you can use the environment variable ${http.port}.</td>
+</tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>remotePort</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>This is the port number that we will tell the service provider we are listening on. It is usually the same as localPort but it is separated in case your deployment features port forwarding or a proxy.</td>
+</tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>path</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Path under which the callback should be exposed. If not specified a random path will be generated.</td>
+</tr>
+<tr class="api" >
+<td class="jd-linkcol"><nobr>defaultAccessTokenId</nobr></td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>A Mule Expression to use as access token id. If provided, this expression will be evaluated for all obtained access tokens and the result will be used as their id (except in the cases in which a specific acessTokenId was provided on the authorize processor</td>
+</tr>
+</table>
+<p class="caution">The example shown above is what the configuration would look like if your app would be deployed to CloudHub.</p>
+
+
+
+<h3>Access Token Store</h3>
+<p>This connector has the capability of automatically saving and restoring access tokens. The connector will store in either the default user object store
+or a user-defined one the acquired access tokens, refresh tokens, and any other pertinent information using the access token identifier as the key.</p>
+<p>The object store can be configured as follows</p>
+<pre>
+    &lt;google-calendars:config&gt;
+        &lt;google-calendars:oauth-store-config objectStore-ref="my-object-store"/&gt;
+    &lt;/google-calendars:config&gt;
+</pre>
+<p>There is only a single attribute entitled <i>objectStore-ref</i> in the <i>oauth-store-config</i> element that allows the user to specify the name
+of the object store that he wishes to use to save and restore access tokens.</p>
+<p>
+Another important aspect of the token store is the ids. This connector supports multi-tenancy, which means that each instance of this connector
+is capable of supporting multiple concurrent users. Therefore, each access token is given an id to identify the owning tenant.
+</p>
+<p>
+By default, the connector's config name is used the access token id. Also, by default, at the time of using a protected operation,
+it's not mandatory to provide an accessTokenId since the config's name will also be used by default.
+</p>
+<p>
+This defaults are fine for the single-tenant case or for CloudHub enabled multi-tenancy. If you are running on-premise or you are not using Cloudhub's multi-tenancy mode, there are a couple of ways in which you can easily handle your token ids manually.
+</p>
+<p>
+First, you can specify a defaultAccessTokenId on the connector's callback element. Each time a callback is received, that expression will get evaluated and the resulting value will be used as the token id. At the same time, when using a protected operation
+that expression will be evaluated to obtain the id of the access token to fetch.
+</p>
+<p>
+Another option is to use to provide an accessTokenId expression on the authorize processor. If you do so, the expression's result will be used as the token id instead. Notice that if you choose to force the token id like this, then you also need to provide a matching accessTokenId expression on each
+protected operation that uses that token.
+</p>
+
+
+
+
+
+
+
+
+
+<!-- ========= MESSAGE PROCESSOR DETAIL ======== -->
+<!-- Message Processors -->
+<h2>Message Processors</h2>
+
+
+    
+    
+
+
+<A NAME="batch-delete-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-delete-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes many events in a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-delete-calendar /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendars</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of @{link org.mule.module.google.calendar.model.Calendar} that are to be deleted</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="batch-delete-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-delete-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes many events in a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-delete-event calendarId="mariano.gonzalez@mulesoft.com" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the events to be deleted</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvents</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> that are to be deleted</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="batch-insert-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-insert-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Inserts many calendars in a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-insert-calendar /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendars</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of @{link org.mule.module.google.calendar.model.Calendar} that are to be inserted</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">BatchResponse&lt;<a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a>&gt;</td>
+                    <td class="jd-descrcol">an instance of org.mule.modules.google.api.client.batch.BatchResponse<Calendar></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="batch-insert-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-insert-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Inserts many events as a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-insert-event calendarId="mariano.gonzalez@mulesoft.com" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar that's receiving the calendars</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvents</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> that are to be inserted</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">BatchResponse&lt;<a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</td>
+                    <td class="jd-descrcol">an instance of org.mule.modules.google.api.client.batch.BatchResponse<Event></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="batch-update-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-update-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates many calendars in a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-update-calendar /&gt; </pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendars</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of @{link org.mule.module.google.calendar.model.Calendar} that are to be updated</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">BatchResponse&lt;<a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a>&gt;</td>
+                    <td class="jd-descrcol">an instance of org.mule.modules.google.api.client.batch.BatchResponse<Calendar></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="batch-update-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:batch-update-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates many events in a batch
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:batch-update-event calendarId="mariano.gonzalez@mulesoft.com" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the events to be updated</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvents</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>A collection with instances of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> that are to be updated</td>
+                            <td class="jd-descrcol">Collection&lt;<a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">BatchResponse&lt;<a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>&gt;</td>
+                    <td class="jd-descrcol">an instance of org.mule.modules.google.api.client.batch.BatchResponse<Event></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="clear-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:clear-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Clears all the events on the calendar referenced by id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:clear-calendar id="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar you want to clear</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="create-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:create-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Inserts a new calendar associated with the user that owns the current OAuth token
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:create-calendar /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendar</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></code> with the information
+        of the calendar you want to insert </td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></td>
+                    <td class="jd-descrcol">another instance of <code><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></code> representing the calendar
+         that was created</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="delete-acl-rule"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:delete-acl-rule&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes an ACL rule on a calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:delete-acl-rule calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar loosing a rule</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>ruleId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the rule to be deleted</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="delete-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:delete-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes a particular calendar referenced by id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:delete-calendar id="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar you want to delete</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="delete-calendar-list"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:delete-calendar-list&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes a calendar list referenced by id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:delete-calendar-list id="someId"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar list you want to delete</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="delete-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:delete-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Deletes an event from a specified calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:delete-event calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>eventId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The event's id</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-acl-rule-by-id"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-acl-rule-by-id&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieves a Rule by Id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-acl-rule-by-id calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the rule</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>ruleId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the rule</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></code></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-all-acl-rules"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-all-acl-rules&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Returns all the Acl rules for a particular calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-all-acl-rules calendarId="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the rules</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">List&lt;<a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a>&gt;</td>
+                    <td class="jd-descrcol">a list of instances of <code><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></code></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-calendar-by-id"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-calendar-by-id&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Returns a particular calendar specified by id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-calendar-by-id id="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar you want to get</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></code></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-calendar-list"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-calendar-list&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Returns a paginated iterator with instances of 
+      <p>This operation can potentially return a large amount of records that might exceed memory capacity.</p>
+      <p>To prevent this from being a problem, the output of this operation is automatically paginated into an iterable collection of objects. Regardless of the page-size, the iterator will be pushing out registries one at a time and fetching next pages on demand. If you wish to take advantage of the pagination, you must process the output through elements that can handle collections, such as a ForEach scope or DataMapper. In this way, Mule will execute the entire set of registries one at a time, but processing only a batch at a time and thus keeping memory usage from going over limits.</p><code><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> listing the
+ calendars of the user that owns the OAuth access token.
+ 
+ Optional parameters are not considered in the search if not specified.
+ 
+ 
+      <p>This operation can potentially return a large amount of records that might exceed memory capacity.</p>
+      <p>To prevent this from being a problem, the output of this operation is automatically paginated into an iterable collection of objects. Regardless of the page-size, the iterator will be pushing out registries one at a time and fetching next pages on demand. If you wish to take advantage of the pagination, you must process the output through elements that can handle collections, such as a ForEach scope or DataMapper. In this way, Mule will execute the entire set of registries one at a time, but processing only a batch at a time and thus keeping memory usage from going over limits.</p><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-calendar-list showHidden="true" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>showHidden</nobr></td>
+                            <td class="jd-descrcol">false</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>If true, hidden calendars will be returned</td>
+                            <td class="jd-descrcol">boolean</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>fetchSize</nobr></td>
+                            <td class="jd-descrcol">100</td>
+                            <td class="jd-descrcol">Specify the number of objects that will be returned in each iteration</td>
+                            <td class="jd-descrcol">int</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">
+    Iterator
+    
+
+    
+    &lt;
+        
+            <a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a>
+            
+        &gt;
+    
+</td>
+                    <td class="jd-descrcol">A collection: each index contains a list of objects, each object with its own set of properties. It is possible to process it in parts thanks to its pagination.</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-calendar-list-by-id"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-calendar-list-by-id&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Returns a particular calendar list identified by id.
+ The user owning the OAuth token needs to have permissions for reading that list
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-calendar-list-by-id id="someId" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar list you want to get</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-event-by-id"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-event-by-id&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Retrieves an event by id
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-event-by-id calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>eventId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The event's id</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the event on google's servers</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-events"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-events&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Searchs and returns events matching the criteria parameters. If a criteria is not specified, then it is not applied
+ 
+ 
+      <p>This operation can potentially return a large amount of records that might exceed memory capacity.</p>
+      <p>To prevent this from being a problem, the output of this operation is automatically paginated into an iterable collection of objects. Regardless of the page-size, the iterator will be pushing out registries one at a time and fetching next pages on demand. If you wish to take advantage of the pagination, you must process the output through elements that can handle collections, such as a ForEach scope or DataMapper. In this way, Mule will execute the entire set of registries one at a time, but processing only a batch at a time and thus keeping memory usage from going over limits.</p><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-events calendarId="mariano.gonzalez@mulesoft.com" timeMin="2012-01-01T00:00:00Z"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the colendar that contains the events</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>icalUID</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Specifies iCalendar UID (iCalUID) of events to be included in the response</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>maxAttendees</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The maximum number of attendees to include in the response. If there are more than the
+                     specified number of attendees, only the participant is returned.</td>
+                            <td class="jd-descrcol">Integer</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>orderBy</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The order of the events returned in the result</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>query</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Free text search terms to find events that match these terms in any field, except for
+               extended properties</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>showDeleted</nobr></td>
+                            <td class="jd-descrcol">false</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.</td>
+                            <td class="jd-descrcol">boolean</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>showHiddenInvitations</nobr></td>
+                            <td class="jd-descrcol">false</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Whether to include hidden invitations in the result</td>
+                            <td class="jd-descrcol">boolean</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>singleEvents</nobr></td>
+                            <td class="jd-descrcol">true</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Whether to expand recurring events into instances and only return single one-off events and
+ 			instances of recurring events, but not the underlying recurring events themselves.</td>
+                            <td class="jd-descrcol">boolean</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timeMin</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Lower bound timestamp (inclusive) for an event's end time to filter by </td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timeMax</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Upper bound timestamp (exclusive) for an event's start time to filter by</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>datetimeFormat</nobr></td>
+                            <td class="jd-descrcol">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The timestamp format for timeMin, timeMax and lastUpdated. It defaults to RFC 3369 (yyyy-MM-dd'T'HH:mm:ssZ)</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timezone</nobr></td>
+                            <td class="jd-descrcol">UTC</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Timezone in which timeMin, timeMax and lastUpdated is to be considered on</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>lastUpdated</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Lower bound timestamp for an event's last modification time to filter by</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>fetchSize</nobr></td>
+                            <td class="jd-descrcol">100</td>
+                            <td class="jd-descrcol">Specify the number of objects that will be returned in each iteration</td>
+                            <td class="jd-descrcol">int</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">
+    Iterator
+    
+
+    
+    &lt;
+        
+            <a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>
+            
+        &gt;
+    
+</td>
+                    <td class="jd-descrcol">A collection: each index contains a list of objects, each object with its own set of properties. It is possible to process it in parts thanks to its pagination.</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-free-time"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-free-time&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Returns the free time the authenticated user has between two times
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-free-time timeMin="2012-06-18T00:00:00Z" timeMax="2012-06-19T00:00:00Z"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timeMin</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The start of the interval for the query</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timeMax</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The end of the interval for the query</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timezone</nobr></td>
+                            <td class="jd-descrcol">UTC</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Time zone used in the response</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>datetimeFormat</nobr></td>
+                            <td class="jd-descrcol">yyyy-MM-dd\'T\'HH:mm:ss\'Z\'</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The format to be used to parse timeMin and timeMax</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>maxCalendarExpansion</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Maximal number of calendars for which FreeBusy information is to be provided</td>
+                            <td class="jd-descrcol">Integer</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+      <div class="jd-tagdata">
+          <h5 class="jd-tagtitle">Child Elements</h5>
+            <table id="lconfig" class="jd-sumtable">
+              
+              <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th></td>
+              
+                
+              
+                
+              
+                
+                    <tr>
+                        <td><nobr>&lt;google-calendars:ids&gt;</nobr></td>
+                        <td>#[payload]</td>
+                        <td><i>Optional.&nbsp;</i>List of calendars and/or groups identifiers to query.</td>
+                        <td>List&lt;String&gt;</td>
+                    </tr>
+                
+                
+              
+                
+              
+                
+              
+                
+              
+          </table>
+      </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/FreeBusy.html">FreeBusy</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/FreeBusy.html">FreeBusy</a></code></td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="get-instances"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:get-instances&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        For recurring events, it returns one instance of
+ 
+      <p>This operation can potentially return a large amount of records that might exceed memory capacity.</p>
+      <p>To prevent this from being a problem, the output of this operation is automatically paginated into an iterable collection of objects. Regardless of the page-size, the iterator will be pushing out registries one at a time and fetching next pages on demand. If you wish to take advantage of the pagination, you must process the output through elements that can handle collections, such as a ForEach scope or DataMapper. In this way, Mule will execute the entire set of registries one at a time, but processing only a batch at a time and thus keeping memory usage from going over limits.</p><code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> for each recurrence instance
+ 
+ 
+      <p>This operation can potentially return a large amount of records that might exceed memory capacity.</p>
+      <p>To prevent this from being a problem, the output of this operation is automatically paginated into an iterable collection of objects. Regardless of the page-size, the iterator will be pushing out registries one at a time and fetching next pages on demand. If you wish to take advantage of the pagination, you must process the output through elements that can handle collections, such as a ForEach scope or DataMapper. In this way, Mule will execute the entire set of registries one at a time, but processing only a batch at a time and thus keeping memory usage from going over limits.</p><div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:get-instances calendarId="#[map-payload:calendarId]" eventId="#[map-payload:eventId]"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the recurrent event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>eventId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of a recurrent event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>maxAttendess</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The maximum number of attendees to include in the response. If there are more than the
+ 						specified number of attendees, only the participant is returned.</td>
+                            <td class="jd-descrcol">Integer</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>showDeleted</nobr></td>
+                            <td class="jd-descrcol">false</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result.</td>
+                            <td class="jd-descrcol">boolean</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>timezone</nobr></td>
+                            <td class="jd-descrcol">UTC</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>Time zone used in the response</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>originalStart</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>The original start time of the instance in the result</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>fetchSize</nobr></td>
+                            <td class="jd-descrcol">100</td>
+                            <td class="jd-descrcol">Specify the number of objects that will be returned in each iteration</td>
+                            <td class="jd-descrcol">int</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                            <td class="jd-descrcol">&nbsp;</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol">
+    Iterator
+    
+
+    
+    &lt;
+        
+            <a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>
+            
+        &gt;
+    
+</td>
+                    <td class="jd-descrcol">A collection: each index contains a list of objects, each object with its own set of properties. It is possible to process it in parts thanks to its pagination.</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="import-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:import-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Imports the given event into a calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:import-event calendarId="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the target calendar</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvent</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the event to be imported</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the imported event on google's servers</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="insert-acl-rule"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:insert-acl-rule&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Inserts a new ACL rule in a calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:insert-acl-rule calendarId="mariano.gonzalez@mulesoft.com" role="writer" scope="someuser@gmail.com" scopeType="USER"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar affected by the rule</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>scope</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The email address of a user or group, or the name of a domain, depending on the scope type.
+ 				Omitted for type "default".</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>scopeType</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The type of the scope. Possible values are: - "default" - The public scope. This is the default
+ 			value.
+ 			"user" - Limits the scope to a single user.
+ 		   "group" - Limits the scope to a group.
+ 		   "domain" - Limits the scope to a domain.  Note: The permissions granted to the "default", or
+ 						public, scope apply to any user, authenticated or not.</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/ScopeType.html">ScopeType</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>role</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The role assigned to the scope. Possible values are:
+ 			"none" - Provides no access.  -
+ 			"freeBusyReader" Provides read access to free/busy information.
+ 			"reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event
+ 				details will be hidden.
+ 			"writer" - Provides read and write access to the calendar. Private events will appear to users with writer access,
+ 						and event details will be visible.
+ 			"owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional
+ 						ability to see and manipulate ACLs.</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/ScopeRole.html">ScopeRole</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></code> representing the newly created rule</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="insert-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:insert-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Inserts the given event into an specified calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:insert-event calendarId="mariano.gonzalez@mulesoft.com" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar that's to contain the event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvent</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the event to be inserted </td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the event inserted on google's servers</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="move-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:move-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Moves a calendar form one calendar to another
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:move-event sourceCalendarId="#[map-payload:source]" eventId="#[map-payload:event]" targetCalendarId="#[map-payload:target]" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>sourceCalendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar that currently has the event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>eventId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the event to be moved</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>targetCalendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar to receive the event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the moved event</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="quick-add-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:quick-add-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Shortcut method for creating an event with nothing but a description text.
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:quick-add-event calendarId="#[map-payload:calendarId]" text="#[map-payload:text]" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar to contain the new event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>text</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">Description of the new event</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the newly created event</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="update-acl-rule"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:update-acl-rule&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates a rule on a given calendar
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:update-acl-rule calendarId="mariano.gonzalez@mulesoft.com" ruleId="#[map-payload:ruleId]" /&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar containing the rule</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>ruleId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the rule to be modified</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>aclRule</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></code> containing the new state of the rule</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/AclRule.html">AclRule</a></code> representing the new updated state of the rule</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="update-calendar"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:update-calendar&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates a calendar referenced by id with the content of one specified or taken from the message payload.
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:update-calendar id="mariano.gonzalez@mulesoft.com"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar you want to get</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendar</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></code> with the content you want to have reflected</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Calendar.html">Calendar</a></code> representing the updated calendar's state</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="update-calendar-list"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:update-calendar-list&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates a calendar list referenced by id with the content of one specified or taken from the message payload.
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:update-calendar-list id="someId"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>id</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar list you want to update</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarList</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> with the content you want to have reflected</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a></code> with reflecting the calendar's updated state</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="update-event"></A>
+
+<div class="jd-details api apilevel-">
+    <h4 class="jd-details-title">
+      <span class="sympad">&lt;google-calendars:update-event&gt;</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>
+      
+        Updates an event.
+ 
+ <div class="jd-tagdata"><h5 class="jd-tagtitle">XML Sample</h5><pre>&lt;google-calendars:update-event calendarId="mariano.gonzalez@mulesoft.com" eventId="someEventId"/&gt;</pre></div>
+      
+  </p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Attributes</h5>
+
+        <table id="lconfig" class="jd-sumtable">
+        <tr><th>Name</th><th>Default Value</th><th>Description</th><th>Java Type</th><th>MIME Type</th><th>Encoding</th></tr>
+        <tr>
+          <td class="jd-linkcol"><nobr>config-ref</nobr></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Specify which configuration to use.</td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+          <td class="jd-descrcol"></td>
+        </tr>
+          
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The id of the calendar that contains the event to be updated</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class="alt-color api apilevel-" >
+                            <td class="jd-linkcol"><nobr>eventId</nobr></td>
+                            <td class="jd-descrcol"></td>
+                            <td class="jd-descrcol">The if of the event to be updated</td>
+                            <td class="jd-descrcol">String</td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol">UTF-8</td>
+                        </tr>
+                    
+                
+                
+          
+                
+                    
+                        <tr class=" api apilevel-" >
+                            <td class="jd-linkcol"><nobr>calendarEvent</nobr></td>
+                            <td class="jd-descrcol">#[payload]</td>
+                            <td class="jd-descrcol"><i>Optional.&nbsp;</i>An instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> with the event's new state</td>
+                            <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                            <td class="jd-descrcol">*/*</td>
+                            <td class="jd-descrcol"></td>
+                        </tr>
+                    
+                
+                
+          
+          
+          
+        </table>
+  </div>
+  
+  
+      <div class="jd-tagdata">
+         <h5 class="jd-tagtitle">Returns</h5>
+         <table id="lconfig" class="jd-sumtable">
+             <tr>
+                <th>Return Type</th>
+                <th>Description</th>
+             </tr>
+             <tr>
+                
+                    <td class="jd-descrcol"><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></td>
+                    <td class="jd-descrcol">an instance of <code><a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a></code> representing the updated event</td>
+                
+
+             </tr>
+         </table>
+  </div>
+    
+  
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Exception Payloads</h5>
+      <table class="jd-sumtable">
+        <tr><th>Payload Class</th><th>Description</th></tr>
+        
+        <tr>
+            <td>IOException</td>
+            <td>if there's a communication error
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+    
+
+
+
+
+
+<!-- ========= MESSAGE SOURCES DETAIL ======== -->
+<!-- Message Sources -->
+<h2>Message Sources</h2>
+
+
+    
+
+
+
+
+
+<!-- ========= MESSAGE SOURCES DETAIL ======== -->
+<!-- Transformers -->
+<h2>Transformers</h2>
+
+
+    
+
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

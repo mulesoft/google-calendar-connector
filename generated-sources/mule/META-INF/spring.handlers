@@ -1,0 +1,1 @@
+http\://www.mulesoft.org/schema/mule/google-calendars=org.mule.module.google.calendar.config.GoogleCalendarsNamespaceHandler

@@ -1,0 +1,556 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Google Calendars Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../../favicon.ico" />
+<title>
+
+  org.mule.module.google.calendar.processors
+
+
+| Google Calendars Connector
+
+</title>
+<link href="../../../../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/jquery-toc.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../../", "../../../../../../../assets/");
+</script>
+<script src="../../../../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Google Calendars Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Google Calendars Connector</span>
+    
+    <ul id="header-tabs" class="java">
+    
+    	<li id="guide"><a href="../../../../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    
+    	<li id="java"><a href="../../../../../../../java/packages.html">
+	    	<span class="en">Java API Reference</span>
+    	</a></li>
+    
+    	<li id="mule"><a href="../../../../../../../mule/modules.html">
+	    	<span class="en">Mule API Reference</span>
+    	</a></li>
+    
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../../../../java/classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/package-summary.html">org.mule.module.google.calendar</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/adapter/package-summary.html">org.mule.module.google.calendar.adapter</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/adapters/package-summary.html">org.mule.module.google.calendar.adapters</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/agents/package-summary.html">org.mule.module.google.calendar.agents</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/config/package-summary.html">org.mule.module.google.calendar.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/connection/package-summary.html">org.mule.module.google.calendar.connection</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/devkit/package-summary.html">org.mule.module.google.calendar.devkit</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/model/package-summary.html">org.mule.module.google.calendar.model</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/model/batch/package-summary.html">org.mule.module.google.calendar.model.batch</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/oauth/package-summary.html">org.mule.module.google.calendar.oauth</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/transformer/package-summary.html">org.mule.module.google.calendar.transformer</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/transformers/package-summary.html">org.mule.module.google.calendar.transformers</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/modules/google/transformers/package-summary.html">org.mule.modules.google.transformers</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+              
+    <li><h2>Classes</h2>
+      <ul>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteCalendarMessageProcessor.html">BatchDeleteCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteEventMessageProcessor.html">BatchDeleteEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchInsertCalendarMessageProcessor.html">BatchInsertCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchInsertEventMessageProcessor.html">BatchInsertEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchUpdateCalendarMessageProcessor.html">BatchUpdateCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchUpdateEventMessageProcessor.html">BatchUpdateEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/ClearCalendarMessageProcessor.html">ClearCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/CreateCalendarMessageProcessor.html">CreateCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteAclRuleMessageProcessor.html">DeleteAclRuleMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteCalendarListMessageProcessor.html">DeleteCalendarListMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteCalendarMessageProcessor.html">DeleteCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteEventMessageProcessor.html">DeleteEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetAclRuleByIdMessageProcessor.html">GetAclRuleByIdMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetAllAclRulesMessageProcessor.html">GetAllAclRulesMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarByIdMessageProcessor.html">GetCalendarByIdMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarListByIdMessageProcessor.html">GetCalendarListByIdMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarListMessageProcessor.html">GetCalendarListMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventByIdMessageProcessor.html">GetEventByIdMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html">GetEventsMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetFreeTimeMessageProcessor.html">GetFreeTimeMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetInstancesMessageProcessor.html">GetInstancesMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/ImportEventMessageProcessor.html">ImportEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/InsertAclRuleMessageProcessor.html">InsertAclRuleMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/InsertEventMessageProcessor.html">InsertEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/MoveEventMessageProcessor.html">MoveEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/QuickAddEventMessageProcessor.html">QuickAddEventMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UnauthorizeMessageProcessor.html">UnauthorizeMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateAclRuleMessageProcessor.html">UpdateAclRuleMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateCalendarListMessageProcessor.html">UpdateCalendarListMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateCalendarMessageProcessor.html">UpdateCalendarMessageProcessor</a></li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateEventMessageProcessor.html">UpdateEventMessageProcessor</a></li>
+      </ul>
+    </li>
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div>
+
+<div id="jd-header">
+  package
+  <h1>org.mule.module.google.calendar.processors</h1>
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+
+
+
+
+  
+
+
+  
+    <h2>Classes</h2>
+    <div class="jd-sumtable">
+    
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteCalendarMessageProcessor.html">BatchDeleteCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchDeleteCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchDeleteCalendar(java.util.Collection<org.mule.module.google.calendar.model.Calendar>)">batchDeleteCalendar(java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteEventMessageProcessor.html">BatchDeleteEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchDeleteEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchDeleteEvent(java.lang.String, java.util.Collection<org.mule.module.google.calendar.model.Event>)">batchDeleteEvent(java.lang.String, java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchInsertCalendarMessageProcessor.html">BatchInsertCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchInsertCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchInsertCalendar(java.util.Collection<org.mule.module.google.calendar.model.Calendar>)">batchInsertCalendar(java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchInsertEventMessageProcessor.html">BatchInsertEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchInsertEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchInsertEvent(java.lang.String, java.util.Collection<org.mule.module.google.calendar.model.Event>)">batchInsertEvent(java.lang.String, java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchUpdateCalendarMessageProcessor.html">BatchUpdateCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchUpdateCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchUpdateCalendar(java.util.Collection<org.mule.module.google.calendar.model.Calendar>)">batchUpdateCalendar(java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchUpdateEventMessageProcessor.html">BatchUpdateEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">BatchUpdateEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#batchUpdateEvent(java.lang.String, java.util.Collection<org.mule.module.google.calendar.model.Event>)">batchUpdateEvent(java.lang.String, java.util.Collection)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/ClearCalendarMessageProcessor.html">ClearCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">ClearCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#clearCalendar(java.lang.String)">clearCalendar(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/CreateCalendarMessageProcessor.html">CreateCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">CreateCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#createCalendar(org.mule.module.google.calendar.model.Calendar)">createCalendar(org.mule.module.google.calendar.model.Calendar)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteAclRuleMessageProcessor.html">DeleteAclRuleMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">DeleteAclRuleMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#deleteAclRule(java.lang.String, java.lang.String)">deleteAclRule(java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteCalendarListMessageProcessor.html">DeleteCalendarListMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">DeleteCalendarListMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#deleteCalendarList(java.lang.String)">deleteCalendarList(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteCalendarMessageProcessor.html">DeleteCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">DeleteCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#deleteCalendar(java.lang.String)">deleteCalendar(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/DeleteEventMessageProcessor.html">DeleteEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">DeleteEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#deleteEvent(java.lang.String, java.lang.String)">deleteEvent(java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetAclRuleByIdMessageProcessor.html">GetAclRuleByIdMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetAclRuleByIdMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getAclRuleById(java.lang.String, java.lang.String)">getAclRuleById(java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetAllAclRulesMessageProcessor.html">GetAllAclRulesMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetAllAclRulesMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getAllAclRules(java.lang.String)">getAllAclRules(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarByIdMessageProcessor.html">GetCalendarByIdMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetCalendarByIdMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarById(java.lang.String)">getCalendarById(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarListByIdMessageProcessor.html">GetCalendarListByIdMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetCalendarListByIdMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarListById(java.lang.String)">getCalendarListById(java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarListMessageProcessor.html">GetCalendarListMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetCalendarListMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarList(boolean, org.mule.streaming.PagingConfiguration)">getCalendarList(boolean, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventByIdMessageProcessor.html">GetEventByIdMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetEventByIdMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEventById(java.lang.String, java.lang.String)">getEventById(java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html">GetEventsMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetEventsMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetFreeTimeMessageProcessor.html">GetFreeTimeMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetFreeTimeMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getFreeTime(java.lang.String, java.lang.String, java.util.List<java.lang.String>, java.lang.String, java.lang.String, java.lang.Integer)">getFreeTime(java.lang.String, java.lang.String, java.util.List, java.lang.String, java.lang.String, java.lang.Integer)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetInstancesMessageProcessor.html">GetInstancesMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">GetInstancesMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/ImportEventMessageProcessor.html">ImportEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">ImportEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#importEvent(java.lang.String, org.mule.module.google.calendar.model.Event)">importEvent(java.lang.String, org.mule.module.google.calendar.model.Event)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/InsertAclRuleMessageProcessor.html">InsertAclRuleMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">InsertAclRuleMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#insertAclRule(java.lang.String, java.lang.String, org.mule.module.google.calendar.ScopeType, org.mule.module.google.calendar.ScopeRole)">insertAclRule(java.lang.String, java.lang.String, org.mule.module.google.calendar.ScopeType, org.mule.module.google.calendar.ScopeRole)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/InsertEventMessageProcessor.html">InsertEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">InsertEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#insertEvent(java.lang.String, org.mule.module.google.calendar.model.Event)">insertEvent(java.lang.String, org.mule.module.google.calendar.model.Event)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/MoveEventMessageProcessor.html">MoveEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">MoveEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#moveEvent(java.lang.String, java.lang.String, java.lang.String)">moveEvent(java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/QuickAddEventMessageProcessor.html">QuickAddEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">QuickAddEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#quickAddEvent(java.lang.String, java.lang.String)">quickAddEvent(java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UnauthorizeMessageProcessor.html">UnauthorizeMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateAclRuleMessageProcessor.html">UpdateAclRuleMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">UpdateAclRuleMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#updateAclRule(java.lang.String, java.lang.String, org.mule.module.google.calendar.model.AclRule)">updateAclRule(java.lang.String, java.lang.String, org.mule.module.google.calendar.model.AclRule)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateCalendarListMessageProcessor.html">UpdateCalendarListMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">UpdateCalendarListMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#updateCalendarList(java.lang.String, org.mule.module.google.calendar.model.CalendarList)">updateCalendarList(java.lang.String, org.mule.module.google.calendar.model.CalendarList)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateCalendarMessageProcessor.html">UpdateCalendarMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">UpdateCalendarMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#updateCalendar(java.lang.String, org.mule.module.google.calendar.model.Calendar)">updateCalendar(java.lang.String, org.mule.module.google.calendar.model.Calendar)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/UpdateEventMessageProcessor.html">UpdateEventMessageProcessor</a></td>
+              <td class="jd-descrcol" width="100%">UpdateEventMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#updateEvent(java.lang.String, java.lang.String, org.mule.module.google.calendar.model.Event)">updateEvent(java.lang.String, java.lang.String, org.mule.module.google.calendar.model.Event)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+          </tr>
+  </table>
+    </div>
+  
+
+
+  
+
+
+  
+
+
+  
+
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div><!-- end jd-content -->
+</div><!-- doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

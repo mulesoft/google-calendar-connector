@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="google-calendars" url="http://www.mulesoft.org/schema/mule/google-calendars">
+  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="" localId="parentConfig" icon="" description="" caption="Google Calendars" versions="[3.5.0,8.0.0]"></global-cloud-connector>
+  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/parentConfig" abstract="false" image="icons/large/google-calendars-connector-48x32.png" localId="config-with-oauth" icon="icons/small/google-calendars-connector-24x16.png" description="Global Google Calendars configuration information." caption="Google Calendars" versions="[3.5.0,8.0.0]">
+    <attribute-category description="Google-calendars configuration properties." caption="General">
+      <group caption="Generic" id="google-calendarsGenericProperties">
+        <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
+      </group>
+      <group caption="General" id="general">
+        <enum allowsCustom="false" defaultValue="EXCEPTION" description="Action to take when no token is found." caption="On No Token" xsdType="string" name="onNoToken">
+          <option value="EXCEPTION"></option>
+          <option value="STOP_FLOW"></option>
+        </enum>
+        <string defaultValue="Mule-GoogleCalendarConnector/1.0" javaType="java.lang.String" required="false" description="Application name registered on Google API console." caption="Application Name" name="applicationName"></string>
+        <string javaType="java.lang.String" required="true" description="The OAuth2 consumer key." caption="Consumer Key" name="consumerKey"></string>
+        <string javaType="java.lang.String" required="true" description="The OAuth2 consumer secret." caption="Consumer Secret" name="consumerSecret"></string>
+        <string defaultValue="https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar" javaType="java.lang.String" required="false" description="The OAuth scopes you want to request." caption="Scope" name="scope"></string>
+        <string javaType="org.mule.module.google.calendar.GoogleCalendarClientFactory" required="false" description="Factory to instantiate the underlying google client.
+Usually you don't need to override this. Most common
+use case of a custom value here is testing." caption="Client Factory Reference" name="clientFactory-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="OAuth." caption="Oauth">
+      <group caption="Oauth Callback Config" id="oauthCallbackConfigGroup">
+        <childElement inplace="true" description="" caption="" name="http://www.mulesoft.org/schema/mule/google-calendars/oauth-callback-config"></childElement>
+      </group>
+      <group caption="Oauth Object Store Config" id="oauthStoreConfigGroup">
+        <childElement inplace="true" description="" caption="" name="http://www.mulesoft.org/schema/mule/google-calendars/oauth-store-config"></childElement>
+      </group>
+    </attribute-category>
+  </global-cloud-connector>
+  <cloud-connector abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="abstractGoogle-calendarsConnectorGeneric" icon="icons/small/google-calendars-connector-24x16.png" description="Interact with Google-calendars." caption="Abstractgoogle-calendarsconnectorgeneric">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="abstractGoogle-calendarsConnectorGeneric">
+        <globalRef requiredType="http://www.mulesoft.org/schema/mule/google-calendars/config-with-oauth" required="true" description="Specify which configuration to use for this invocation." caption="Config Reference" name="config-ref"></globalRef>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" image="icons/large/google-calendars-connector-48x32.png" localId="google-calendars-connector" icon="icons/small/google-calendars-connector-24x16.png" description="Google Calendars Cloud connector.
+This connector covers almost all the Google Calendar API v3 using OAuth2 for authentication." caption="Google Calendars" aliasId="org.mule.tooling.ui.modules.core.pattern.google-calendars" versions="[3.5.0,8.0.0]">
+    <attribute-category description="General." caption="General">
+      <group caption="Generic" id="google-calendarsConnectorGeneric">
+        <modeSwitch alwaysCombo="true" description="Operation." caption="Operation" name="Google-calendars operations to execute">
+          <mode modeLabel="Authorize" modeId="http://www.mulesoft.org/schema/mule/google-calendars/authorize"></mode>
+          <mode modeLabel="Unauthorize" modeId="http://www.mulesoft.org/schema/mule/google-calendars/unauthorize"></mode>
+          <mode modeLabel="Batch delete calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-delete-calendar"></mode>
+          <mode modeLabel="Batch delete event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-delete-event"></mode>
+          <mode modeLabel="Batch insert calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-insert-calendar"></mode>
+          <mode modeLabel="Batch insert event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-insert-event"></mode>
+          <mode modeLabel="Batch update calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-update-calendar"></mode>
+          <mode modeLabel="Batch update event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/batch-update-event"></mode>
+          <mode modeLabel="Clear calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/clear-calendar"></mode>
+          <mode modeLabel="Create calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/create-calendar"></mode>
+          <mode modeLabel="Delete acl rule" modeId="http://www.mulesoft.org/schema/mule/google-calendars/delete-acl-rule"></mode>
+          <mode modeLabel="Delete calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/delete-calendar"></mode>
+          <mode modeLabel="Delete calendar list" modeId="http://www.mulesoft.org/schema/mule/google-calendars/delete-calendar-list"></mode>
+          <mode modeLabel="Delete event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/delete-event"></mode>
+          <mode modeLabel="Get acl rule by id" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-acl-rule-by-id"></mode>
+          <mode modeLabel="Get all acl rules" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-all-acl-rules"></mode>
+          <mode modeLabel="Get calendar by id" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-calendar-by-id"></mode>
+          <mode modeLabel="Get calendar list" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-calendar-list"></mode>
+          <mode modeLabel="Get calendar list by id" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-calendar-list-by-id"></mode>
+          <mode modeLabel="Get event by id" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-event-by-id"></mode>
+          <mode modeLabel="Get events" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-events"></mode>
+          <mode modeLabel="Get free time" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-free-time"></mode>
+          <mode modeLabel="Get instances" modeId="http://www.mulesoft.org/schema/mule/google-calendars/get-instances"></mode>
+          <mode modeLabel="Import event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/import-event"></mode>
+          <mode modeLabel="Insert acl rule" modeId="http://www.mulesoft.org/schema/mule/google-calendars/insert-acl-rule"></mode>
+          <mode modeLabel="Insert event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/insert-event"></mode>
+          <mode modeLabel="Move event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/move-event"></mode>
+          <mode modeLabel="Quick add event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/quick-add-event"></mode>
+          <mode modeLabel="Update acl rule" modeId="http://www.mulesoft.org/schema/mule/google-calendars/update-acl-rule"></mode>
+          <mode modeLabel="Update calendar" modeId="http://www.mulesoft.org/schema/mule/google-calendars/update-calendar"></mode>
+          <mode modeLabel="Update calendar list" modeId="http://www.mulesoft.org/schema/mule/google-calendars/update-calendar-list"></mode>
+          <mode modeLabel="Update event" modeId="http://www.mulesoft.org/schema/mule/google-calendars/update-event"></mode>
+        </modeSwitch>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="authorize" icon="icons/small/google-calendars-connector-24x16.png" caption="Authorize">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="Any value that you wish to be sent with the callback." caption="State" name="state"></string>
+        <string required="false" description="The URL defined by the Service Provider to obtain an access token." caption="Access Token Url" name="accessTokenUrl"></string>
+        <string required="false" description="The URL defined by the Service Provider where the resource owner will be redirected to grant authorization to the connector." caption="Authorization Url" name="authorizationUrl"></string>
+      </group>
+      <group caption="Additional Authorization Parameters" id="additionalAuthorizationParameters">
+        <enum allowsCustom="true" javaType="org.mule.modules.google.AccessType" required="false" supportsExpressions="true" description="Access_type." caption="Access_type" name="access_type">
+          <option value="offline"></option>
+          <option value="online"></option>
+        </enum>
+        <enum allowsCustom="true" javaType="org.mule.modules.google.ForcePrompt" required="false" supportsExpressions="true" description="Force_prompt." caption="Force_prompt" name="force_prompt">
+          <option value="auto"></option>
+          <option value="force"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-delete-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Delete Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" required="false" description="A collection with instances of @{link org.mule.module.google.calendar.model.Calendar that are to be deleted." caption="Calendars Reference" name="calendars-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-delete-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Delete Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the events to be deleted." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" required="false" description="A collection with instances of  that are to be deleted." caption="Calendar Events Reference" name="calendarEvents-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.modules.google.api.client.batch.BatchResponse&lt;org.mule.module.google.calendar.model.Calendar&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-insert-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Insert Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" required="false" description="A collection with instances of @{link org.mule.module.google.calendar.model.Calendar that are to be inserted." caption="Calendars Reference" name="calendars-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.modules.google.api.client.batch.BatchResponse&lt;org.mule.module.google.calendar.model.Event&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-insert-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Insert Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar that's receiving the calendars." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" required="false" description="A collection with instances of  that are to be inserted." caption="Calendar Events Reference" name="calendarEvents-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.modules.google.api.client.batch.BatchResponse&lt;org.mule.module.google.calendar.model.Calendar&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-update-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Update Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" required="false" description="A collection with instances of @{link org.mule.module.google.calendar.model.Calendar that are to be updated." caption="Calendars Reference" name="calendars-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.modules.google.api.client.batch.BatchResponse&lt;org.mule.module.google.calendar.model.Event&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="batch-update-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Batch Update Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the events to be updated." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="#[payload]" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" required="false" description="A collection with instances of  that are to be updated." caption="Calendar Events Reference" name="calendarEvents-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="clear-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Clear Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar you want to clear." caption="Id" name="id"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Calendar" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="create-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Create Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.Calendar" required="false" description="An instance of  with the information of the calendar you want to insert." caption="Calendar Reference" name="calendar-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="delete-acl-rule" icon="icons/small/google-calendars-connector-24x16.png" caption="Delete Acl Rule">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar loosing a rule." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of the rule to be deleted." caption="Rule Id" name="ruleId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="delete-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Delete Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar you want to delete." caption="Id" name="id"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="delete-calendar-list" icon="icons/small/google-calendars-connector-24x16.png" caption="Delete Calendar List">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar list you want to delete." caption="Id" name="id"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="void" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="delete-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Delete Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the event." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The event's id." caption="Event Id" name="eventId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.AclRule" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-acl-rule-by-id" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Acl Rule By Id">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the rule." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of the rule." caption="Rule Id" name="ruleId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.util.List&lt;org.mule.module.google.calendar.model.AclRule&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-all-acl-rules" icon="icons/small/google-calendars-connector-24x16.png" caption="Get All Acl Rules">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the rules." caption="Calendar Id" name="calendarId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Calendar" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-calendar-by-id" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Calendar By Id">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar you want to get." caption="Id" name="id"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.util.List&lt;org.mule.module.google.calendar.model.CalendarList&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-calendar-list" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Calendar List">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="If true, hidden calendars will be returned." caption="Show Hidden" name="showHidden"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.CalendarList" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-calendar-list-by-id" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Calendar List By Id">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar list you want to get." caption="Id" name="id"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-event-by-id" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Event By Id">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the event." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The event's id." caption="Event Id" name="eventId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.util.List&lt;org.mule.module.google.calendar.model.Event&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-events" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Events">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the colendar that contains the events." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="yyyy-MM-dd'T'HH:mm:ss'Z'" javaType="java.lang.String" required="false" description="The timestamp format for timeMin, timeMax and lastUpdated. It defaults to RFC 3369 (yyyy-MM-dd'T'HH:mm:ssZ)." caption="Datetime Format" name="datetimeFormat"></string>
+        <string javaType="java.lang.String" required="false" description="Specifies iCalendar UID (iCalUID) of events to be included in the response." caption="Ical U I D" name="icalUID"></string>
+        <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned." caption="Max Attendees" name="maxAttendees"></integer>
+        <string javaType="java.lang.String" required="false" description="Lower bound timestamp for an event's last modification time to filter by." caption="Last Updated" name="lastUpdated"></string>
+        <string javaType="java.lang.String" required="false" description="The order of the events returned in the result." caption="Order By" name="orderBy"></string>
+        <string javaType="java.lang.String" required="false" description="Free text search terms to find events that match these terms in any field, except for extended properties." caption="Query" name="query"></string>
+        <string javaType="java.lang.String" required="false" description="Upper bound timestamp (exclusive) for an event's start time to filter by." caption="Time Max" name="timeMax"></string>
+        <string javaType="java.lang.String" required="false" description="Lower bound timestamp (inclusive) for an event's end time to filter by." caption="Time Min" name="timeMin"></string>
+        <string defaultValue="UTC" javaType="java.lang.String" required="false" description="Timezone in which timeMin, timeMax and lastUpdated is to be considered on." caption="Timezone" name="timezone"></string>
+        <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result." caption="Show Deleted" name="showDeleted"></boolean>
+        <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include hidden invitations in the result." caption="Show Hidden Invitations" name="showHiddenInvitations"></boolean>
+        <boolean defaultValue="true" javaType="boolean" required="false" supportsExpressions="true" description="Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves." caption="Single Events" name="singleEvents"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.FreeBusy" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-free-time" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Free Time">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string defaultValue="yyyy-MM-dd'T'HH:mm:ss'Z'" javaType="java.lang.String" required="false" description="The format to be used to parse timeMin and timeMax." caption="Datetime Format" name="datetimeFormat"></string>
+        <string javaType="java.lang.String" required="true" description="The end of the interval for the query." caption="Time Max" name="timeMax"></string>
+        <string javaType="java.lang.String" required="true" description="The start of the interval for the query." caption="Time Min" name="timeMin"></string>
+        <string defaultValue="UTC" javaType="java.lang.String" required="false" description="Time zone used in the response." caption="Timezone" name="timezone"></string>
+        <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="Maximal number of calendars for which FreeBusy information is to be provided." caption="Max Calendar Expansion" name="maxCalendarExpansion"></integer>
+        <element-controller-list listName="ids" defaultValue="#[payload]" itemName="id" localName="get-free-time-ids" javaType="java.util.List&lt;java.lang.String&gt;" required="false" description="List of calendars and/or groups identifiers to query." caption="Ids"></element-controller-list>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="java.util.List&lt;org.mule.module.google.calendar.model.Event&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-instances" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Instances">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the recurrent event." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of a recurrent event." caption="Event Id" name="eventId"></string>
+        <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned." caption="Max Attendess" name="maxAttendess"></integer>
+        <string javaType="java.lang.String" required="false" description="The original start time of the instance in the result." caption="Original Start" name="originalStart"></string>
+        <string defaultValue="UTC" javaType="java.lang.String" required="false" description="Time zone used in the response." caption="Timezone" name="timezone"></string>
+        <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result." caption="Show Deleted" name="showDeleted"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="import-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Import Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the target calendar." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.Event" required="false" description="An instance of  representing the event to be imported." caption="Calendar Event Reference" name="calendarEvent-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.AclRule" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="insert-acl-rule" icon="icons/small/google-calendars-connector-24x16.png" caption="Insert Acl Rule">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar affected by the rule." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The email address of a user or group, or the name of a domain, depending on the scope type. Omitted for type &quot;default&quot;." caption="Scope" name="scope"></string>
+        <enum allowsCustom="true" javaType="org.mule.module.google.calendar.ScopeRole" required="true" supportsExpressions="true" description="The role assigned to the scope. Possible values are: &quot;none&quot; - Provides no access.  - &quot;freeBusyReader&quot; Provides read access to free/busy information. &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs." caption="Role" name="role">
+          <option value="freeBusyReader"></option>
+          <option value="none"></option>
+          <option value="owner"></option>
+          <option value="reader"></option>
+          <option value="writer"></option>
+        </enum>
+        <enum allowsCustom="true" javaType="org.mule.module.google.calendar.ScopeType" required="true" supportsExpressions="true" description="The type of the scope. Possible values are: - &quot;default&quot; - The public scope. This is the default value. &quot;user&quot; - Limits the scope to a single user. &quot;group&quot; - Limits the scope to a group. &quot;domain&quot; - Limits the scope to a domain.  Note: The permissions granted to the &quot;default&quot;, or public, scope apply to any user, authenticated or not." caption="Scope Type" name="scopeType">
+          <option value="DEFAULT"></option>
+          <option value="DOMAIN"></option>
+          <option value="GROUP"></option>
+          <option value="USER"></option>
+        </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="insert-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Insert Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar that's to contain the event." caption="Calendar Id" name="calendarId"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.Event" required="false" description="An instance of  representing the event to be inserted." caption="Calendar Event Reference" name="calendarEvent-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="move-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Move Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the event to be moved." caption="Event Id" name="eventId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of the calendar that currently has the event." caption="Source Calendar Id" name="sourceCalendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of the calendar to receive the event." caption="Target Calendar Id" name="targetCalendarId"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="quick-add-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Quick Add Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar to contain the new event." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="Description of the new event." caption="Text" name="text"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="unauthorize" icon="icons/small/google-calendars-connector-24x16.png" caption="Unauthorize">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.AclRule" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="update-acl-rule" icon="icons/small/google-calendars-connector-24x16.png" caption="Update Acl Rule">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar containing the rule." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The id of the rule to be modified." caption="Rule Id" name="ruleId"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.AclRule" required="false" description="An instance of  containing the new state of the rule." caption="Acl Rule Reference" name="aclRule-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Calendar" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="update-calendar" icon="icons/small/google-calendars-connector-24x16.png" caption="Update Calendar">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar you want to get." caption="Id" name="id"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.Calendar" required="false" description="An instance of  with the content you want to have reflected." caption="Calendar Reference" name="calendar-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.CalendarList" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="update-calendar-list" icon="icons/small/google-calendars-connector-24x16.png" caption="Update Calendar List">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar list you want to update." caption="Id" name="id"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.CalendarList" required="false" description="An instance of  with the content you want to have reflected." caption="Calendar List Reference" name="calendarList-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <cloud-connector returnType="org.mule.module.google.calendar.model.Event" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="update-event" icon="icons/small/google-calendars-connector-24x16.png" caption="Update Event">
+    <attribute-category description="General." caption="General">
+      <group caption="General" id="general">
+        <string javaType="java.lang.String" required="true" description="The id of the calendar that contains the event to be updated." caption="Calendar Id" name="calendarId"></string>
+        <string javaType="java.lang.String" required="true" description="The if of the event to be updated." caption="Event Id" name="eventId"></string>
+        <string defaultValue="#[payload]" javaType="org.mule.module.google.calendar.model.Event" required="false" description="An instance of  with the event's new state." caption="Calendar Event Reference" name="calendarEvent-ref"></string>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
+      </group>
+    </attribute-category>
+  </cloud-connector>
+  <nested abstract="true" localId="oauth-callback-config" description="" caption="">
+    <string description="The domain name to use when setting up the callback endpoint." caption="Domain" name="domain"></string>
+    <string description="The local port to use when setting up the callback endpoint." caption="Local Port" name="localPort"></string>
+    <string description="The remote port is the port used to build the external callback URL." caption="Remote Port" name="remotePort"></string>
+    <string description="The path to use when setting up the callback endpoint." caption="Path" name="path"></string>
+    <string description="The Http Connector to use when setting up the callback endpoint." caption="Http Connector Reference" name="connector-ref"></string>
+    <string description="A Mule Expression to use as access token id." caption="Default Access Token Id" name="defaultAccessTokenId"></string>
+    <boolean defaultValue="false" fillLine="true" description="Async." caption="Async" name="async"></boolean>
+  </nested>
+  <nested abstract="true" localId="oauth-store-config" description="Configuration element for storage of access tokens" caption="">
+    <string description="Object store reference." caption="Object Store Reference" name="objectStore-ref"></string>
+  </nested>
+</namespace>
