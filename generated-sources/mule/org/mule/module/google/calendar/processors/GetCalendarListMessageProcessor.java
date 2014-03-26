@@ -4,57 +4,55 @@ package org.mule.module.google.calendar.processors;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.Generated;
-import org.mule.api.MessagingException;
-import org.mule.api.MuleContext;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
-import org.mule.api.MuleMessage;
-import org.mule.api.construct.FlowConstruct;
-import org.mule.api.lifecycle.Disposable;
-import org.mule.api.lifecycle.Initialisable;
+import org.mule.api.config.ConfigurationException;
+import org.mule.api.devkit.ProcessAdapter;
+import org.mule.api.devkit.ProcessTemplate;
 import org.mule.api.lifecycle.InitialisationException;
-import org.mule.api.lifecycle.Startable;
-import org.mule.api.lifecycle.Stoppable;
 import org.mule.api.processor.MessageProcessor;
+import org.mule.api.registry.RegistrationException;
 import org.mule.common.DefaultResult;
+import org.mule.common.FailureType;
 import org.mule.common.Result;
+import org.mule.common.metadata.ConnectorMetaDataEnabled;
 import org.mule.common.metadata.DefaultListMetaDataModel;
 import org.mule.common.metadata.DefaultMetaData;
 import org.mule.common.metadata.DefaultPojoMetaDataModel;
 import org.mule.common.metadata.DefaultSimpleMetaDataModel;
 import org.mule.common.metadata.MetaData;
+import org.mule.common.metadata.MetaDataKey;
 import org.mule.common.metadata.MetaDataModel;
 import org.mule.common.metadata.OperationMetaDataEnabled;
 import org.mule.common.metadata.datatype.DataType;
 import org.mule.common.metadata.datatype.DataTypeFactory;
-import org.mule.config.i18n.CoreMessages;
 import org.mule.module.google.calendar.GoogleCalendarConnector;
 import org.mule.module.google.calendar.model.CalendarList;
 import org.mule.module.google.calendar.oauth.GoogleCalendarConnectorOAuthManager;
-import org.mule.module.google.calendar.process.ProcessAdapter;
-import org.mule.module.google.calendar.process.ProcessCallback;
-import org.mule.module.google.calendar.process.ProcessTemplate;
 import org.mule.modules.google.oauth.invalidation.OAuthTokenExpiredException;
+import org.mule.security.oauth.callback.ProcessCallback;
+import org.mule.streaming.PagingConfiguration;
+import org.mule.streaming.PagingDelegate;
 
 
 /**
- * GetCalendarListMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#getCalendarList(org.mule.api.MuleMessage, int, java.lang.String, boolean)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+ * GetCalendarListMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#getCalendarList(boolean, org.mule.streaming.PagingConfiguration)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.4.3", date = "2014-03-26T12:32:33-05:00", comments = "Build 3.4.3.1620.30ea288")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:34:07-05:00", comments = "Build M4.1875.17b58a3")
 public class GetCalendarListMessageProcessor
-    extends AbstractMessageProcessor<Object>
-    implements Disposable, Initialisable, Startable, Stoppable, MessageProcessor, OperationMetaDataEnabled
+    extends AbstractPagedConnectedProcessor
+    implements MessageProcessor, OperationMetaDataEnabled
 {
 
-    protected Object message;
-    protected MuleMessage _messageType;
-    protected Object maxResults;
-    protected int _maxResultsType;
-    protected Object pageToken;
-    protected String _pageTokenType;
     protected Object showHidden;
     protected boolean _showHiddenType;
+    protected Object pagingConfiguration;
+    protected PagingConfiguration _pagingConfigurationType;
+
+    public GetCalendarListMessageProcessor(String operationName) {
+        super(operationName);
+    }
 
     /**
      * Obtains the expression manager from the Mule context and initialises the connector. If a target object  has not been set already it will search the Mule registry for a default one.
@@ -66,44 +64,32 @@ public class GetCalendarListMessageProcessor
     {
     }
 
+    @Override
     public void start()
         throws MuleException
     {
+        super.start();
     }
 
+    @Override
     public void stop()
         throws MuleException
     {
+        super.stop();
     }
 
+    @Override
     public void dispose() {
+        super.dispose();
     }
 
     /**
-     * Set the Mule context
-     * 
-     * @param context Mule context to set
-     */
-    public void setMuleContext(MuleContext context) {
-        super.setMuleContext(context);
-    }
-
-    /**
-     * Sets flow construct
-     * 
-     * @param flowConstruct Flow construct to set
-     */
-    public void setFlowConstruct(FlowConstruct flowConstruct) {
-        super.setFlowConstruct(flowConstruct);
-    }
-
-    /**
-     * Sets message
+     * Sets pagingConfiguration
      * 
      * @param value Value to set
      */
-    public void setMessage(Object value) {
-        this.message = value;
+    public void setPagingConfiguration(Object value) {
+        this.pagingConfiguration = value;
     }
 
     /**
@@ -116,45 +102,26 @@ public class GetCalendarListMessageProcessor
     }
 
     /**
-     * Sets pageToken
-     * 
-     * @param value Value to set
-     */
-    public void setPageToken(Object value) {
-        this.pageToken = value;
-    }
-
-    /**
-     * Sets maxResults
-     * 
-     * @param value Value to set
-     */
-    public void setMaxResults(Object value) {
-        this.maxResults = value;
-    }
-
-    /**
      * Invokes the MessageProcessor.
      * 
      * @param event MuleEvent to be processed
-     * @throws MuleException
+     * @throws Exception
      */
-    public MuleEvent process(final MuleEvent event)
-        throws MuleException
+    public PagingDelegate getPagingDelegate(final MuleEvent event, final PagingConfiguration pagingConfiguration)
+        throws Exception
     {
         Object moduleObject = null;
         try {
             moduleObject = findOrCreate(GoogleCalendarConnectorOAuthManager.class, false, event);
-            final Integer _transformedMaxResults = ((Integer) evaluateAndTransform(getMuleContext(), event, GetCalendarListMessageProcessor.class.getDeclaredField("_maxResultsType").getGenericType(), null, maxResults));
-            final String _transformedPageToken = ((String) evaluateAndTransform(getMuleContext(), event, GetCalendarListMessageProcessor.class.getDeclaredField("_pageTokenType").getGenericType(), null, pageToken));
             final Boolean _transformedShowHidden = ((Boolean) evaluateAndTransform(getMuleContext(), event, GetCalendarListMessageProcessor.class.getDeclaredField("_showHiddenType").getGenericType(), null, showHidden));
+            final PagingConfiguration _transformedPagingConfiguration = ((PagingConfiguration) evaluateAndTransform(getMuleContext(), event, GetCalendarListMessageProcessor.class.getDeclaredField("_pagingConfigurationType").getGenericType(), null, pagingConfiguration));
             Object resultPayload;
             ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
             resultPayload = processTemplate.execute(new ProcessCallback<Object,Object>() {
 
 
-                public List<Class> getManagedExceptions() {
-                    return Arrays.asList(new Class[] {OAuthTokenExpiredException.class });
+                public List<Class<? extends Exception>> getManagedExceptions() {
+                    return Arrays.asList(((Class<? extends Exception> []) new Class[] {OAuthTokenExpiredException.class }));
                 }
 
                 public boolean isProtected() {
@@ -164,18 +131,14 @@ public class GetCalendarListMessageProcessor
                 public Object process(Object object)
                     throws Exception
                 {
-                    return ((GoogleCalendarConnector) object).getCalendarList(event.getMessage(), _transformedMaxResults, _transformedPageToken, _transformedShowHidden);
+                    return ((GoogleCalendarConnector) object).getCalendarList(_transformedShowHidden, _transformedPagingConfiguration);
                 }
 
             }
             , this, event);
-            overwritePayload(event, resultPayload);
-            return event;
-        } catch (MessagingException messagingException) {
-            messagingException.setProcessedEvent(event);
-            throw messagingException;
+            return ((PagingDelegate) resultPayload);
         } catch (Exception e) {
-            throw new MessagingException(CoreMessages.failedToInvoke("getCalendarList"), event, e);
+            throw e;
         }
     }
 
@@ -195,6 +158,37 @@ public class GetCalendarListMessageProcessor
             return new DefaultPojoMetaDataModel(clazz);
         } else {
             return new DefaultSimpleMetaDataModel(dataType);
+        }
+    }
+
+    public Result<MetaData> getGenericMetaData(MetaDataKey metaDataKey) {
+        ConnectorMetaDataEnabled connector;
+        try {
+            connector = ((ConnectorMetaDataEnabled) findOrCreate(GoogleCalendarConnector.class, true, null));
+            try {
+                Result<MetaData> metadata = connector.getMetaData(metaDataKey);
+                if ((Result.Status.FAILURE).equals(metadata.getStatus())) {
+                    return metadata;
+                }
+                if (metadata.get() == null) {
+                    return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), "There was an error processing metadata at GoogleCalendarConnector at getCalendarList retrieving was successful but result is null");
+                }
+                return metadata;
+            } catch (Exception e) {
+                return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
+            }
+        } catch (ClassCastException cast) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), "There was an error getting metadata, there was no connection manager available. Maybe you're trying to use metadata from an Oauth connector");
+        } catch (ConfigurationException e) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
+        } catch (RegistrationException e) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
+        } catch (IllegalAccessException e) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
+        } catch (InstantiationException e) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
+        } catch (Exception e) {
+            return new DefaultResult<MetaData>(null, (Result.Status.FAILURE), e.getMessage(), FailureType.UNSPECIFIED, e);
         }
     }
 

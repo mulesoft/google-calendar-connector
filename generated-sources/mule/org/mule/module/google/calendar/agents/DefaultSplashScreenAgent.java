@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
 import org.apache.commons.lang.StringUtils;
+import org.mule.api.MetadataAware;
 import org.mule.api.MuleContext;
 import org.mule.api.agent.Agent;
 import org.mule.api.context.MuleContextAware;
 import org.mule.api.registry.Registry;
-import org.mule.module.google.calendar.basic.MetadataAware;
 import org.mule.module.google.calendar.devkit.SplashScreenAgent;
 import org.mule.util.StringMessageUtils;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  * Agent implementation to add splash screen information for DevKit extensions at application startup
  * 
  */
-@Generated(value = "Mule DevKit Version 3.4.3", date = "2014-03-26T12:32:33-05:00", comments = "Build 3.4.3.1620.30ea288")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:34:07-05:00", comments = "Build M4.1875.17b58a3")
 public class DefaultSplashScreenAgent implements Agent, MuleContextAware, SplashScreenAgent
 {
 

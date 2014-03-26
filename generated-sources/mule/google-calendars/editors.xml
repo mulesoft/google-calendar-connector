@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <namespace xmlns="http://www.mulesoft.org/schema/mule/tooling.attributes" xmlns:mule="http://www.mulesoft.org/schema/mule/core" prefix="google-calendars" url="http://www.mulesoft.org/schema/mule/google-calendars">
-  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="" localId="parentConfig" icon="" description="" caption="Google Calendars" versions="[3.4.0,8.0.0]"></global-cloud-connector>
-  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/parentConfig" abstract="false" image="icons/large/google-calendars-connector-48x32.png" localId="config-with-oauth" icon="icons/small/google-calendars-connector-24x16.png" description="Global Google Calendars configuration information." caption="Google Calendars" versions="[3.4.0,8.0.0]">
+  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="" localId="parentConfig" icon="" description="" caption="Google Calendars" versions="[3.5.0,8.0.0]"></global-cloud-connector>
+  <global-cloud-connector metaData="static" connectivityTesting="disabled" extends="http://www.mulesoft.org/schema/mule/google-calendars/parentConfig" abstract="false" image="icons/large/google-calendars-connector-48x32.png" localId="config-with-oauth" icon="icons/small/google-calendars-connector-24x16.png" description="Global Google Calendars configuration information." caption="Google Calendars" versions="[3.5.0,8.0.0]">
     <attribute-category description="Google-calendars configuration properties." caption="General">
       <group caption="Generic" id="google-calendarsGenericProperties">
         <name required="true" description="Give a name to this configuration so it can be later referenced by config-ref." caption="Name" name="name"></name>
       </group>
       <group caption="General" id="general">
+        <enum allowsCustom="false" defaultValue="EXCEPTION" description="Action to take when no token is found." caption="On No Token" xsdType="string" name="onNoToken">
+          <option value="EXCEPTION"></option>
+          <option value="STOP_FLOW"></option>
+        </enum>
         <string defaultValue="Mule-GoogleCalendarConnector/1.0" javaType="java.lang.String" required="false" description="Application name registered on Google API console." caption="Application Name" name="applicationName"></string>
         <string javaType="java.lang.String" required="true" description="The OAuth2 consumer key." caption="Consumer Key" name="consumerKey"></string>
         <string javaType="java.lang.String" required="true" description="The OAuth2 consumer secret." caption="Consumer Secret" name="consumerSecret"></string>
@@ -15,15 +19,6 @@
         <string javaType="org.mule.module.google.calendar.GoogleCalendarClientFactory" required="false" description="Factory to instantiate the underlying google client.
 Usually you don't need to override this. Most common
 use case of a custom value here is testing." caption="Client Factory Reference" name="clientFactory-ref"></string>
-        <enum allowsCustom="true" defaultValue="EMAIL" javaType="org.mule.modules.google.IdentifierPolicy" required="false" supportsExpressions="true" description="This policy represents which id we want to use to represent each google account.
-
-PROFILE means that we want the google profile id. That means, the user's primary key in google's DB.
-This is a long number represented as a string.
-
-EMAIL means you want to use the account's email address." caption="Identifier Policy" name="identifierPolicy">
-          <option value="EMAIL"></option>
-          <option value="PROFILE"></option>
-        </enum>
       </group>
     </attribute-category>
     <attribute-category description="OAuth." caption="Oauth">
@@ -43,7 +38,7 @@ EMAIL means you want to use the account's email address." caption="Identifier Po
     </attribute-category>
   </cloud-connector>
   <cloud-connector extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" image="icons/large/google-calendars-connector-48x32.png" localId="google-calendars-connector" icon="icons/small/google-calendars-connector-24x16.png" description="Google Calendars Cloud connector.
-This connector covers almost all the Google Calendar API v3 using OAuth2 for authentication." caption="Google Calendars" aliasId="org.mule.tooling.ui.modules.core.pattern.google-calendars" versions="[3.4.0,8.0.0]">
+This connector covers almost all the Google Calendar API v3 using OAuth2 for authentication." caption="Google Calendars" aliasId="org.mule.tooling.ui.modules.core.pattern.google-calendars" versions="[3.5.0,8.0.0]">
     <attribute-category description="General." caption="General">
       <group caption="Generic" id="google-calendarsConnectorGeneric">
         <modeSwitch alwaysCombo="true" description="Operation." caption="Operation" name="Google-calendars operations to execute">
@@ -99,6 +94,11 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
           <option value="auto"></option>
           <option value="force"></option>
         </enum>
+      </group>
+    </attribute-category>
+    <attribute-category description="Connection" caption="Connection">
+      <group caption="Connection" id="connection">
+        <string javaType="java.lang.String" required="false" description="The id of the access token that will be used to authenticate the call." caption="Access Token Id" name="accessTokenId"></string>
       </group>
     </attribute-category>
   </cloud-connector>
@@ -291,9 +291,10 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
   <cloud-connector returnType="java.util.List&lt;org.mule.module.google.calendar.model.CalendarList&gt;" metaData="static" extends="http://www.mulesoft.org/schema/mule/google-calendars/abstractGoogle-calendarsConnectorGeneric" abstract="true" image="icons/large/google-calendars-connector-48x32.png" localId="get-calendar-list" icon="icons/small/google-calendars-connector-24x16.png" caption="Get Calendar List">
     <attribute-category description="General." caption="General">
       <group caption="General" id="general">
-        <integer step="1" min="0" defaultValue="100" javaType="int" required="false" description="The max number of results you want to get." caption="Max Results" name="maxResults"></integer>
-        <string javaType="java.lang.String" required="false" description="Token specifying which result page to return." caption="Page Token" name="pageToken"></string>
         <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="If true, hidden calendars will be returned." caption="Show Hidden" name="showHidden"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
       </group>
     </attribute-category>
     <attribute-category description="Connection" caption="Connection">
@@ -334,10 +335,8 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
         <string defaultValue="yyyy-MM-dd'T'HH:mm:ss'Z'" javaType="java.lang.String" required="false" description="The timestamp format for timeMin, timeMax and lastUpdated. It defaults to RFC 3369 (yyyy-MM-dd'T'HH:mm:ssZ)." caption="Datetime Format" name="datetimeFormat"></string>
         <string javaType="java.lang.String" required="false" description="Specifies iCalendar UID (iCalUID) of events to be included in the response." caption="Ical U I D" name="icalUID"></string>
         <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned." caption="Max Attendees" name="maxAttendees"></integer>
-        <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="Maximum number of events returned on one result page." caption="Max Results" name="maxResults"></integer>
         <string javaType="java.lang.String" required="false" description="Lower bound timestamp for an event's last modification time to filter by." caption="Last Updated" name="lastUpdated"></string>
         <string javaType="java.lang.String" required="false" description="The order of the events returned in the result." caption="Order By" name="orderBy"></string>
-        <string defaultValue="#[flowVars['GoogleCalendar_NEXT_PAGE_TOKEN']]" javaType="java.lang.String" required="false" description="Token specifying which result page to return." caption="Page Token" name="pageToken"></string>
         <string javaType="java.lang.String" required="false" description="Free text search terms to find events that match these terms in any field, except for extended properties." caption="Query" name="query"></string>
         <string javaType="java.lang.String" required="false" description="Upper bound timestamp (exclusive) for an event's start time to filter by." caption="Time Max" name="timeMax"></string>
         <string javaType="java.lang.String" required="false" description="Lower bound timestamp (inclusive) for an event's end time to filter by." caption="Time Min" name="timeMin"></string>
@@ -345,6 +344,9 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
         <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result." caption="Show Deleted" name="showDeleted"></boolean>
         <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include hidden invitations in the result." caption="Show Hidden Invitations" name="showHiddenInvitations"></boolean>
         <boolean defaultValue="true" javaType="boolean" required="false" supportsExpressions="true" description="Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves." caption="Single Events" name="singleEvents"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
       </group>
     </attribute-category>
     <attribute-category description="Connection" caption="Connection">
@@ -376,10 +378,12 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
         <string javaType="java.lang.String" required="true" description="The id of the calendar containing the recurrent event." caption="Calendar Id" name="calendarId"></string>
         <string javaType="java.lang.String" required="true" description="The id of a recurrent event." caption="Event Id" name="eventId"></string>
         <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned." caption="Max Attendess" name="maxAttendess"></integer>
-        <integer step="1" min="0" javaType="java.lang.Integer" required="false" description="Maximum number of events returned on one result page." caption="Max Results" name="maxResults"></integer>
         <string javaType="java.lang.String" required="false" description="The original start time of the instance in the result." caption="Original Start" name="originalStart"></string>
         <string defaultValue="UTC" javaType="java.lang.String" required="false" description="Time zone used in the response." caption="Timezone" name="timezone"></string>
         <boolean defaultValue="false" javaType="boolean" required="false" supportsExpressions="true" description="Whether to include deleted events (with 'eventStatus' equals 'cancelled') in the result." caption="Show Deleted" name="showDeleted"></boolean>
+      </group>
+      <group caption="Paging" id="paging">
+        <string defaultValue="100" javaType="java.lang.String" required="false" description="The amount of items to fetch on each invocation to the data source." caption="Fetch Size" name="fetchSize"></string>
       </group>
     </attribute-category>
     <attribute-category description="Connection" caption="Connection">
@@ -533,6 +537,8 @@ This connector covers almost all the Google Calendar API v3 using OAuth2 for aut
     <string description="The local port to use when setting up the callback endpoint." caption="Local Port" name="localPort"></string>
     <string description="The remote port is the port used to build the external callback URL." caption="Remote Port" name="remotePort"></string>
     <string description="The path to use when setting up the callback endpoint." caption="Path" name="path"></string>
+    <string description="The Http Connector to use when setting up the callback endpoint." caption="Http Connector Reference" name="connector-ref"></string>
+    <string description="A Mule Expression to use as access token id." caption="Default Access Token Id" name="defaultAccessTokenId"></string>
     <boolean defaultValue="false" fillLine="true" description="Async." caption="Async" name="async"></boolean>
   </nested>
   <nested abstract="true" localId="oauth-store-config" description="Configuration element for storage of access tokens" caption="">

@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Google Calendars
-Bundle-SymbolicName: org.mule.tooling.ui.contribution.google-calendars;singleton:=true
-Bundle-Version: 1.0.0.201403261232
+Bundle-SymbolicName: org.mule.tooling.ui.contribution.google-calendars.3.5.0;singleton:=true
+Bundle-Version: 2.0.0.201403261234
 Bundle-Activator: org.mule.tooling.ui.contribution.GoogleCalendarsActivator
 Bundle-Vendor: mariano.gonzalez@mulesoft.com
 Require-Bundle: org.eclipse.ui,

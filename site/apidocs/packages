@@ -1,15 +1,13 @@
+org.mule.module.google.calendar.transformer
 org.mule.module.google.calendar
 org.mule.module.google.calendar.model
 org.mule.module.google.calendar.model.batch
 org.mule.module.google.calendar.transformers
 org.mule.module.google.calendar.adapter
-org.mule.module.google.calendar.callback
 org.mule.module.google.calendar.agents
 org.mule.module.google.calendar.connection
 org.mule.module.google.calendar.config
-org.mule.module.google.calendar.basic
 org.mule.module.google.calendar.oauth
-org.mule.module.google.calendar.process
 org.mule.module.google.calendar.devkit
 org.mule.module.google.calendar.adapters
 org.mule.module.google.calendar.processors

@@ -66,6 +66,49 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -212,10 +255,6 @@
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/agents/package-summary.html">org.mule.module.google.calendar.agents</a></li>
     <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/basic/package-summary.html">org.mule.module.google.calendar.basic</a></li>
-    <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/callback/package-summary.html">org.mule.module.google.calendar.callback</a></li>
-    <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/config/package-summary.html">org.mule.module.google.calendar.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/connection/package-summary.html">org.mule.module.google.calendar.connection</a></li>
@@ -227,10 +266,10 @@
   <a href="../../../../../../../java/org/mule/module/google/calendar/model/batch/package-summary.html">org.mule.module.google.calendar.model.batch</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/oauth/package-summary.html">org.mule.module.google.calendar.oauth</a></li>
-    <li class="api apilevel-">
-  <a href="../../../../../../../java/org/mule/module/google/calendar/process/package-summary.html">org.mule.module.google.calendar.process</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/processors/package-summary.html">org.mule.module.google.calendar.processors</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../../java/org/mule/module/google/calendar/transformer/package-summary.html">org.mule.module.google.calendar.transformer</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../../java/org/mule/module/google/calendar/transformers/package-summary.html">org.mule.module.google.calendar.transformers</a></li>
     <li class="api apilevel-">
@@ -245,9 +284,7 @@
     <li><h2>Classes</h2>
       <ul>
         <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractConnectedProcessor.html">AbstractConnectedProcessor</a></li>
-        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html">AbstractExpressionEvaluator</a></li>
-        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;</li>
-        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;</li>
+        <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AuthorizeMessageProcessor.html">AuthorizeMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteCalendarMessageProcessor.html">BatchDeleteCalendarMessageProcessor</a></li>
         <li class="api apilevel-"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/BatchDeleteEventMessageProcessor.html">BatchDeleteEventMessageProcessor</a></li>
@@ -357,15 +394,7 @@
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractExpressionEvaluator.html">AbstractExpressionEvaluator</a></td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractListeningMessageProcessor.html">AbstractListeningMessageProcessor</a>&lt;O&gt;</td>
-              <td class="jd-descrcol" width="100%">&nbsp;</td>
-          </tr>
-        <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractMessageProcessor.html">AbstractMessageProcessor</a>&lt;O&gt;</td>
+              <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/AbstractPagedConnectedProcessor.html">AbstractPagedConnectedProcessor</a></td>
               <td class="jd-descrcol" width="100%">&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
@@ -438,7 +467,7 @@
           </tr>
         <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetCalendarListMessageProcessor.html">GetCalendarListMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetCalendarListMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarList(org.mule.api.MuleMessage, int, java.lang.String, boolean)">getCalendarList(org.mule.api.MuleMessage, int, java.lang.String, boolean)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+              <td class="jd-descrcol" width="100%">GetCalendarListMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getCalendarList(boolean, org.mule.streaming.PagingConfiguration)">getCalendarList(boolean, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventByIdMessageProcessor.html">GetEventByIdMessageProcessor</a></td>
@@ -446,7 +475,7 @@
           </tr>
         <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetEventsMessageProcessor.html">GetEventsMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetEventsMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)">getEvents(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+              <td class="jd-descrcol" width="100%">GetEventsMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getEvents(java.lang.String, java.lang.String, java.lang.Integer, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetFreeTimeMessageProcessor.html">GetFreeTimeMessageProcessor</a></td>
@@ -454,7 +483,7 @@
           </tr>
         <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/GetInstancesMessageProcessor.html">GetInstancesMessageProcessor</a></td>
-              <td class="jd-descrcol" width="100%">GetInstancesMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getInstances(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, boolean, java.lang.String, java.lang.String)">getInstances(org.mule.api.MuleMessage, java.lang.String, java.lang.String, java.lang.Integer, java.lang.Integer, boolean, java.lang.String, java.lang.String)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
+              <td class="jd-descrcol" width="100%">GetInstancesMessageProcessor invokes the <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html#getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)">getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)</a></code> method in <code><a href="../../../../../../../java/org/mule/module/google/calendar/GoogleCalendarConnector.html">GoogleCalendarConnector</a></code>.&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../../java/org/mule/module/google/calendar/processors/ImportEventMessageProcessor.html">ImportEventMessageProcessor</a></td>
