@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.mule.modules.google.api.model.BaseWrapper;
@@ -84,10 +85,6 @@ public class CalendarList extends BaseWrapper<CalendarListEntry> {
 		return wrapped.hashCode();
 	}
 
-	public void setDefaultReminders(List<EventReminder> defaultReminders) {
-		wrapped.setDefaultReminders(EventReminder.unwrapp(defaultReminders, com.google.api.services.calendar.model.EventReminder.class));
-	}
-
 	public void setDescription(String description) {
 		wrapped.setDescription(description);
 	}
@@ -132,7 +129,59 @@ public class CalendarList extends BaseWrapper<CalendarListEntry> {
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
+
+    public CalendarListEntry setNotificationSettings(CalendarListEntry.NotificationSettings notificationSettings) {
+        return wrapped.setNotificationSettings(notificationSettings);
+    }
+
+    public CalendarListEntry.NotificationSettings getNotificationSettings() {
+        return wrapped.getNotificationSettings();
+    }
+
+    public String getKind() {
+        return wrapped.getKind();
+    }
+
+    public String getEtag() {
+        return wrapped.getEtag();
+    }
+
+    public CalendarListEntry setEtag(String etag) {
+        return wrapped.setEtag(etag);
+    }
+
+    public String getForegroundColor() {
+        return wrapped.getForegroundColor();
+    }
+
+    public String getBackgroundColor() {
+        return wrapped.getBackgroundColor();
+    }
+
+    public Boolean getPrimary() {
+        return wrapped.getPrimary();
+    }
+
+    public CalendarListEntry setKind(String kind) {
+        return wrapped.setKind(kind);
+    }
+
+    public CalendarListEntry setDefaultReminders(List<com.google.api.services.calendar.model.EventReminder> defaultReminders) {
+        return wrapped.setDefaultReminders(defaultReminders);
+    }
+
+    public CalendarListEntry setForegroundColor(String foregroundColor) {
+        return wrapped.setForegroundColor(foregroundColor);
+    }
+
+    public CalendarListEntry setPrimary(Boolean primary) {
+        return wrapped.setPrimary(primary);
+    }
+
+    public CalendarListEntry setBackgroundColor(String backgroundColor) {
+        return wrapped.setBackgroundColor(backgroundColor);
+    }
 }

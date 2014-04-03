@@ -33,9 +33,9 @@
 		<dependency>
 			<groupId>com.google.apis</groupId>
 			<artifactId>google-api-services-calendar</artifactId>
-			<version>v3-rev9-1.7.2-beta</version>
+			<version>v3-rev77-1.17.0-rc</version>
 		</dependency>
-	</dependencies>
+    </dependencies>
 
 	<repositories>
 		<repository>

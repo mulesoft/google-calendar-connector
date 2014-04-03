@@ -13,6 +13,8 @@ package org.mule.module.google.calendar.model;
 import org.mule.modules.google.api.datetime.DateTime;
 import org.mule.modules.google.api.model.BaseWrapper;
 
+import java.io.IOException;
+
 /**
  * Wrapper for {@link com.google.api.services.calendar.model.EventDateTime}
  * to make it data mapper friendly.
@@ -30,7 +32,7 @@ public class EventDateTime extends BaseWrapper<com.google.api.services.calendar.
 	}
 
 	public String getDate() {
-		return wrapped.getDate();
+		return wrapped.getDate().toString();
 	}
 
 	public String getTimeZone() {
@@ -50,7 +52,7 @@ public class EventDateTime extends BaseWrapper<com.google.api.services.calendar.
 	}
 
 	public void setDate(String date) {
-		wrapped.setDate(date);
+		wrapped.setDate(new com.google.api.client.util.DateTime(date));
 	}
 
 	public void setTimeZone(String timeZone) {
@@ -65,7 +67,7 @@ public class EventDateTime extends BaseWrapper<com.google.api.services.calendar.
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 }
