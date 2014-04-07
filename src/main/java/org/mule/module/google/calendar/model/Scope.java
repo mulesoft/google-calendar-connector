@@ -12,6 +12,8 @@ package org.mule.module.google.calendar.model;
 
 import org.mule.modules.google.api.model.BaseWrapper;
 
+import java.io.IOException;
+
 
 /**
  * Wrapper for {@link com.google.api.services.calendar.model.AclRule.Scope}
@@ -57,7 +59,7 @@ public class Scope extends BaseWrapper<com.google.api.services.calendar.model.Ac
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 }

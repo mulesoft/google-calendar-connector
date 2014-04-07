@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.mule.modules.google.api.datetime.DateTime;
@@ -79,7 +80,7 @@ public class FreeBusy extends BaseWrapper<FreeBusyResponse> {
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 }

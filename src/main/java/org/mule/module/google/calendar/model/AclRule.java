@@ -12,6 +12,8 @@ package org.mule.module.google.calendar.model;
 
 import org.mule.modules.google.api.model.BaseWrapper;
 
+import java.io.IOException;
+
 /**
  * Wrapper for {@link com.google.api.services.calendar.model.AclRule}
  * to make it data mapper friendly.
@@ -64,8 +66,23 @@ public class AclRule extends BaseWrapper<com.google.api.services.calendar.model.
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 
+    public String getEtag() {
+        return wrapped.getEtag();
+    }
+
+    public String getKind() {
+        return wrapped.getKind();
+    }
+
+    public com.google.api.services.calendar.model.AclRule setEtag(String etag) {
+        return wrapped.setEtag(etag);
+    }
+
+    public com.google.api.services.calendar.model.AclRule setKind(String kind) {
+        return wrapped.setKind(kind);
+    }
 }

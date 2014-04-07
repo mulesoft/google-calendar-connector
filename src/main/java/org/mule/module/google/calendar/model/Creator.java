@@ -10,7 +10,10 @@
 
 package org.mule.module.google.calendar.model;
 
+import com.google.api.services.calendar.model.Event;
 import org.mule.modules.google.api.model.BaseWrapper;
+
+import java.io.IOException;
 
 
 /**
@@ -19,13 +22,13 @@ import org.mule.modules.google.api.model.BaseWrapper;
  * 
  * @author mariano.gonzalez@mulesoft.com
  */
-public class Creator extends BaseWrapper<com.google.api.services.calendar.model.Event.Creator>{
+public class Creator extends BaseWrapper<Event.Creator>{
 
 	public Creator(){
-		this(new com.google.api.services.calendar.model.Event.Creator());
+		this(new Event.Creator());
 	}
 	
-	public Creator(com.google.api.services.calendar.model.Event.Creator wrapped) {
+	public Creator(Event.Creator wrapped) {
 		super(wrapped);
 	}
 
@@ -65,7 +68,15 @@ public class Creator extends BaseWrapper<com.google.api.services.calendar.model.
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
+
+    public Event.Creator setId(String id) {
+        return wrapped.setId(id);
+    }
+
+    public String getId() {
+        return wrapped.getId();
+    }
 }

@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.mule.modules.google.api.model.BaseWrapper;
@@ -34,7 +35,7 @@ public class ExtendedProperties extends BaseWrapper<com.google.api.services.cale
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 

@@ -53,12 +53,12 @@
 	        	<property name="summary" value="Business event" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-10" />
+					    <property name="date" value="2014-02-10" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-13" />
+					    <property name="date" value="2014-02-13" />
 					</bean>
 	            </property>
 	        </bean>
@@ -134,7 +134,7 @@
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -182,7 +182,7 @@
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -206,7 +206,7 @@
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -230,7 +230,7 @@
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -264,7 +264,7 @@
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -282,12 +282,12 @@
 	    <entry key="summaryAfter" value="Trip to Disneyland" />
 	    <entry key="eventStart">
 			<bean class="org.mule.module.google.calendar.model.EventDateTime">
-				<property name="date" value="2014-2-10" />
+				<property name="date" value="2014-02-10" />
 			</bean>
 	    </entry>
 	    <entry key="eventEnd">
 			<bean class="org.mule.module.google.calendar.model.EventDateTime">
-				<property name="date" value="2014-2-10" />
+				<property name="date" value="2014-02-10" />
 			</bean>
 	    </entry>
 	</util:map>
@@ -309,12 +309,12 @@
 	        	<property name="summary" value="Business trip" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-10" />
+					    <property name="date" value="2014-02-10" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-13" />
+					    <property name="date" value="2014-02-13" />
 					</bean>
 	            </property>
 	        </bean>
@@ -359,7 +359,7 @@
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -372,9 +372,9 @@
 				<property name="summary" value="Sample title for calendar" />	    
 	    	</bean>
 	    </entry>
-		<entry key="scope" value="mulesoft.com"/>
-		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
-		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
+		<entry key="scope" value="karthik.anantha@mulesoft.com"/>
+		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).USER}" />
+		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).writer}" />
 	</util:map>
 
 	<util:map id="updateAclRule" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
@@ -383,8 +383,8 @@
 				<property name="summary" value="Sample title for calendar" />	    
 	    	</bean>
 	    </entry>
-		<entry key="scope" value="mulesoft.com"/>
-		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
+		<entry key="scope" value="karthik.anantha@mulesoft.com"/>
+		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).USER}" />
 		<entry key="roleBefore" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
 		<entry key="roleAfter" value="#{T(org.mule.module.google.calendar.ScopeRole).writer}" />
 	</util:map>
@@ -395,9 +395,9 @@
 				<property name="summary" value="Sample title for calendar" />	    
 	    	</bean>
 	    </entry>
-		<entry key="scope" value="mulesoft.com"/>
-		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
-		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
+		<entry key="scope" value="karthik.anantha@mulesoft.com"/>
+		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).USER}" />
+		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).writer}" />
 	</util:map>
 		
 	<util:map id="deleteAclRule" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
@@ -406,9 +406,9 @@
 				<property name="summary" value="Sample title for calendar" />	    
 	    	</bean>
 	    </entry>
-		<entry key="scope" value="mulesoft.com"/>
-		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
-		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
+		<entry key="scope" value="karthik.anantha@mulesoft.com"/>
+		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).USER}" />
+		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).writer}" />
 	</util:map>
 
 	<util:map id="getAllAclRules" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
@@ -448,7 +448,7 @@
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>

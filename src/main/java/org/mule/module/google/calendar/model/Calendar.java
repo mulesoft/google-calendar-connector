@@ -10,11 +10,11 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.mule.modules.google.api.model.BaseWrapper;
 
-import com.google.api.client.http.HttpHeaders;
 import com.google.api.client.util.ClassInfo;
 
 /**
@@ -69,10 +69,6 @@ public class Calendar extends BaseWrapper<com.google.api.services.calendar.model
 		return wrapped.getUnknownKeys();
 	}
 
-	public HttpHeaders getResponseHeaders() {
-		return wrapped.getResponseHeaders();
-	}
-
 	public final ClassInfo getClassInfo() {
 		return wrapped.getClassInfo();
 	}
@@ -109,10 +105,6 @@ public class Calendar extends BaseWrapper<com.google.api.services.calendar.model
 		wrapped.setId(id);
 	}
 
-	public void setResponseHeaders(HttpHeaders responseHeaders) {
-		wrapped.setResponseHeaders(responseHeaders);
-	}
-
 	public final void setUnknownKeys(Map<String, Object> unknownFields) {
 		wrapped.setUnknownKeys(unknownFields);
 	}
@@ -121,7 +113,9 @@ public class Calendar extends BaseWrapper<com.google.api.services.calendar.model
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
+
+
 }
