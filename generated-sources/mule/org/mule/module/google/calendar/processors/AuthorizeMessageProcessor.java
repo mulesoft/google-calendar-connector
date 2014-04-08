@@ -8,7 +8,7 @@ import org.mule.modules.google.AccessType;
 import org.mule.modules.google.ForcePrompt;
 import org.mule.security.oauth.processor.BaseOAuth2AuthorizeMessageProcessor;
 
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:34:07-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-08T10:25:26-05:00", comments = "Build M4.1875.17b58a3")
 public class AuthorizeMessageProcessor
     extends BaseOAuth2AuthorizeMessageProcessor<GoogleCalendarConnectorOAuthManager>
 {

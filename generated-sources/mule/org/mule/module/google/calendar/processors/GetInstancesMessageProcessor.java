@@ -39,7 +39,7 @@ import org.mule.streaming.PagingDelegate;
  * GetInstancesMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-03-26T12:34:07-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-08T10:25:26-05:00", comments = "Build M4.1875.17b58a3")
 public class GetInstancesMessageProcessor
     extends AbstractPagedConnectedProcessor
     implements MessageProcessor, OperationMetaDataEnabled
