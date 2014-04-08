@@ -13,6 +13,7 @@ package org.mule.module.google.calendar.automation.testcases;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -51,9 +52,18 @@ public class GetInstancesTestCases extends GoogleCalendarTestParent {
 		try {
 			
 			String eventId = getTestRunMessageValue("eventId");		
-			List<Event> returnedEvent = runFlowAndGetPayload("get-instances");
+//			List<Event> returnedEvent = runFlowAndGetPayload("get-instances");
+//			
+//			for (Event event : returnedEvent) {
+//				assertEquals(event.getId(), eventId);
+//			}
 			
-			for (Event event : returnedEvent) {
+			//  getInstances returns a ConsumerIterator that
+			// can only be consumed as an iterator
+			Iterator<Event> returnedEvent = runFlowAndGetPayload("get-instances");
+			
+			while(returnedEvent.hasNext()){
+				Event event = returnedEvent.next();
 				assertEquals(event.getId(), eventId);
 			}
 				

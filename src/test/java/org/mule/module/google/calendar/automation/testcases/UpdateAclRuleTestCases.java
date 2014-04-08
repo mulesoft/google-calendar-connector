@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.api.MuleEvent;
 import org.mule.api.processor.MessageProcessor;
+import org.mule.module.google.calendar.ScopeRole;
 import org.mule.module.google.calendar.model.AclRule;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
@@ -38,8 +39,8 @@ public class UpdateAclRuleTestCases extends GoogleCalendarTestParent {
 			upsertOnTestRunMessage("calendarRef", calendar);
 			upsertOnTestRunMessage("calendarId", calendar.getId());
 			
-			String roleBefore = getTestRunMessageValue("roleBefore"); 
-			upsertOnTestRunMessage("role", roleBefore);
+			ScopeRole roleBefore = getTestRunMessageValue("roleBefore"); 
+			upsertOnTestRunMessage("role", roleBefore.name());
 		
 			// Insert the ACL rule
 						
@@ -53,15 +54,15 @@ public class UpdateAclRuleTestCases extends GoogleCalendarTestParent {
 	@Test
 	public void testUpdateAclRule() {
 		try {
-			String roleAfter = getTestRunMessageValue("roleAfter");
+			ScopeRole roleAfter = getTestRunMessageValue("roleAfter");
 			
 			AclRule aclRule = getTestRunMessageValue("aclRule");
-			aclRule.setRole(roleAfter);
+			aclRule.setRole(roleAfter.name());
 			upsertOnTestRunMessage("aclRuleRef", aclRule);			
 			
 			aclRule = runFlowAndGetPayload("update-acl-rule");
 			String roleAfterUpdate = aclRule.getRole();
-			assertEquals(roleAfter, roleAfterUpdate);
+			assertEquals(roleAfter.name(), roleAfterUpdate);
 		} catch (Exception e) {
 			fail(ConnectorTestUtils.getStackTrace(e));
 		}

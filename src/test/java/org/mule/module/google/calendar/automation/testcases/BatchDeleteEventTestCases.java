@@ -10,10 +10,12 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -78,8 +80,18 @@ public class BatchDeleteEventTestCases extends GoogleCalendarTestParent {
 			 
 			deleteEvents(calendar, succcessful);
 			
-			List<Event> events = runFlowAndGetPayload("get-all-events");
-			assertTrue(events.isEmpty());
+//			List<Event> events = runFlowAndGetPayload("get-all-events");
+//			assertTrue(events.isEmpty());
+			
+			//  getEvents returns a ConsumerIterator that
+			// can only be consumed as an iterator
+			//  There for, if the iterator has any element, it means that at least
+			// one event has been fetched.
+			Iterator<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
+			
+			// Assert that no events are returned
+			assertFalse(returnedEvents.hasNext());
+			
 		} catch (Exception e) {
 			fail(ConnectorTestUtils.getStackTrace(e));
 		}

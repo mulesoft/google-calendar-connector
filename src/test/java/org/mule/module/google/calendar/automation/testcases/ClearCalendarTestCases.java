@@ -10,10 +10,10 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +28,7 @@ import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.google.api.client.batch.BatchResponse;
 import org.mule.modules.tests.ConnectorTestUtils;
+import org.mule.streaming.ConsumerIterator;
 
 public class ClearCalendarTestCases extends GoogleCalendarTestParent {
 
@@ -66,10 +67,16 @@ public class ClearCalendarTestCases extends GoogleCalendarTestParent {
 
 			// Get all events
 			upsertOnTestRunMessage("calendarId", primaryCalendarId);
-			List<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
+			
+			//  getEvents returns a ConsumerIterator that
+			// can only be consumed as an iterator
+			//  There for, if the iterator has any element, it means that at least
+			// one event has been fetched.
+			Iterator<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
 			
 			// Assert that no events are returned
-			assertTrue(returnedEvents.isEmpty());
+			assertFalse(returnedEvents.hasNext());
+			
 		} catch (Exception e) {
 			fail(ConnectorTestUtils.getStackTrace(e));
 		}

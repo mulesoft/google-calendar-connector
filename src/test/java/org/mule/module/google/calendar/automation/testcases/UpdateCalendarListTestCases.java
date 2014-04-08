@@ -49,7 +49,7 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent{
 	@Test
 	public void testUpdateCalendarList() {
 		try {
-			String colorAfter = runFlowAndGetPayload("colorAfter");
+			String colorAfter = getTestRunMessageValue("colorAfter");
 			
 			CalendarList returnedCalendarList = getTestRunMessageValue("calendarList");
 			
