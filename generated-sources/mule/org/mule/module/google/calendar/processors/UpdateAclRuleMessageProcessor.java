@@ -36,7 +36,7 @@ import org.mule.security.oauth.callback.ProcessCallback;
  * UpdateAclRuleMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#updateAclRule(java.lang.String, java.lang.String, org.mule.module.google.calendar.model.AclRule)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-08T10:25:26-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-SNAPSHOT", date = "2014-04-16T09:46:10-05:00", comments = "Build master.1915.dd1962d")
 public class UpdateAclRuleMessageProcessor
     extends AbstractConnectedProcessor
     implements MessageProcessor, OperationMetaDataEnabled
@@ -125,7 +125,7 @@ public class UpdateAclRuleMessageProcessor
             final String _transformedRuleId = ((String) evaluateAndTransform(getMuleContext(), event, UpdateAclRuleMessageProcessor.class.getDeclaredField("_ruleIdType").getGenericType(), null, ruleId));
             final AclRule _transformedAclRule = ((AclRule) evaluateAndTransform(getMuleContext(), event, UpdateAclRuleMessageProcessor.class.getDeclaredField("_aclRuleType").getGenericType(), null, aclRule));
             Object resultPayload;
-            ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
+            final ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
             resultPayload = processTemplate.execute(new ProcessCallback<Object,Object>() {
 
 

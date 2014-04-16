@@ -37,7 +37,7 @@ import org.mule.security.oauth.callback.ProcessCallback;
  * GetFreeTimeMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#getFreeTime(java.lang.String, java.lang.String, java.util.List, java.lang.String, java.lang.String, java.lang.Integer)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-08T10:25:26-05:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-SNAPSHOT", date = "2014-04-16T09:46:10-05:00", comments = "Build master.1915.dd1962d")
 public class GetFreeTimeMessageProcessor
     extends AbstractConnectedProcessor
     implements MessageProcessor, OperationMetaDataEnabled
@@ -162,7 +162,7 @@ public class GetFreeTimeMessageProcessor
             final String _transformedDatetimeFormat = ((String) evaluateAndTransform(getMuleContext(), event, GetFreeTimeMessageProcessor.class.getDeclaredField("_datetimeFormatType").getGenericType(), null, datetimeFormat));
             final Integer _transformedMaxCalendarExpansion = ((Integer) evaluateAndTransform(getMuleContext(), event, GetFreeTimeMessageProcessor.class.getDeclaredField("_maxCalendarExpansionType").getGenericType(), null, maxCalendarExpansion));
             Object resultPayload;
-            ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
+            final ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
             resultPayload = processTemplate.execute(new ProcessCallback<Object,Object>() {
 
 
