@@ -28,25 +28,17 @@ public class ImportEventTestCases extends GoogleCalendarTestParent {
     @Before
     public void setUp() throws Exception {
         initializeTestRunMessage("importEvent");
-
-        // Insert the calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
     }
 
     @Category({RegressionTests.class})
     @Test
     public void testImportEvent() {
         try {
-            // Get calendar instance
-            Calendar calendar = getTestRunMessageValue("calendar");
             // Insert the event so that we get ID, and iCalUID
-            Event event = insertEvent(calendar, (Event) getTestRunMessageValue("event"));
+            Event event = insertEvent((Event) getTestRunMessageValue("event"));
 
             // Place it in testObjects so that we can import it back
+            upsertOnTestRunMessage("eventId", event.getId());
             upsertOnTestRunMessage("calendarEventRef", event);
 
             // Re-import the event again
@@ -63,10 +55,7 @@ public class ImportEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-
-        Calendar calendar = getTestRunMessageValue("calendar");
-        deleteCalendar(calendar);
-
+        runFlowAndGetPayload("delete-event");
     }
 }
 

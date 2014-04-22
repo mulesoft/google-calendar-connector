@@ -10,7 +10,6 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import com.google.common.collect.Lists;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +17,8 @@ import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.tests.ConnectorTestUtils;
-import org.mule.streaming.ConsumerIterator;
 
-import java.util.List;
+import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -32,16 +30,10 @@ public class GetInstancesTestCases extends GoogleCalendarTestParent {
 
         initializeTestRunMessage("getInstances");
 
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
         // Insert the event
         Event returnedEvent = runFlowAndGetPayload("insert-event");
         upsertOnTestRunMessage("event", returnedEvent);
         upsertOnTestRunMessage("eventId", returnedEvent.getId());
-
     }
 
     @Category({RegressionTests.class})
@@ -50,9 +42,13 @@ public class GetInstancesTestCases extends GoogleCalendarTestParent {
         try {
 
             String eventId = getTestRunMessageValue("eventId");
-            ConsumerIterator<Event> consumerIterator = runFlowAndGetPayload("get-instances");
-            List<Event> returnedEvent = Lists.newArrayList(consumerIterator);
-            for (Event event : returnedEvent) {
+
+            // get-instances returns a ConsumerIterator that can only be consumed as an iterator
+            // Therefore, if the iterator has any element, it means that at least one event has been fetched.
+            Iterator<Event> returnedEvent = runFlowAndGetPayload("get-instances");
+
+            while (returnedEvent.hasNext()) {
+                Event event = returnedEvent.next();
                 assertEquals(event.getId(), eventId);
             }
 
@@ -64,8 +60,6 @@ public class GetInstancesTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
+        runFlowAndGetPayload("delete-event");
     }
-
 }

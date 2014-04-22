@@ -41,7 +41,7 @@ public class CreateCalendarTestCases extends GoogleCalendarTestParent {
             assertTrue(createdCalendar != null);
             assertTrue(createdCalendar.getSummary().equals(originalCalendar.getSummary()));
 
-            upsertOnTestRunMessage("id", createdCalendar.getId());
+            upsertOnTestRunMessage("calendarId", createdCalendar.getId());
 
             Calendar returnedCalendar = runFlowAndGetPayload("get-calendar-by-id");
             assertTrue(returnedCalendar != null);

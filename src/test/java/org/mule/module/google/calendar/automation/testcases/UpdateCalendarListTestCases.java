@@ -28,14 +28,11 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
         initializeTestRunMessage("updateCalendarList");
 
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("id", calendar.getId());
-
-        //Get Calendar List
+        // Get Calendar List
         CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
 
+        upsertOnTestRunMessage("calendarId", returnedCalendarList.getId());
+        upsertOnTestRunMessage("colorBefore", returnedCalendarList.getColorId());
         upsertOnTestRunMessage("calendarList", returnedCalendarList);
 
     }
@@ -55,6 +52,11 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent {
             CalendarList afterUpdate = runFlowAndGetPayload("update-calendar-list");
             String afterColorId = afterUpdate.getColorId();
             assertEquals(afterColorId, colorAfter);
+
+            // Update the list ref with the old values for tearDown.
+            String colorBefore =getTestRunMessageValue("colorBefore");
+            afterUpdate.setColorId(colorBefore);
+            upsertOnTestRunMessage("calendarListRef", afterUpdate);
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
@@ -62,9 +64,6 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("id");
-        deleteCalendar(calendarId);
-
+       runFlowAndGetPayload("update-calendar-list");
     }
-
 }

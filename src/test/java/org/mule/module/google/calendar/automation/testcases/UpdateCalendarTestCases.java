@@ -26,28 +26,30 @@ public class UpdateCalendarTestCases extends GoogleCalendarTestParent {
     @Before
     public void setUp() throws Exception {
         initializeTestRunMessage("updateCalendar");
-
-        // Insert the calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Update test objects
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("id", calendar.getId());
     }
 
     @Category({RegressionTests.class})
     @Test
     public void testUpdateCalendar() {
         try {
+            Calendar calendar = runFlowAndGetPayload("get-calendar-by-id");
+            String summaryBefore = calendar.getSummary();
+
+            upsertOnTestRunMessage("calendarId", calendar.getId());
+            upsertOnTestRunMessage("summaryBefore", summaryBefore != null ? summaryBefore : "");
+
             String summaryAfter = getTestRunMessageValue("summaryAfter");
 
-            Calendar calendar = getTestRunMessageValue("calendar");
             calendar.setSummary(summaryAfter);
             upsertOnTestRunMessage("calendarRef", calendar);
 
             Calendar afterUpdate = runFlowAndGetPayload("update-calendar");
             String afterText = afterUpdate.getSummary();
             assertEquals(afterText, summaryAfter);
+
+            // Set the summary back to summaryBefore for tearDown.
+            afterUpdate.setSummary(summaryBefore);
+            upsertOnTestRunMessage("calendarRef", afterUpdate);
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
@@ -55,8 +57,7 @@ public class UpdateCalendarTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("id");
-        deleteCalendar(calendarId);
+        runFlowAndGetPayload("update-calendar");
     }
 
 }

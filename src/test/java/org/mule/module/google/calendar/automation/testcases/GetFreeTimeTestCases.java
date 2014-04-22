@@ -33,16 +33,14 @@ public class GetFreeTimeTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
         initializeTestRunMessage("getFreeTime");
 
-        // Insert the calendar and the event
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-        Event event = insertEvent(calendar, (Event) getTestRunMessageValue("event"));
+        Calendar calendar = runFlowAndGetPayload("get-calendar-by-id");
+        upsertOnTestRunMessage("calendarId", calendar.getId());
+
+        Event event = insertEvent((Event) getTestRunMessageValue("event"));
 
         // Replace the existing "event" bean with the updated one
         upsertOnTestRunMessage("event", event);
         upsertOnTestRunMessage("eventId", event.getId());
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
     }
 
     @Category({RegressionTests.class})
@@ -66,8 +64,8 @@ public class GetFreeTimeTestCases extends GoogleCalendarTestParent {
             assertTrue(busyTimePeriods.size() == 1);
 
             TimePeriod busyTimePeriod = busyTimePeriods.get(0);
-            assertTrue(busyTimePeriod.getStart().equals(event.getStart().getDateTime().getWrapped()));
-            assertTrue(busyTimePeriod.getEnd().equals(event.getEnd().getDateTime().getWrapped()));
+            assertTrue(busyTimePeriod.getStart().toString().substring(0, 10).equals(event.getStart().getDateTime().getWrapped().toString().substring(0, 10)));
+            assertTrue(busyTimePeriod.getEnd().toString().substring(0, 10).equals(event.getEnd().getDateTime().getWrapped().toString().substring(0, 10)));
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
@@ -75,8 +73,7 @@ public class GetFreeTimeTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
+        runFlowAndGetPayload("delete-event");
     }
 
 }

@@ -19,9 +19,9 @@ import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.CalendarList;
 import org.mule.modules.google.api.client.batch.BatchResponse;
 import org.mule.modules.tests.ConnectorTestUtils;
-import org.mule.streaming.ConsumerIterator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
@@ -60,7 +60,7 @@ public class BatchDeleteCalendarTestCases extends GoogleCalendarTestParent {
         try {
             deleteCalendars(insertedCalendars);
 
-            ConsumerIterator<CalendarList> consumerIterator = runFlowAndGetPayload("get-calendar-list");
+            Iterator<CalendarList> consumerIterator = runFlowAndGetPayload("get-calendar-list");
             List<CalendarList> calendarList = Lists.newArrayList(consumerIterator);
             for (Calendar calendar : insertedCalendars) {
                 assertFalse(CalendarUtils.isCalendarInList(calendarList, calendar));

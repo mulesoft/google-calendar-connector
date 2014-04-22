@@ -28,19 +28,11 @@ public class DeleteAclRuleTestCases extends GoogleCalendarTestParent {
 
         initializeTestRunMessage("deleteAclRule");
 
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
         // Insert the ACL rule
         AclRule aclRule = runFlowAndGetPayload("insert-acl-rule");
 
         upsertOnTestRunMessage("aclRule", aclRule);
         upsertOnTestRunMessage("ruleId", aclRule.getId());
-
     }
 
     @Category({SmokeTests.class, RegressionTests.class})
@@ -60,13 +52,4 @@ public class DeleteAclRuleTestCases extends GoogleCalendarTestParent {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
     }
-
-    @After
-    public void tearDown() throws Exception {
-
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
-    }
-
 }

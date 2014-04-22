@@ -10,11 +10,9 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.tests.ConnectorTestUtils;
 
@@ -27,13 +25,6 @@ public class DeleteEventTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
 
         initializeTestRunMessage("deleteEvent");
-
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
 
         // Place the returned event and its ID into testObjects for later access
         Event returnedEvent = runFlowAndGetPayload("insert-event");
@@ -55,13 +46,5 @@ public class DeleteEventTestCases extends GoogleCalendarTestParent {
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
     }
 }

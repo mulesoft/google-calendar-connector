@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,20 +28,15 @@ public class MoveEventTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
         initializeTestRunMessage("moveEvent");
 
-        // Insert the source calendar and target calendar
-        upsertOnTestRunMessage("calendarRef", getTestRunMessageValue("sourceCalendarRef"));
-        Calendar sourceCalendar = runFlowAndGetPayload("create-calendar");
+        // Insert the target calendar
         upsertOnTestRunMessage("calendarRef", getTestRunMessageValue("targetCalendarRef"));
         Calendar targetCalendar = runFlowAndGetPayload("create-calendar");
 
         // Place updated calendars and their IDs into testObjects
-        upsertOnTestRunMessage("sourceCalendarRef", sourceCalendar);
-        upsertOnTestRunMessage("sourceCalendarId", sourceCalendar.getId());
         upsertOnTestRunMessage("targetCalendarRef", targetCalendar);
         upsertOnTestRunMessage("targetCalendarId", targetCalendar.getId());
 
-        // Insert an event into the source calendar
-        Event event = insertEvent(sourceCalendar, (Event) getTestRunMessageValue("event"));
+        Event event = insertEvent((Event) getTestRunMessageValue("event"));
         upsertOnTestRunMessage("event", event);
         upsertOnTestRunMessage("eventId", event.getId());
 
@@ -66,12 +62,15 @@ public class MoveEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-
-        Calendar sourceCalendar = getTestRunMessageValue("sourceCalendarRef");
+        try{
+            // Clean the event on the source calendar if move-event fails.
+            runFlowAndGetPayload("delete-event");
+        } catch(Exception e){
+            // Cleans the event on the source in case of error during execution. if no event found simply ignore.
+        }
         Calendar targetCalendar = getTestRunMessageValue("targetCalendarRef");
+        upsertOnTestRunMessage("calendarId", targetCalendar.getId());
 
-        deleteCalendar(sourceCalendar);
-        deleteCalendar(targetCalendar);
-
+        runFlowAndGetPayload("delete-calendar");
     }
 }

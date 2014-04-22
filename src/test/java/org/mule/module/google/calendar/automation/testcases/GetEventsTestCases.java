@@ -60,7 +60,7 @@ public class GetEventsTestCases extends GoogleCalendarTestParent {
         }
 
         // Batch insert the events and store successfully created events in testObjects
-        BatchResponse<Event> returnedEvents = insertEvents(calendar, events);
+        BatchResponse<Event> returnedEvents = insertEvents(events);
 
         upsertOnTestRunMessage("events", returnedEvents.getSuccessful());
 
@@ -98,11 +98,9 @@ public class GetEventsTestCases extends GoogleCalendarTestParent {
             // We want to be able to retrieve deleted events
             upsertOnTestRunMessage("showDeleted", true);
 
-            String calendarId = getTestRunMessageValue("calendarId");
-
             // Delete all events which we created in the setUp() method
             List<Event> events = (List<Event>) getTestRunMessageValue("events");
-            deleteEvents(calendarId, events);
+            deleteEvents(events);
 
             // Get the events
             ConsumerIterator<Event> consumerIterator = runFlowAndGetPayload("get-events");
@@ -149,9 +147,7 @@ public class GetEventsTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        Calendar calendar = getTestRunMessageValue("calendar");
-        deleteCalendar(calendar);
-
+        runFlowAndGetPayload("delete-calendar");
     }
 
 }

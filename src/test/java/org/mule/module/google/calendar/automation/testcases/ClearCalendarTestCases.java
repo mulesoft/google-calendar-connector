@@ -10,21 +10,25 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import com.google.common.collect.Lists;
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.mule.api.MuleEvent;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.module.google.calendar.automation.CalendarUtils;
+import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.google.api.client.batch.BatchResponse;
 import org.mule.modules.tests.ConnectorTestUtils;
 import org.mule.streaming.ConsumerIterator;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class ClearCalendarTestCases extends GoogleCalendarTestParent {
 
@@ -34,7 +38,6 @@ public class ClearCalendarTestCases extends GoogleCalendarTestParent {
 
         initializeTestRunMessage("clearCalendar");
 
-        String primaryCalendarId = getTestRunMessageValue("id");
         Event sampleEvent = getTestRunMessageValue("sampleEvent");
         Integer numEvents = getTestRunMessageValue("numEvents");
 
@@ -45,7 +48,7 @@ public class ClearCalendarTestCases extends GoogleCalendarTestParent {
         }
 
         // Batch insert the events
-        BatchResponse<Event> batchResponse = insertEvents(primaryCalendarId, events);
+        BatchResponse<Event> batchResponse = insertEvents(events);
         List<Event> successfulEvents = batchResponse.getSuccessful();
 
         upsertOnTestRunMessage("events", successfulEvents);
@@ -56,17 +59,16 @@ public class ClearCalendarTestCases extends GoogleCalendarTestParent {
     @Test
     public void testClearCalendar() {
         try {
-            String primaryCalendarId = getTestRunMessageValue("id");
-
             // Clear the calendar
             runFlowAndGetPayload("clear-calendar");
 
-            // Get all events
-            upsertOnTestRunMessage("calendarId", primaryCalendarId);
-            ConsumerIterator<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
+            // get-all-events returns a ConsumerIterator that can only be consumed as an iterator
+            // Therefore, if the iterator has any element, it means that at least one event has been fetched.
+            Iterator<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
 
             // Assert that no events are returned
-            assertTrue(Lists.newArrayList(returnedEvents).isEmpty());
+            assertFalse(returnedEvents.hasNext());
+
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }

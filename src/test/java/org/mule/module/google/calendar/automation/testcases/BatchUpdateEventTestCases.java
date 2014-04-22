@@ -35,10 +35,6 @@ public class BatchUpdateEventTestCases extends GoogleCalendarTestParent {
 
         initializeTestRunMessage("batchUpdateEvent");
 
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
         EventDateTime eventTimeStart = getTestRunMessageValue("eventStart");
         EventDateTime eventTimeEnd = getTestRunMessageValue("eventEnd");
         String summaryBefore = getTestRunMessageValue("summaryBefore");
@@ -50,7 +46,7 @@ public class BatchUpdateEventTestCases extends GoogleCalendarTestParent {
             events.add(event);
         }
 
-        BatchResponse<Event> batchEvents = insertEvents(calendar, events);
+        BatchResponse<Event> batchEvents = insertEvents(events);
         List<Event> successfulEvents = batchEvents.getSuccessful();
 
         upsertOnTestRunMessage("events", successfulEvents);
@@ -81,6 +77,8 @@ public class BatchUpdateEventTestCases extends GoogleCalendarTestParent {
 
             assertTrue(EqualsBuilder.reflectionEquals(successfulEvents, events));
 
+            upsertOnTestRunMessage("calendarEventsRef", successfulEvents);
+
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
@@ -88,10 +86,7 @@ public class BatchUpdateEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-
-        Calendar calendar = getTestRunMessageValue("calendar");
-        deleteCalendar(calendar);
-
+        runFlowAndGetPayload("batch-delete-event");
     }
 
 }

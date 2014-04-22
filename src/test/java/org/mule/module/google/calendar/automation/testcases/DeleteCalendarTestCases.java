@@ -30,7 +30,7 @@ public class DeleteCalendarTestCases extends GoogleCalendarTestParent {
 
         // Create the calendar
         Calendar calendar = runFlowAndGetPayload("create-calendar");
-        upsertOnTestRunMessage("id", calendar.getId());
+        upsertOnTestRunMessage("calendarId", calendar.getId());
 
     }
 

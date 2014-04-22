@@ -28,13 +28,6 @@ public class UpdateEventTestCases extends GoogleCalendarTestParent {
 
         initializeTestRunMessage("updateEvent");
 
-        // Insert the calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Update test objects
-        upsertOnTestRunMessage("calendar", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
         String beforeText = getTestRunMessageValue("summaryBefore");
         upsertOnTestRunMessage("text", beforeText);
 
@@ -63,9 +56,7 @@ public class UpdateEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
+        runFlowAndGetPayload("delete-event");
     }
 
 }

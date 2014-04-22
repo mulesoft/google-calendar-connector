@@ -15,7 +15,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.automation.CalendarUtils;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.module.google.calendar.model.EventDateTime;
 import org.mule.modules.google.api.client.batch.BatchResponse;
@@ -31,26 +30,7 @@ public class BatchInsertEventTestCases extends GoogleCalendarTestParent {
 
     @Before
     public void setUp() throws Exception {
-        try {
-            initializeTestRunMessage("batchInsertEvent");
-
-            // Insert calendar and get reference to retrieved calendar
-            Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-            // Replace old calendar instance with new instance
-            upsertOnTestRunMessage("calendarRef", calendar);
-            upsertOnTestRunMessage("calendarId", calendar.getId());
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail();
-        }
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
+        initializeTestRunMessage("batchInsertEvent");
     }
 
     @Category({SmokeTests.class, RegressionTests.class})
@@ -65,7 +45,6 @@ public class BatchInsertEventTestCases extends GoogleCalendarTestParent {
             EventDateTime eventStartTime = sampleEvent.getStart();
             EventDateTime eventEndTime = sampleEvent.getEnd();
             Integer numEvents = getTestRunMessageValue("numEvents");
-            String calendarId = getTestRunMessageValue("calendarId");
 
             // Instantiate the events that we want to batch insert
             List<Event> events = new ArrayList<Event>();
@@ -75,12 +54,18 @@ public class BatchInsertEventTestCases extends GoogleCalendarTestParent {
             }
 
             // Batch insert the events
-            BatchResponse<Event> batchResponse = insertEvents(calendarId, events);
+            BatchResponse<Event> batchResponse = insertEvents(events);
             assertTrue(batchResponse.getErrors() == null || batchResponse.getErrors().size() == 0);
+
+            upsertOnTestRunMessage("calendarEventsRef", batchResponse.getSuccessful());
 
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
     }
 
+    @After
+    public void tearDown() throws Exception {
+        runFlowAndGetPayload("batch-delete-event");
+    }
 }

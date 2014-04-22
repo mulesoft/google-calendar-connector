@@ -23,15 +23,15 @@ http://www.mulesoft.org/schema/mule/google-calendars http://www.mulesoft.org/sch
 	</flow>
 	
 	<flow name="delete-calendar" doc:name="delete-calendar">
-	    <google-calendars:delete-calendar id="#[payload.id]" accessTokenId="accessTokenId" config-ref="Google_Calendars"/>
+	    <google-calendars:delete-calendar id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars"/>
 	</flow>
 	
 	<flow name="clear-calendar" doc:name="clear-calendar">
-	    <google-calendars:clear-calendar config-ref="Google_Calendars" id="#[payload.id]" accessTokenId="accessTokenId" />
+	    <google-calendars:clear-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" />
 	</flow>
 	
 	<flow name="get-calendar-by-id" doc:name="get-calendar-by-id">
-	    <google-calendars:get-calendar-by-id id="#[payload.id]" accessTokenId="accessTokenId" config-ref="Google_Calendars" />
+	    <google-calendars:get-calendar-by-id id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars" />
 	</flow>
 	
 	<flow name="get-calendar-list" doc:name="get-calendar-list">
@@ -39,15 +39,15 @@ http://www.mulesoft.org/schema/mule/google-calendars http://www.mulesoft.org/sch
 	</flow>
 	
 	<flow name="get-calendar-list-by-id" doc:name="get-calendar-list-by-id">
-		<google-calendars:get-calendar-list-by-id config-ref="Google_Calendars" id="#[payload.id]" accessTokenId="accessTokenId" />
+		<google-calendars:get-calendar-list-by-id config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" />
 	</flow>
 	
 	<flow name="update-calendar-list" doc:name="update-calendar-list">
-		<google-calendars:update-calendar-list config-ref="Google_Calendars" calendarList-ref="#[payload.calendarListRef]"  id="#[payload.id]" accessTokenId="accessTokenId" />
+		<google-calendars:update-calendar-list config-ref="Google_Calendars" calendarList-ref="#[payload.calendarListRef]"  id="#[payload.calendarId]" accessTokenId="accessTokenId" />
 	</flow>
 	
 	<flow name="delete-calendar-list" doc:name="delete-calendar-list">
-		<google-calendars:delete-calendar-list config-ref="Google_Calendars" id="#[payload.id]" accessTokenId="accessTokenId"/>
+		<google-calendars:delete-calendar-list config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId"/>
 	</flow>
 	
 	<flow name="batch-insert-calendar" doc:name="batch-insert-calendar">
@@ -83,7 +83,7 @@ http://www.mulesoft.org/schema/mule/google-calendars http://www.mulesoft.org/sch
 	</flow>
 	
 	<flow name="move-event" doc:name="move-event">
-	    <google-calendars:move-event config-ref="Google_Calendars" eventId="#[payload.eventId]" sourceCalendarId="#[payload.sourceCalendarId]" targetCalendarId="#[payload.targetCalendarId]" accessTokenId="accessTokenId"  />
+	    <google-calendars:move-event config-ref="Google_Calendars" eventId="#[payload.eventId]" sourceCalendarId="#[payload.calendarId]" targetCalendarId="#[payload.targetCalendarId]" accessTokenId="accessTokenId"  />
 	</flow>
 	
 	<flow name="update-event" doc:name="update-event">
@@ -103,7 +103,7 @@ http://www.mulesoft.org/schema/mule/google-calendars http://www.mulesoft.org/sch
 	</flow>
 	
 	<flow name="update-calendar" doc:name="update-calendar">
-		<google-calendars:update-calendar config-ref="Google_Calendars" id="#[payload.id]" calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" />	
+		<google-calendars:update-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" />
 	</flow>
 
 	<flow name="get-free-time" doc:name="get-free-time">

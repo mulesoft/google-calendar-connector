@@ -10,7 +10,6 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -27,34 +26,17 @@ public class GetCalendarByIdTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
 
         initializeTestRunMessage("getCalendarById");
-
-        // Create the calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-        upsertOnTestRunMessage("id", calendar.getId());
-
     }
 
     @Category({SmokeTests.class, RegressionTests.class})
     @Test
     public void testGetCalendarById() {
         try {
-
-            String createdCalendarId = getTestRunMessageValue("id");
-
             // Assertions on equality
             Calendar returnedCalendar = runFlowAndGetPayload("get-calendar-by-id");
             assertTrue(returnedCalendar != null);
-            assertTrue(returnedCalendar.getId().equals(createdCalendarId));
-
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        // Delete the calendar
-        runFlowAndGetPayload("delete-calendar");
-
     }
 }

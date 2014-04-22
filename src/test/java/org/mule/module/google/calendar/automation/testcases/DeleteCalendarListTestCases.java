@@ -32,7 +32,7 @@ public class DeleteCalendarListTestCases extends GoogleCalendarTestParent {
             Calendar calendar = runFlowAndGetPayload("create-calendar");
 
             upsertOnTestRunMessage("calendar", calendar);
-            upsertOnTestRunMessage("id", calendar.getId());
+            upsertOnTestRunMessage("calendarId", calendar.getId());
 
             //Get Calendar List
             CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
@@ -71,9 +71,7 @@ public class DeleteCalendarListTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("id");
-        deleteCalendar(calendarId);
-
+        runFlowAndGetPayload("delete-calendar");
     }
 
 }

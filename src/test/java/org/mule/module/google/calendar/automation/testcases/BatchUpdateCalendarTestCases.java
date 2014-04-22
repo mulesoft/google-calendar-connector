@@ -79,6 +79,5 @@ public class BatchUpdateCalendarTestCases extends GoogleCalendarTestParent {
     public void tearDown() throws Exception {
         List<Calendar> calendars = getTestRunMessageValue("calendarsRef");
         deleteCalendars(calendars);
-
     }
 }

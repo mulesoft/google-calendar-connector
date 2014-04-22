@@ -10,9 +10,9 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import com.google.common.collect.Lists;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.automation.CalendarUtils;
@@ -21,27 +21,21 @@ import org.mule.module.google.calendar.model.Event;
 import org.mule.module.google.calendar.model.EventDateTime;
 import org.mule.modules.google.api.client.batch.BatchResponse;
 import org.mule.modules.tests.ConnectorTestUtils;
-import org.mule.streaming.ConsumerIterator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 public class BatchDeleteEventTestCases extends GoogleCalendarTestParent {
 
+    @Ignore("Needs to be review")
     @Before
     public void setUp() throws Exception {
 
         initializeTestRunMessage("batchDeleteEvent");
-
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
 
         // Get the sample event
         Event sampleEvent = getTestRunMessageValue("sampleEvent");
@@ -59,7 +53,7 @@ public class BatchDeleteEventTestCases extends GoogleCalendarTestParent {
         }
 
         // Store the successfully persisted events in testObjects for later access
-        BatchResponse<Event> batchResponse = insertEvents(calendar, events);
+        BatchResponse<Event> batchResponse = insertEvents(events);
         List<Event> successful = batchResponse.getSuccessful();
         upsertOnTestRunMessage("calendarEventsRef", successful);
 
@@ -70,23 +64,19 @@ public class BatchDeleteEventTestCases extends GoogleCalendarTestParent {
     public void testBatchDeleteEvent() {
         try {
 
-            Calendar calendar = getTestRunMessageValue("calendarRef");
             List<Event> successful = getTestRunMessageValue("calendarEventsRef");
 
-            deleteEvents(calendar, successful);
+            deleteEvents(successful);
 
-            ConsumerIterator<Event> consumerIterator = runFlowAndGetPayload("get-all-events");
-            List<Event> events = Lists.newArrayList(consumerIterator);
-            assertTrue(events.isEmpty());
+            // get-all-events returns a ConsumerIterator that can only be consumed as an iterator
+            // Therefore, if the iterator has any element, it means that at least one event has been fetched.
+            Iterator<Event> returnedEvents = runFlowAndGetPayload("get-all-events");
+
+            // Assert that no events are returned
+            assertFalse(returnedEvents.hasNext());
+
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
     }
-
-    @After
-    public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-    }
-
 }

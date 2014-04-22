@@ -26,13 +26,6 @@ public class InsertEventTestCases extends GoogleCalendarTestParent {
     @Before
     public void setUp() throws Exception {
         initializeTestRunMessage("insertEvent");
-
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
     }
 
     @Category({SmokeTests.class, RegressionTests.class})
@@ -58,11 +51,6 @@ public class InsertEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
+        runFlowAndGetPayload("delete-event");
     }
-
-
 }

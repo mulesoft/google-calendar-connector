@@ -14,7 +14,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.tests.ConnectorTestUtils;
 
@@ -25,23 +24,12 @@ public class GetEventByIdTestCases extends GoogleCalendarTestParent {
 
     @Before
     public void setUp() throws Exception {
-        try {
-            initializeTestRunMessage("getEventById");
+        initializeTestRunMessage("getEventById");
 
-            // Insert calendar and get reference to retrieved calendar
-            Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-            // Replace old calendar instance with new instance
-            upsertOnTestRunMessage("calendarRef", calendar);
-            upsertOnTestRunMessage("calendarId", calendar.getId());
-
-            // Place the returned event and its ID into testObjects for later access
-            Event returnedEvent = runFlowAndGetPayload("insert-event");
-            upsertOnTestRunMessage("event", returnedEvent);
-            upsertOnTestRunMessage("eventId", returnedEvent.getId());
-        } catch (Exception e) {
-            fail(ConnectorTestUtils.getStackTrace(e));
-        }
+        // Place the returned event and its ID into testObjects for later access
+        Event returnedEvent = runFlowAndGetPayload("insert-event");
+        upsertOnTestRunMessage("event", returnedEvent);
+        upsertOnTestRunMessage("eventId", returnedEvent.getId());
     }
 
     @Category({SmokeTests.class, RegressionTests.class})
@@ -60,7 +48,6 @@ public class GetEventByIdTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
+       runFlowAndGetPayload("delete-event");
     }
 }

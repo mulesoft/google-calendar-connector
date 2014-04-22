@@ -16,7 +16,6 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.automation.CalendarUtils;
 import org.mule.module.google.calendar.model.AclRule;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
 
 import java.util.ArrayList;
@@ -32,14 +31,6 @@ public class GetAllAclRulesTestCases extends GoogleCalendarTestParent {
     @Before
     public void setUp() throws Exception {
         initializeTestRunMessage("getAllAclRules");
-
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
 
         List<String> scopes = (List<String>) getTestRunMessageValue("scopes");
 
@@ -70,9 +61,9 @@ public class GetAllAclRulesTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
+        for (AclRule aclRule : insertedAclRules) {
+            upsertOnTestRunMessage("ruleId", aclRule.getId());
+            runFlowAndGetPayload("delete-acl-rule");
+        }
     }
 }

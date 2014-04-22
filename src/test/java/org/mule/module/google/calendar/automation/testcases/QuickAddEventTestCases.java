@@ -26,13 +26,6 @@ public class QuickAddEventTestCases extends GoogleCalendarTestParent {
     @Before
     public void setUp() throws Exception {
         initializeTestRunMessage("quickAddEvent");
-
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
     }
 
     @Category({RegressionTests.class})
@@ -62,10 +55,8 @@ public class QuickAddEventTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-        // Drop the calendar
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
-
+        // Drop the event.
+        runFlowAndGetPayload("delete-event");
     }
 
 }

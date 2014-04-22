@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
+import org.mule.module.google.calendar.ScopeRole;
 import org.mule.module.google.calendar.model.AclRule;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
@@ -27,15 +28,8 @@ public class UpdateAclRuleTestCases extends GoogleCalendarTestParent {
     public void setUp() throws Exception {
         initializeTestRunMessage("updateAclRule");
 
-        // Insert calendar and get reference to retrieved calendar
-        Calendar calendar = runFlowAndGetPayload("create-calendar");
-
-        // Replace old calendar instance with new instance
-        upsertOnTestRunMessage("calendarRef", calendar);
-        upsertOnTestRunMessage("calendarId", calendar.getId());
-
-        String roleBefore = getTestRunMessageValue("roleBefore").toString();
-        upsertOnTestRunMessage("role", roleBefore);
+        ScopeRole roleBefore = getTestRunMessageValue("roleBefore");
+        upsertOnTestRunMessage("role", roleBefore.name());
 
         // Insert the ACL rule
 
@@ -44,30 +38,26 @@ public class UpdateAclRuleTestCases extends GoogleCalendarTestParent {
         upsertOnTestRunMessage("ruleId", returnedAclRule.getId());
     }
 
-
     @Category({RegressionTests.class})
     @Test
     public void testUpdateAclRule() {
         try {
-            String roleAfter = getTestRunMessageValue("roleAfter").toString();
+            ScopeRole roleAfter = getTestRunMessageValue("roleAfter");
 
             AclRule aclRule = getTestRunMessageValue("aclRule");
-            aclRule.setRole(roleAfter);
+            aclRule.setRole(roleAfter.name());
             upsertOnTestRunMessage("aclRuleRef", aclRule);
 
             aclRule = runFlowAndGetPayload("update-acl-rule");
             String roleAfterUpdate = aclRule.getRole();
-            assertEquals(roleAfter, roleAfterUpdate);
+            assertEquals(roleAfter.name(), roleAfterUpdate);
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }
     }
 
-
     @After
     public void tearDown() throws Exception {
-        String calendarId = getTestRunMessageValue("calendarId");
-        deleteCalendar(calendarId);
+       runFlowAndGetPayload("delete-acl-rule");
     }
-
 }
