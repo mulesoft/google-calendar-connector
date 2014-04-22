@@ -8,7 +8,7 @@ import org.mule.modules.google.ForcePrompt;
 import org.mule.transformer.AbstractTransformer;
 import org.mule.transformer.types.DataTypeFactory;
 
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:01:45-03:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:04:09-03:00", comments = "Build M4.1875.17b58a3")
 public class ForcePromptEnumTransformer
     extends AbstractTransformer
     implements DiscoverableTransformer

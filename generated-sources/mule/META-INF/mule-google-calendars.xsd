@@ -1201,6 +1201,30 @@ The user owning the OAuth token needs to have permissions for reading that list<
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:simpleType name="AccessTypeEnumType">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="online">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="offline">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
   <xs:simpleType name="ScopeTypeEnumType">
     <xs:annotation>
       <xs:documentation></xs:documentation>
@@ -1224,54 +1248,6 @@ The user owning the OAuth token needs to have permissions for reading that list<
             </xs:annotation>
           </xs:enumeration>
           <xs:enumeration value="DOMAIN">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
-      </xs:simpleType>
-    </xs:union>
-  </xs:simpleType>
-  <xs:simpleType name="ForcePromptEnumType">
-    <xs:annotation>
-      <xs:documentation></xs:documentation>
-    </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="auto">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="force">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
-      </xs:simpleType>
-    </xs:union>
-  </xs:simpleType>
-  <xs:simpleType name="AccessTypeEnumType">
-    <xs:annotation>
-      <xs:documentation></xs:documentation>
-    </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="online">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="offline">
             <xs:annotation>
               <xs:documentation></xs:documentation>
             </xs:annotation>
@@ -1311,6 +1287,30 @@ The user owning the OAuth token needs to have permissions for reading that list<
             </xs:annotation>
           </xs:enumeration>
           <xs:enumeration value="owner">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
+  <xs:simpleType name="ForcePromptEnumType">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="auto">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="force">
             <xs:annotation>
               <xs:documentation></xs:documentation>
             </xs:annotation>

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * Registers bean definitions parsers for handling elements in <code>http://www.mulesoft.org/schema/mule/google-calendars</code>.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:01:45-03:00", comments = "Build M4.1875.17b58a3")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:04:09-03:00", comments = "Build M4.1875.17b58a3")
 public class GoogleCalendarsNamespaceHandler
     extends NamespaceHandlerSupport
 {
