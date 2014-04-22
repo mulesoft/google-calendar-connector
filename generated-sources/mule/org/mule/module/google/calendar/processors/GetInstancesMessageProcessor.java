@@ -33,14 +33,13 @@ import org.mule.modules.google.oauth.invalidation.OAuthTokenExpiredException;
 import org.mule.security.oauth.callback.ProcessCallback;
 import org.mule.streaming.PagingConfiguration;
 import org.mule.streaming.PagingDelegate;
-import org.mule.streaming.processor.ManagedPagingDelegateAdapter;
 
 
 /**
  * GetInstancesMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#getInstances(java.lang.String, java.lang.String, java.lang.Integer, boolean, java.lang.String, java.lang.String, org.mule.streaming.PagingConfiguration)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-SNAPSHOT", date = "2014-04-16T09:46:10-05:00", comments = "Build master.1915.dd1962d")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:01:45-03:00", comments = "Build M4.1875.17b58a3")
 public class GetInstancesMessageProcessor
     extends AbstractPagedConnectedProcessor
     implements MessageProcessor, OperationMetaDataEnabled
@@ -169,7 +168,6 @@ public class GetInstancesMessageProcessor
         Object moduleObject = null;
         try {
             moduleObject = findOrCreate(GoogleCalendarConnectorOAuthManager.class, false, event);
-            final MessageProcessor messageProcessor = this;
             final String _transformedCalendarId = ((String) evaluateAndTransform(getMuleContext(), event, GetInstancesMessageProcessor.class.getDeclaredField("_calendarIdType").getGenericType(), null, calendarId));
             final String _transformedEventId = ((String) evaluateAndTransform(getMuleContext(), event, GetInstancesMessageProcessor.class.getDeclaredField("_eventIdType").getGenericType(), null, eventId));
             final Integer _transformedMaxAttendess = ((Integer) evaluateAndTransform(getMuleContext(), event, GetInstancesMessageProcessor.class.getDeclaredField("_maxAttendessType").getGenericType(), null, maxAttendess));
@@ -178,7 +176,7 @@ public class GetInstancesMessageProcessor
             final String _transformedOriginalStart = ((String) evaluateAndTransform(getMuleContext(), event, GetInstancesMessageProcessor.class.getDeclaredField("_originalStartType").getGenericType(), null, originalStart));
             final PagingConfiguration _transformedPagingConfiguration = ((PagingConfiguration) evaluateAndTransform(getMuleContext(), event, GetInstancesMessageProcessor.class.getDeclaredField("_pagingConfigurationType").getGenericType(), null, pagingConfiguration));
             Object resultPayload;
-            final ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
+            ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
             resultPayload = processTemplate.execute(new ProcessCallback<Object,Object>() {
 
 
@@ -193,7 +191,7 @@ public class GetInstancesMessageProcessor
                 public Object process(Object object)
                     throws Exception
                 {
-                    return new ManagedPagingDelegateAdapter(((GoogleCalendarConnector) object).getInstances(_transformedCalendarId, _transformedEventId, _transformedMaxAttendess, _transformedShowDeleted, _transformedTimezone, _transformedOriginalStart, _transformedPagingConfiguration), processTemplate, getManagedExceptions(), isProtected(), messageProcessor, event);
+                    return ((GoogleCalendarConnector) object).getInstances(_transformedCalendarId, _transformedEventId, _transformedMaxAttendess, _transformedShowDeleted, _transformedTimezone, _transformedOriginalStart, _transformedPagingConfiguration);
                 }
 
             }

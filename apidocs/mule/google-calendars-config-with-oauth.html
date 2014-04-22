@@ -197,7 +197,7 @@
       <a href="http://www.mulesoft.com" tabindex="-1">
       <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
       
-  <div id="searchContainer" >
+  <div id="search" >
       <div id="searchForm">
           <form accept-charset="utf-8" class="gsc-search-box" 
                 onsubmit="return submit_search()">
@@ -957,7 +957,7 @@ the connector to access his private information.</p>
 <p>The callback can be customized in the config element of the this connector as follows:</p>
 <pre>
     &lt;google-calendars:config&gt;
-        &lt;google-calendars:oauth-callback-config domain="${fullDomain}" localPort="10010" remotePort="80" defaultAccessTokenId="#[message.inboundProperties['tenantId']]" /&gt;
+        &lt;google-calendars:oauth-callback-config domain="${fullDomain}" localPort="${http.port}" remotePort="80" defaultAccessTokenId="#[message.inboundProperties['tenantId']]" /&gt;
     &lt;/google-calendars:config&gt;
 </pre>
 <p>The <i>oauth-callback-config</i> element can be used to customize the endpoint that gets created for the callback. It
@@ -975,7 +975,7 @@ features the following attributes:</p>
 </tr>
 <tr class="api" >
 <td class="jd-linkcol"><nobr>localPort</nobr></td>
-<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The local port number that the endpoint will listen on. Normally 80, in the case of CloudHub you can use the environment variable 10010.</td>
+<td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>The local port number that the endpoint will listen on. Normally 80, in the case of CloudHub you can use the environment variable ${http.port}.</td>
 </tr>
 <tr class="api" >
 <td class="jd-linkcol"><nobr>remotePort</nobr></td>
@@ -2460,11 +2460,6 @@ protected operation that uses that token.
         
             <a href="../java/org/mule/module/google/calendar/model/CalendarList.html">CalendarList</a>
             
-                ,&nbsp;
-            
-        
-            AbstractGoogleOAuthConnector
-            
         &gt;
     
 </td>
@@ -2948,11 +2943,6 @@ protected operation that uses that token.
         
             <a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>
             
-                ,&nbsp;
-            
-        
-            AbstractGoogleOAuthConnector
-            
         &gt;
     
 </td>
@@ -3320,11 +3310,6 @@ protected operation that uses that token.
     &lt;
         
             <a href="../java/org/mule/module/google/calendar/model/Event.html">Event</a>
-            
-                ,&nbsp;
-            
-        
-            AbstractGoogleOAuthConnector
             
         &gt;
     

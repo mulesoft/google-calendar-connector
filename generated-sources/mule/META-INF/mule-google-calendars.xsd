@@ -1061,12 +1061,12 @@ The user owning the OAuth token needs to have permissions for reading that list<
         </xs:attribute>
         <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/google-calendars" name="scopeType" use="required" type="ScopeTypeEnumType">
           <xs:annotation>
-            <xs:documentation>The type of the scope. Possible values are: - "default" - The public scope. This is the default value. "user" - Limits the scope to a single user. "group" - Limits the scope to a group. "domain" - Limits the scope to a domain. Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.</xs:documentation>
+            <xs:documentation>The type of the scope. Possible values are: - "default" - The public scope. This is the default value. "user" - Limits the scope to a single user. "group" - Limits the scope to a group. "domain" - Limits the scope to a domain.  Note: The permissions granted to the "default", or public, scope apply to any user, authenticated or not.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute xmlns="http://www.mulesoft.org/schema/mule/google-calendars" name="role" use="required" type="ScopeRoleEnumType">
           <xs:annotation>
-            <xs:documentation>The role assigned to the scope. Possible values are: "none" - Provides no access. - "freeBusyReader" Provides read access to free/busy information. "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.</xs:documentation>
+            <xs:documentation>The role assigned to the scope. Possible values are: "none" - Provides no access.  - "freeBusyReader" Provides read access to free/busy information. "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="accessTokenId" use="optional" type="xs:string">
@@ -1201,6 +1201,40 @@ The user owning the OAuth token needs to have permissions for reading that list<
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:simpleType name="ScopeTypeEnumType">
+    <xs:annotation>
+      <xs:documentation></xs:documentation>
+    </xs:annotation>
+    <xs:union>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DEFAULT">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="USER">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="GROUP">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+          <xs:enumeration value="DOMAIN">
+            <xs:annotation>
+              <xs:documentation></xs:documentation>
+            </xs:annotation>
+          </xs:enumeration>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType>
+        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
+      </xs:simpleType>
+    </xs:union>
+  </xs:simpleType>
   <xs:simpleType name="ForcePromptEnumType">
     <xs:annotation>
       <xs:documentation></xs:documentation>
@@ -1238,40 +1272,6 @@ The user owning the OAuth token needs to have permissions for reading that list<
             </xs:annotation>
           </xs:enumeration>
           <xs:enumeration value="offline">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-        </xs:restriction>
-      </xs:simpleType>
-      <xs:simpleType>
-        <xs:restriction xmlns:mule="http://www.mulesoft.org/schema/mule/core" base="mule:propertyPlaceholderType"></xs:restriction>
-      </xs:simpleType>
-    </xs:union>
-  </xs:simpleType>
-  <xs:simpleType name="ScopeTypeEnumType">
-    <xs:annotation>
-      <xs:documentation></xs:documentation>
-    </xs:annotation>
-    <xs:union>
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="DEFAULT">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="USER">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="GROUP">
-            <xs:annotation>
-              <xs:documentation></xs:documentation>
-            </xs:annotation>
-          </xs:enumeration>
-          <xs:enumeration value="DOMAIN">
             <xs:annotation>
               <xs:documentation></xs:documentation>
             </xs:annotation>

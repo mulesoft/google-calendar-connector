@@ -38,7 +38,7 @@ import org.mule.security.oauth.callback.ProcessCallback;
  * BatchDeleteCalendarMessageProcessor invokes the {@link org.mule.module.google.calendar.GoogleCalendarConnector#batchDeleteCalendar(java.util.Collection)} method in {@link GoogleCalendarConnector }. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  * 
  */
-@Generated(value = "Mule DevKit Version 3.5.0-SNAPSHOT", date = "2014-04-16T09:46:10-05:00", comments = "Build master.1915.dd1962d")
+@Generated(value = "Mule DevKit Version 3.5.0-M4", date = "2014-04-22T09:01:45-03:00", comments = "Build M4.1875.17b58a3")
 public class BatchDeleteCalendarMessageProcessor
     extends AbstractConnectedProcessor
     implements MessageProcessor, OperationMetaDataEnabled
@@ -102,7 +102,7 @@ public class BatchDeleteCalendarMessageProcessor
         try {
             moduleObject = findOrCreate(GoogleCalendarConnectorOAuthManager.class, false, event);
             final Collection<Calendar> _transformedCalendars = ((Collection<Calendar> ) evaluateAndTransform(getMuleContext(), event, BatchDeleteCalendarMessageProcessor.class.getDeclaredField("_calendarsType").getGenericType(), null, calendars));
-            final ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
+            ProcessTemplate<Object, Object> processTemplate = ((ProcessAdapter<Object> ) moduleObject).getProcessTemplate();
             processTemplate.execute(new ProcessCallback<Object,Object>() {
 
 
