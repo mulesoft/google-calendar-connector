@@ -10,13 +10,10 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.automation.CalendarUtils;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.module.google.calendar.model.EventDateTime;
 import org.mule.modules.google.api.client.batch.BatchResponse;
@@ -31,7 +28,6 @@ import static org.junit.Assert.fail;
 
 public class BatchDeleteEventTestCases extends GoogleCalendarTestParent {
 
-    @Ignore("Needs to be review")
     @Before
     public void setUp() throws Exception {
 

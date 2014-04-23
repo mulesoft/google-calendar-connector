@@ -38,8 +38,6 @@ public class GetFreeTimeTestCases extends GoogleCalendarTestParent {
 
         Event event = insertEvent((Event) getTestRunMessageValue("event"));
 
-        // Replace the existing "event" bean with the updated one
-        upsertOnTestRunMessage("event", event);
         upsertOnTestRunMessage("eventId", event.getId());
     }
 
@@ -64,8 +62,8 @@ public class GetFreeTimeTestCases extends GoogleCalendarTestParent {
             assertTrue(busyTimePeriods.size() == 1);
 
             TimePeriod busyTimePeriod = busyTimePeriods.get(0);
-            assertTrue(busyTimePeriod.getStart().toString().substring(0, 10).equals(event.getStart().getDateTime().getWrapped().toString().substring(0, 10)));
-            assertTrue(busyTimePeriod.getEnd().toString().substring(0, 10).equals(event.getEnd().getDateTime().getWrapped().toString().substring(0, 10)));
+            assertTrue(busyTimePeriod.getStart().equals(event.getStart().getDateTime().getWrapped()));
+            assertTrue(busyTimePeriod.getEnd().equals(event.getEnd().getDateTime().getWrapped()));
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));
         }

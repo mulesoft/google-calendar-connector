@@ -14,7 +14,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.CalendarList;
 import org.mule.modules.tests.ConnectorTestUtils;
 
@@ -54,7 +53,7 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent {
             assertEquals(afterColorId, colorAfter);
 
             // Update the list ref with the old values for tearDown.
-            String colorBefore =getTestRunMessageValue("colorBefore");
+            String colorBefore = getTestRunMessageValue("colorBefore");
             afterUpdate.setColorId(colorBefore);
             upsertOnTestRunMessage("calendarListRef", afterUpdate);
         } catch (Exception e) {
@@ -64,6 +63,6 @@ public class UpdateCalendarListTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-       runFlowAndGetPayload("update-calendar-list");
+        runFlowAndGetPayload("update-calendar-list");
     }
 }

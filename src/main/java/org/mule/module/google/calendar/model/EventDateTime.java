@@ -32,7 +32,7 @@ public class EventDateTime extends BaseWrapper<com.google.api.services.calendar.
 	}
 
 	public String getDate() {
-		return wrapped.getDate().toString();
+		return wrapped.getDate() != null ? wrapped.getDate().toString() : "";
 	}
 
 	public String getTimeZone() {

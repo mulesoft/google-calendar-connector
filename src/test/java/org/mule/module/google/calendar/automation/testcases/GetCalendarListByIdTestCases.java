@@ -33,7 +33,7 @@ public class GetCalendarListByIdTestCases extends GoogleCalendarTestParent {
             CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
 
             assertTrue(returnedCalendarList != null);
-            assertTrue(returnedCalendarList.getPrimary());
+            assertTrue(returnedCalendarList.isPrimary());
 
         } catch (Exception e) {
             fail(ConnectorTestUtils.getStackTrace(e));

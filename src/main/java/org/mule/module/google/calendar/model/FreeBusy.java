@@ -83,4 +83,6 @@ public class FreeBusy extends BaseWrapper<FreeBusyResponse> {
 	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
+
+
 }

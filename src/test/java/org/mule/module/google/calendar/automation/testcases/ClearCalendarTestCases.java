@@ -10,25 +10,20 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import org.mule.module.google.calendar.automation.CalendarUtils;
+import org.mule.module.google.calendar.model.Event;
+import org.mule.modules.google.api.client.batch.BatchResponse;
+import org.mule.modules.tests.ConnectorTestUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
-import org.mule.module.google.calendar.automation.CalendarUtils;
-import org.mule.module.google.calendar.model.Calendar;
-import org.mule.module.google.calendar.model.Event;
-import org.mule.modules.google.api.client.batch.BatchResponse;
-import org.mule.modules.tests.ConnectorTestUtils;
-import org.mule.streaming.ConsumerIterator;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.fail;
 
 public class ClearCalendarTestCases extends GoogleCalendarTestParent {
 

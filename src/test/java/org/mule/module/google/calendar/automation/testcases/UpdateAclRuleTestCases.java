@@ -16,7 +16,6 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.mule.module.google.calendar.ScopeRole;
 import org.mule.module.google.calendar.model.AclRule;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
 
 import static org.junit.Assert.assertEquals;
@@ -58,6 +57,6 @@ public class UpdateAclRuleTestCases extends GoogleCalendarTestParent {
 
     @After
     public void tearDown() throws Exception {
-       runFlowAndGetPayload("delete-acl-rule");
+        runFlowAndGetPayload("delete-acl-rule");
     }
 }

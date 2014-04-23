@@ -52,7 +52,7 @@ import java.util.List;
  *
  * @author MuleSoft, Inc.
  */
-@Connector(name="google-calendars", schemaVersion="2.0", friendlyName="Google Calendars", minMuleVersion="3.5", configElementName="config-with-oauth")
+@Connector(name="google-calendars", schemaVersion="1.0", friendlyName="Google Calendars", minMuleVersion="3.5", configElementName="config-with-oauth")
 @OAuth2(
 		authorizationUrl = "https://accounts.google.com/o/oauth2/auth",
 		accessTokenUrl = "https://accounts.google.com/o/oauth2/token",

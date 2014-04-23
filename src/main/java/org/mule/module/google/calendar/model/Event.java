@@ -171,6 +171,10 @@ public class Event extends BaseWrapper<com.google.api.services.calendar.model.Ev
 		wrapped.setId(id);
 	}
 
+	public void setAttendees(List<org.mule.module.google.calendar.model.EventAttendee> attendees) {
+		wrapped.setAttendees(org.mule.module.google.calendar.model.EventAttendee.unwrapp(attendees, EventAttendee.class));
+	}
+
 	public void setHtmlLink(String htmlLink) {
 		wrapped.setHtmlLink(htmlLink);
 	}
@@ -285,101 +289,5 @@ public class Event extends BaseWrapper<com.google.api.services.calendar.model.Ev
 
 	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
-	}
-
-    public com.google.api.services.calendar.model.Event setStart(com.google.api.services.calendar.model.EventDateTime start) {
-        return wrapped.setStart(start);
-    }
-
-    public com.google.api.services.calendar.model.Event setEnd(com.google.api.services.calendar.model.EventDateTime end) {
-        return wrapped.setEnd(end);
-    }
-
-    public com.google.api.services.calendar.model.Event.Source getSource() {
-        return wrapped.getSource();
-    }
-
-    public com.google.api.services.calendar.model.Event setExtendedProperties(com.google.api.services.calendar.model.Event.ExtendedProperties extendedProperties) {
-        return wrapped.setExtendedProperties(extendedProperties);
-    }
-
-    public com.google.api.services.calendar.model.Event setOrganizer(com.google.api.services.calendar.model.Event.Organizer organizer) {
-        return wrapped.setOrganizer(organizer);
-    }
-
-    public com.google.api.services.calendar.model.Event setSource(com.google.api.services.calendar.model.Event.Source source) {
-        return wrapped.setSource(source);
-    }
-
-    public com.google.api.services.calendar.model.Event set(String fieldName, Object value) {
-        return wrapped.set(fieldName, value);
-    }
-
-    public com.google.api.services.calendar.model.Event setUpdated(com.google.api.client.util.DateTime updated) {
-        return wrapped.setUpdated(updated);
-    }
-
-    public com.google.api.services.calendar.model.Event.Gadget getGadget() {
-        return wrapped.getGadget();
-    }
-
-    public com.google.api.services.calendar.model.Event setGadget(com.google.api.services.calendar.model.Event.Gadget gadget) {
-        return wrapped.setGadget(gadget);
-    }
-
-    public com.google.api.services.calendar.model.Event setLocked(Boolean locked) {
-        return wrapped.setLocked(locked);
-    }
-
-    public com.google.api.services.calendar.model.Event setCreator(com.google.api.services.calendar.model.Event.Creator creator) {
-        return wrapped.setCreator(creator);
-    }
-
-    public com.google.api.services.calendar.model.Event setAttendees(List<EventAttendee> attendees) {
-        return wrapped.setAttendees(attendees);
-    }
-
-    public com.google.api.services.calendar.model.Event setReminders(com.google.api.services.calendar.model.Event.Reminders reminders) {
-        return wrapped.setReminders(reminders);
-    }
-
-    public com.google.api.services.calendar.model.Event setEndTimeUnspecified(Boolean endTimeUnspecified) {
-        return wrapped.setEndTimeUnspecified(endTimeUnspecified);
-    }
-
-    public com.google.api.services.calendar.model.Event setHangoutLink(String hangoutLink) {
-        return wrapped.setHangoutLink(hangoutLink);
-    }
-
-    public com.google.api.services.calendar.model.Event setCreated(com.google.api.client.util.DateTime created) {
-        return wrapped.setCreated(created);
-    }
-
-    public Boolean getLocked() {
-        return wrapped.getLocked();
-    }
-
-    public Boolean getEndTimeUnspecified() {
-        return wrapped.getEndTimeUnspecified();
-    }
-
-    public String getKind() {
-        return wrapped.getKind();
-    }
-
-    public com.google.api.services.calendar.model.Event setOriginalStartTime(com.google.api.services.calendar.model.EventDateTime originalStartTime) {
-        return wrapped.setOriginalStartTime(originalStartTime);
-    }
-
-    public com.google.api.services.calendar.model.Event setKind(String kind) {
-        return wrapped.setKind(kind);
-    }
-
-    public String getEtag() {
-        return wrapped.getEtag();
-    }
-
-    public String getHangoutLink() {
-        return wrapped.getHangoutLink();
     }
 }
