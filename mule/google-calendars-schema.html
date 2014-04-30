@@ -197,7 +197,7 @@
       <a href="http://www.mulesoft.com" tabindex="-1">
       <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
       
-  <div id="search" >
+  <div id="searchContainer" >
       <div id="searchForm">
           <form accept-charset="utf-8" class="gsc-search-box" 
                 onsubmit="return submit_search()">
@@ -1341,12 +1341,12 @@ The user owning the OAuth token needs to have permissions for reading that list&
         &lt;/xs:attribute&gt;
         &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/google-calendars&quot; name=&quot;scopeType&quot; use=&quot;required&quot; type=&quot;ScopeTypeEnumType&quot;&gt;
           &lt;xs:annotation&gt;
-            &lt;xs:documentation&gt;The type of the scope. Possible values are: - &quot;default&quot; - The public scope. This is the default value. &quot;user&quot; - Limits the scope to a single user. &quot;group&quot; - Limits the scope to a group. &quot;domain&quot; - Limits the scope to a domain.  Note: The permissions granted to the &quot;default&quot;, or public, scope apply to any user, authenticated or not.&lt;/xs:documentation&gt;
+            &lt;xs:documentation&gt;The type of the scope. Possible values are: - &quot;default&quot; - The public scope. This is the default value. &quot;user&quot; - Limits the scope to a single user. &quot;group&quot; - Limits the scope to a group. &quot;domain&quot; - Limits the scope to a domain. Note: The permissions granted to the &quot;default&quot;, or public, scope apply to any user, authenticated or not.&lt;/xs:documentation&gt;
           &lt;/xs:annotation&gt;
         &lt;/xs:attribute&gt;
         &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/google-calendars&quot; name=&quot;role&quot; use=&quot;required&quot; type=&quot;ScopeRoleEnumType&quot;&gt;
           &lt;xs:annotation&gt;
-            &lt;xs:documentation&gt;The role assigned to the scope. Possible values are: &quot;none&quot; - Provides no access.  - &quot;freeBusyReader&quot; Provides read access to free/busy information. &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.&lt;/xs:documentation&gt;
+            &lt;xs:documentation&gt;The role assigned to the scope. Possible values are: &quot;none&quot; - Provides no access. - &quot;freeBusyReader&quot; Provides read access to free/busy information. &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden. &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.&lt;/xs:documentation&gt;
           &lt;/xs:annotation&gt;
         &lt;/xs:attribute&gt;
         &lt;xs:attribute name=&quot;accessTokenId&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
@@ -1554,30 +1554,6 @@ The user owning the OAuth token needs to have permissions for reading that list&
       &lt;/xs:simpleType&gt;
     &lt;/xs:union&gt;
   &lt;/xs:simpleType&gt;
-  &lt;xs:simpleType name=&quot;ForcePromptEnumType&quot;&gt;
-    &lt;xs:annotation&gt;
-      &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
-    &lt;/xs:annotation&gt;
-    &lt;xs:union&gt;
-      &lt;xs:simpleType&gt;
-        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
-          &lt;xs:enumeration value=&quot;auto&quot;&gt;
-            &lt;xs:annotation&gt;
-              &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
-            &lt;/xs:annotation&gt;
-          &lt;/xs:enumeration&gt;
-          &lt;xs:enumeration value=&quot;force&quot;&gt;
-            &lt;xs:annotation&gt;
-              &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
-            &lt;/xs:annotation&gt;
-          &lt;/xs:enumeration&gt;
-        &lt;/xs:restriction&gt;
-      &lt;/xs:simpleType&gt;
-      &lt;xs:simpleType&gt;
-        &lt;xs:restriction xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:propertyPlaceholderType&quot;&gt;&lt;/xs:restriction&gt;
-      &lt;/xs:simpleType&gt;
-    &lt;/xs:union&gt;
-  &lt;/xs:simpleType&gt;
   &lt;xs:simpleType name=&quot;AccessTypeEnumType&quot;&gt;
     &lt;xs:annotation&gt;
       &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
@@ -1591,6 +1567,30 @@ The user owning the OAuth token needs to have permissions for reading that list&
             &lt;/xs:annotation&gt;
           &lt;/xs:enumeration&gt;
           &lt;xs:enumeration value=&quot;offline&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:propertyPlaceholderType&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;ForcePromptEnumType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;auto&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;force&quot;&gt;
             &lt;xs:annotation&gt;
               &lt;xs:documentation&gt;&lt;/xs:documentation&gt;
             &lt;/xs:annotation&gt;

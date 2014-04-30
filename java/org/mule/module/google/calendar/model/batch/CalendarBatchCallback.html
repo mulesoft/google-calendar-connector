@@ -198,7 +198,7 @@
       <a href="http://www.mulesoft.com" tabindex="-1">
       <img src="../../../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
       
-  <div id="search" >
+  <div id="searchContainer" >
       <div id="searchForm">
           <form accept-charset="utf-8" class="gsc-search-box" 
                 onsubmit="return submit_search()">
@@ -694,7 +694,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onFailure</span>(GoogleJsonError arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onFailure</span>(GoogleJsonError arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
@@ -710,7 +710,7 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onSuccess</span>(T arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onSuccess</span>(T arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
@@ -768,29 +768,13 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onFailure</span>(Object arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onFailure</span>(Object arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
-        <td class="jd-typecol"><nobr>
-            
-            
-            final
-            
-            
-            void</nobr>
-        </td>
-        <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onFailure</span>(GoogleJsonErrorContainer arg0, GoogleHeaders arg1)</nobr>
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol"><nobr>
             abstract
             
@@ -800,7 +784,23 @@ From class
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onFailure</span>(GoogleJsonError arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onFailure</span>(GoogleJsonError arg0, HttpHeaders arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">onFailure</span>(GoogleJsonErrorContainer arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
@@ -1044,7 +1044,7 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onFailure</span>(E arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onFailure</span>(E arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
@@ -1060,7 +1060,7 @@ From interface
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad">onSuccess</span>(T arg0, GoogleHeaders arg1)</nobr>
+        <span class="sympad">onSuccess</span>(T arg0, HttpHeaders arg1)</nobr>
         
   </td></tr>
 
