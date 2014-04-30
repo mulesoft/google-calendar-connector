@@ -170,9 +170,9 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     public ProviderAwarePagingDelegate<CalendarList, AbstractGoogleOAuthConnector> getCalendarList(
             final @Default("false") boolean showHidden,
     		final PagingConfiguration pagingConfiguration) throws IOException {
-    	
+
     	return new TokenBasedPagingDelegate<CalendarList>() {
-    		
+
     		@Override
             public List<CalendarList> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
                 com.google.api.services.calendar.Calendar.CalendarList.List calendars = client.calendarList().list();
@@ -180,10 +180,10 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 						.setPageToken(this.getPageToken())
 						.setShowHidden(showHidden)
 						.execute();
-				
+
 				setPageToken(list.getNextPageToken());
 				return CalendarList.valueOf(list.getItems(), CalendarList.class);
-    		}
+            }
 		};
     }
     
@@ -323,9 +323,9 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     @OAuthProtected
     @Paged
     public ProviderAwarePagingDelegate<Event, AbstractGoogleOAuthConnector> getEvents(
-            final String calendarId,
-            final @Optional String icalUID,
-            final @Optional Integer maxAttendees,
+    		final String calendarId,
+    		final @Optional String icalUID,
+    		final @Optional Integer maxAttendees,
     		final @Optional String orderBy,
     		final @Optional String query,
     		final @Default("false") boolean showDeleted,
@@ -337,31 +337,33 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     		final @Default("UTC") String timezone,
     		final @Optional String lastUpdated,
     		final PagingConfiguration pagingConfiguration) throws IOException {
-    	
+
     	return new TokenBasedPagingDelegate<Event>() {
-    		
-    		@Override
+
+
+            @Override
             protected List<Event> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
-                com.google.api.services.calendar.Calendar.Events.List events = client.events().list(calendarId);
+                com.google.api.services.calendar.Calendar calendar = (com.google.api.services.calendar.Calendar)connector.getClient();
+                com.google.api.services.calendar.Calendar.Events.List events = calendar.events().list(calendarId);
 
                 com.google.api.services.calendar.model.Events result = events.setICalUID(icalUID)
                         .setMaxAttendees(maxAttendees)
-    					.setMaxResults(pagingConfiguration.getFetchSize())
-    					.setOrderBy(orderBy)
-    					.setPageToken(this.getPageToken())
-    					.setQ(query)
-    					.setShowDeleted(showDeleted)
-    					.setShowHiddenInvitations(showHiddenInvitations)
-    					.setSingleEvents(singleEvents)
-    					.setTimeMax(DateTimeUtils.parseDateTime(timeMax, datetimeFormat, timezone))
-    					.setTimeMin(DateTimeUtils.parseDateTime(timeMin, datetimeFormat, timezone))
-    					.setTimeZone(timezone)
-    					.setUpdatedMin(DateTimeUtils.parseDateTime(lastUpdated, datetimeFormat, timezone))
-    					.execute();
-    			
-    			this.setPageToken(result.getNextPageToken());
-    			return Event.valueOf(result.getItems(), Event.class);
-    		}
+                        .setMaxResults(pagingConfiguration.getFetchSize())
+                        .setOrderBy(orderBy)
+                        .setPageToken(this.getPageToken())
+                        .setQ(query)
+                        .setShowDeleted(showDeleted)
+                        .setShowHiddenInvitations(showHiddenInvitations)
+                        .setSingleEvents(singleEvents)
+                        .setTimeMax(DateTimeUtils.parseDateTime(timeMax, datetimeFormat, timezone))
+                        .setTimeMin(DateTimeUtils.parseDateTime(timeMin, datetimeFormat, timezone))
+                        .setTimeZone(timezone)
+                        .setUpdatedMin(DateTimeUtils.parseDateTime(lastUpdated, datetimeFormat, timezone))
+                        .execute();
+
+                this.setPageToken(result.getNextPageToken());
+                return Event.valueOf(result.getItems(), Event.class);
+            }
 		};
     	
     }
@@ -619,7 +621,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     @OAuthProtected
     @Paged
     public ProviderAwarePagingDelegate<Event, AbstractGoogleOAuthConnector> getInstances(
-            final String calendarId,
+    				final String calendarId,
     				final String eventId,
     				final @Optional Integer maxAttendess,
     				final @Default("false") boolean showDeleted,
@@ -628,20 +630,20 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     				final PagingConfiguration pagingConfiguration) throws IOException {
     	
     	return new TokenBasedPagingDelegate<Event>() {
-    		
-    		@Override
+            @Override
             protected List<Event> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
-                com.google.api.services.calendar.model.Events instances = client.events().instances(calendarId, eventId)
-    					.setMaxAttendees(maxAttendess)
-    					.setMaxResults(pagingConfiguration.getFetchSize())
-    					.setOriginalStart(originalStart)
-    					.setShowDeleted(showDeleted)
-    					.setTimeZone(timezone)
-    					.execute();
-    			
-    			this.setPageToken(instances.getNextPageToken());
-    			return Event.valueOf(instances.getItems(), Event.class);
-    		}
+                com.google.api.services.calendar.Calendar calendar = (com.google.api.services.calendar.Calendar)connector.getClient();
+                com.google.api.services.calendar.model.Events instances = calendar.events().instances(calendarId, eventId)
+                        .setMaxAttendees(maxAttendess)
+                        .setMaxResults(pagingConfiguration.getFetchSize())
+                        .setOriginalStart(originalStart)
+                        .setShowDeleted(showDeleted)
+                        .setTimeZone(timezone)
+                        .execute();
+
+                this.setPageToken(instances.getNextPageToken());
+                return Event.valueOf(instances.getItems(), Event.class);
+            }
 		};
     }
     
@@ -891,6 +893,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 		this.clientFactory = clientFactory;
 	}
 
+    @Override
     public Object getClient() {
         return this.client;
     }

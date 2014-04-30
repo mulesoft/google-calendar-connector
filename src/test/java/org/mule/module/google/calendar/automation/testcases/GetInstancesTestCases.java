@@ -56,7 +56,6 @@ public class GetInstancesTestCases extends GoogleCalendarTestParent {
         }
     }
 
-
     @After
     public void tearDown() throws Exception {
         runFlowAndGetPayload("delete-event");
