@@ -44,21 +44,21 @@
 	</util:map>
 	
 	<util:map id="clearCalendar" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <!-- clear-calendar only works for primary calendars. The ID of a primary calendar is the enail of who owns the calendar (or simply "primary") -->
-		<entry key="id" value="primary" />
-	    <entry key="numEvents" value="#{15}" />
+	    <!-- clear-calendar only works for primary calendars. The ID of a primary calendar is the email of who owns the calendar (or simply "primary") -->
+		<entry key="calendarId" value="primary" />
+	    <entry key="numEvents" value="#{5}" />
 		<entry key="sampleEvent">
 	        <bean class="org.mule.module.google.calendar.model.Event">
 	            <property name="location" value="New York" />
 	        	<property name="summary" value="Business event" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-10" />
+					    <property name="date" value="2015-02-10" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-13" />
+					    <property name="date" value="2015-02-13" />
 					</bean>
 	            </property>
 	        </bean>
@@ -66,32 +66,15 @@
 	</util:map>
 	
 	<util:map id="getCalendarById" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-	</util:map>
-	
-	<util:map id="getCalendarList" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="numCalendars" value="#{3}" />
+	    <entry key="calendarId" value="primary" />
 	</util:map>
 	
 	<util:map id="getCalendarListById" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-		<entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-		</entry>
+		<entry key="calendarId" value="primary"/>
 	</util:map>
 	
 	<util:map id="updateCalendarList" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-		<entry key="colorBefore" value="3" />
+	    <entry key="calendarId" value="primary" />
 		<entry key="colorAfter" value="13" />
 	</util:map>
 	
@@ -118,23 +101,19 @@
 	</util:map>
 	
 	<util:map id="insertEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-		</entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="calendarEventRef">
 	      	<bean class="org.mule.module.google.calendar.model.Event" scope="prototype">
 				<property name="location" value="America" />
 				<property name="summary" value="This is a summary about the event" />
 				<property name="start">
 			    	<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2015-12-16" />
 					</bean>
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -142,23 +121,19 @@
 	</util:map>
 	
 	<util:map id="importEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-			<bean class="org.mule.module.google.calendar.model.Calendar">
-	            <property name="summary" value="Test calendar to clear" />
-	        </bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="event">
 	        <bean class="org.mule.module.google.calendar.model.Event">
 	            <property name="location" value="Buenos Aires" />
 	        	<property name="summary" value="Fake Mulesoft Test Cloud Connectors Meetup " />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2013-12-16" />
+					    <property name="date" value="2015-12-16" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2013-12-20" />
+					    <property name="date" value="2015-12-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -166,23 +141,19 @@
 	</util:map>
 	
 	<util:map id="getEventById" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="calendarEventRef">
 	      	<bean class="org.mule.module.google.calendar.model.Event" scope="prototype">
-				<property name="location" value="America" />
+				<property name="location" value="North America" />
 				<property name="summary" value="This is a summary about the event" />
 				<property name="start">
 			    	<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2015-12-16" />
 					</bean>
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -190,23 +161,19 @@
 	</util:map>
 	
 	<util:map id="getInstances" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="calendarEventRef">
 	      	<bean class="org.mule.module.google.calendar.model.Event" scope="prototype">
-				<property name="location" value="America" />
+				<property name="location" value="South America" />
 				<property name="summary" value="This is a summary about the event" />
 				<property name="start">
 			    	<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2014-12-16" />
 					</bean>
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2015-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -214,23 +181,19 @@
 	</util:map>
 	
 	<util:map id="deleteEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="calendarEventRef">
 	      	<bean class="org.mule.module.google.calendar.model.Event" scope="prototype">
 				<property name="location" value="America" />
 				<property name="summary" value="This is a summary about the event" />
 				<property name="start">
 			    	<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2016-12-16" />
 					</bean>
 			    </property>
 				<property name="end">
 				    <bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2017-02-20" />
 					</bean>
 				</property>
 			</bean>
@@ -238,33 +201,25 @@
 	</util:map>
 	
 	<util:map id="quickAddEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="text" value="Sample text for event" />
 	</util:map>
 	
 	<util:map id="batchInsertEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-	    <entry key="numEvents" value="#{5}" />
+	    <entry key="calendarId" value="primary" />
+	    <entry key="numEvents" value="#{3}" />
 	    <entry key="sampleEvent">
 	        <bean class="org.mule.module.google.calendar.model.Event">
-				<property name="location" value="New York" />
+				<property name="location" value="New Jersey" />
 	        	<property name="summary" value="Business trip" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2014-12-16" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -272,32 +227,24 @@
 	</util:map>
 	
 	<util:map id="batchUpdateEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-	    <entry key="numEvents" value="#{10}" />
+	    <entry key="calendarId" value="primary" />
+	    <entry key="numEvents" value="#{3}" />
 	    <entry key="summaryBefore" value="Ice skating in Alaska" />
 	    <entry key="summaryAfter" value="Trip to Disneyland" />
 	    <entry key="eventStart">
 			<bean class="org.mule.module.google.calendar.model.EventDateTime">
-				<property name="date" value="2014-2-10" />
+				<property name="date" value="2016-02-10" />
 			</bean>
 	    </entry>
 	    <entry key="eventEnd">
 			<bean class="org.mule.module.google.calendar.model.EventDateTime">
-				<property name="date" value="2014-2-10" />
+				<property name="date" value="2016-02-10" />
 			</bean>
 	    </entry>
 	</util:map>
 	
 	<util:map id="moveEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="sourceCalendarRef">
-	        <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="This is the source calendar" />	    
-    		</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="targetCalendarRef">
 	        <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
 				<property name="summary" value="This is the target calendar" />	    
@@ -309,12 +256,12 @@
 	        	<property name="summary" value="Business trip" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-10" />
+					    <property name="date" value="2016-02-10" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2014-2-13" />
+					    <property name="date" value="2016-02-13" />
 					</bean>
 	            </property>
 	        </bean>
@@ -322,44 +269,32 @@
 	</util:map>
 	
 	<util:map id="updateEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+        <!-- The ID of a primary calendar is the email of who owns the calendar (or simply "primary") -->
+	    <entry key="calendarId" value="primary"/>
 		<entry key="summaryBefore" value="This is the title before update" />
 		<entry key="summaryAfter" value="This is the title after update" />
 	</util:map>
 	
 	<util:map id="updateCalendar" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-		<entry key="summaryBefore" value="This is the summary before update" />
+	    <entry key="calendarId" value="primary" />
 		<entry key="summaryAfter" value="This is the summary after update" />
 	</util:map>
 	
 	<util:map id="batchDeleteEvent" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-	    <entry key="numEvents" value="#{5}" />
+	    <entry key="calendarId" value="primary" />
+	    <entry key="numEvents" value="#{3}" />
 	    <entry key="sampleEvent">
 	        <bean class="org.mule.module.google.calendar.model.Event">
 				<property name="location" value="New York" />
 	        	<property name="summary" value="Business trip" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2014-10-16" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -367,22 +302,14 @@
 	</util:map>
 	
 	<util:map id="insertAclRule" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 		<entry key="scope" value="mulesoft.com"/>
 		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
 		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
 	</util:map>
 
 	<util:map id="updateAclRule" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 		<entry key="scope" value="mulesoft.com"/>
 		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
 		<entry key="roleBefore" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
@@ -390,33 +317,21 @@
 	</util:map>
 	
 	<util:map id="getAclRuleById" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
-		<entry key="scope" value="mulesoft.com"/>
+	    <entry key="calendarId" value="primary" />
+		<entry key="scope" value="mulesoft.com" />
 		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
 		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
 	</util:map>
 		
 	<util:map id="deleteAclRule" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 		<entry key="scope" value="mulesoft.com"/>
 		<entry key="scopeType" value="#{T(org.mule.module.google.calendar.ScopeType).DOMAIN}" />
 		<entry key="role" value="#{T(org.mule.module.google.calendar.ScopeRole).owner}" />
 	</util:map>
 
 	<util:map id="getAllAclRules" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="scopes">
 	        <list>
 	            <value>a-mulesoft-email@mulesoft.com</value>
@@ -429,11 +344,11 @@
 	</util:map>
 
 	<util:map id="getEvents" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+        <entry key="calendarRef">
+            <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
+                <property name="summary" value="Sample title for calendar" />
+            </bean>
+        </entry>
 	    <entry key="numEvents" value="#{20}" />
 	    <entry key="maxResults" value="#{10}" />
 	    <entry key="showDeleted" value="false" />
@@ -443,12 +358,12 @@
 	        	<property name="summary" value="Hosting an event at a location" />
 	            <property name="start">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-					    <property name="date" value="2012-12-16" />
+					    <property name="date" value="2014-12-16" />
 					</bean>
 	            </property>
 	            <property name="end">
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
-						<property name="date" value="2016-2-20" />
+						<property name="date" value="2016-02-20" />
 					</bean>
 	            </property>
 	        </bean>
@@ -456,11 +371,7 @@
 	</util:map>
 	
 	<util:map id="getFreeTime" key-type="java.lang.String" value-type="java.lang.Object" scope="prototype">
-	    <entry key="calendarRef">
-		    <bean class="org.mule.module.google.calendar.model.Calendar" scope="prototype">
-				<property name="summary" value="Sample title for calendar" />	    
-	    	</bean>
-	    </entry>
+	    <entry key="calendarId" value="primary" />
 	    <entry key="event">
 	        <bean class="org.mule.module.google.calendar.model.Event">
 	            <property name="location" value="Ontario" />
@@ -469,7 +380,7 @@
 					<bean class="org.mule.module.google.calendar.model.EventDateTime">
 					    <property name="dateTime">
 							<bean class="org.mule.modules.google.api.datetime.DateTime">
-								<constructor-arg value="#{T(com.google.api.client.util.DateTime).parseRfc3339('2013-12-16T00:00:00Z')}" />								
+								<constructor-arg value="#{T(com.google.api.client.util.DateTime).parseRfc3339('2013-12-16T00:00:00Z')}" />
 							</bean>
 						</property>
 					</bean>

@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.mule.modules.google.api.model.BaseWrapper;
@@ -132,7 +133,15 @@ public class CalendarList extends BaseWrapper<CalendarListEntry> {
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
-	}
+    }
+
+    public boolean isPrimary() {
+        return wrapped.isPrimary();
+    }
+
+    public CalendarListEntry setPrimary(Boolean primary) {
+        return wrapped.setPrimary(primary);
+    }
 }

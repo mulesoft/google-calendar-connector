@@ -13,33 +13,18 @@
  */
 package org.mule.module.google.calendar;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import org.mule.api.annotations.Configurable;
-import org.mule.api.annotations.Connector;
-import org.mule.api.annotations.Paged;
-import org.mule.api.annotations.Processor;
+import com.google.api.client.googleapis.batch.BatchRequest;
+import com.google.api.services.calendar.Calendar.Calendars;
+import com.google.api.services.calendar.Calendar.Events;
+import com.google.api.services.calendar.CalendarScopes;
+import com.google.api.services.calendar.model.FreeBusyRequest;
+import com.google.api.services.calendar.model.FreeBusyRequestItem;
+import org.mule.api.annotations.*;
 import org.mule.api.annotations.lifecycle.Start;
-import org.mule.api.annotations.oauth.OAuth2;
-import org.mule.api.annotations.oauth.OAuthAccessToken;
-import org.mule.api.annotations.oauth.OAuthAuthorizationParameter;
-import org.mule.api.annotations.oauth.OAuthConsumerKey;
-import org.mule.api.annotations.oauth.OAuthConsumerSecret;
-import org.mule.api.annotations.oauth.OAuthInvalidateAccessTokenOn;
-import org.mule.api.annotations.oauth.OAuthPostAuthorization;
-import org.mule.api.annotations.oauth.OAuthProtected;
-import org.mule.api.annotations.oauth.OAuthScope;
+import org.mule.api.annotations.oauth.*;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
-import org.mule.module.google.calendar.model.AclRule;
-import org.mule.module.google.calendar.model.Calendar;
-import org.mule.module.google.calendar.model.CalendarList;
-import org.mule.module.google.calendar.model.Event;
-import org.mule.module.google.calendar.model.FreeBusy;
-import org.mule.module.google.calendar.model.Scope;
+import org.mule.module.google.calendar.model.*;
 import org.mule.module.google.calendar.model.batch.CalendarBatchCallback;
 import org.mule.module.google.calendar.model.batch.EventBatchCallback;
 import org.mule.module.google.calendar.transformer.BatchResponseToBulkOperationTransformer;
@@ -54,20 +39,18 @@ import org.mule.modules.google.api.datetime.DateTimeUtils;
 import org.mule.modules.google.api.pagination.TokenBasedPagingDelegate;
 import org.mule.modules.google.oauth.invalidation.OAuthTokenExpiredException;
 import org.mule.streaming.PagingConfiguration;
-
-import com.google.api.client.googleapis.batch.BatchRequest;
-import com.google.api.services.calendar.Calendar.Calendars;
-import com.google.api.services.calendar.Calendar.Events;
-import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.FreeBusyRequest;
-import com.google.api.services.calendar.model.FreeBusyRequestItem;
 import org.mule.streaming.ProviderAwarePagingDelegate;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Google Calendars Cloud connector.
  * This connector covers almost all the Google Calendar API v3 using OAuth2 for authentication.
  *
- * @author mariano.gonzalez@mulesoft.com
+ * @author MuleSoft, Inc.
  */
 @Connector(name="google-calendars", schemaVersion="1.0", friendlyName="Google Calendars", minMuleVersion="3.5", configElementName="config-with-oauth")
 @OAuth2(
@@ -83,6 +66,7 @@ import org.mule.streaming.ProviderAwarePagingDelegate;
 											" Use force to request authorization every time or auto to only do it the first time. Default is auto", optional=true)
 		}
 )
+@ReconnectOn(exceptions = OAuthTokenExpiredException.class)
 public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	
 	/**
@@ -103,7 +87,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      * Application name registered on Google API console
      */
     @Configurable
-    @Optional
     @Default("Mule-GoogleCalendarConnector/1.0")
     private String applicationName;
     
@@ -112,7 +95,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @OAuthScope
     @Configurable
-    @Optional
     @Default(USER_PROFILE_SCOPE + " " + CalendarScopes.CALENDAR)
     private String scope;
     
@@ -135,9 +117,9 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	
 	/**
 	 * Initializes the connector. if no clientFactory was provided, then a default
-	 * {@link org.mule.module.google.calendar.DefaultGoogleCalendarClientFactory.DefaultGoogleCalendarClientFactor}
-	 * wil be used instead
-	 */
+     * {@link org.mule.module.google.calendar.DefaultGoogleCalendarClientFactory}
+     * wil be used instead
+     */
 	@Start
 	public void init() {
 		if (this.clientFactory == null) {
@@ -165,8 +147,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public Calendar createCalendar(@Optional @Default("#[payload]") Calendar calendar) throws IOException {
+    public Calendar createCalendar(@Default("#[payload]") Calendar calendar) throws IOException {
   	   return new Calendar(this.client.calendars().insert(calendar.wrapped()).execute());
     }
     
@@ -185,17 +166,16 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     @Paged
     public ProviderAwarePagingDelegate<CalendarList, AbstractGoogleOAuthConnector> getCalendarList(
-    		final @Optional @Default("false") boolean showHidden,
+            final @Default("false") boolean showHidden,
     		final PagingConfiguration pagingConfiguration) throws IOException {
-    	
+
     	return new TokenBasedPagingDelegate<CalendarList>() {
-            @Override
-            protected List<CalendarList> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
-                com.google.api.services.calendar.Calendar calendar = (com.google.api.services.calendar.Calendar)connector.getClient();
-				com.google.api.services.calendar.Calendar.CalendarList.List calendars = calendar.calendarList().list();
+
+    		@Override
+            public List<CalendarList> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
+                com.google.api.services.calendar.Calendar.CalendarList.List calendars = client.calendarList().list();
 				com.google.api.services.calendar.model.CalendarList list = calendars.setMaxResults(pagingConfiguration.getFetchSize())
 						.setPageToken(this.getPageToken())
 						.setShowHidden(showHidden)
@@ -219,7 +199,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public CalendarList getCalendarListById(String id) throws IOException {
     	return new CalendarList(this.client.calendarList().get(id).execute());
     }
@@ -234,7 +213,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public void deleteCalendarList(String id) throws IOException {
     	this.client.calendarList().delete(id).execute();
     }
@@ -251,8 +229,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public CalendarList updateCalendarList(String id, @Optional @Default("#[payload]") CalendarList calendarList) throws IOException {
+    public CalendarList updateCalendarList(String id, @Default("#[payload]") CalendarList calendarList) throws IOException {
     	return new CalendarList(this.client.calendarList().update(id, calendarList.wrapped()).execute());
     }
     
@@ -268,7 +245,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public Calendar getCalendarById(String id) throws IOException {
     	return new Calendar(this.client.calendars().get(id).execute());
     }
@@ -285,8 +261,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public Calendar updateCalendar(String id, @Optional @Default("#[payload]") Calendar calendar) throws IOException {
+    public Calendar updateCalendar(String id, @Default("#[payload]") Calendar calendar) throws IOException {
     	return new Calendar(this.client.calendars().update(id, calendar.wrapped()).execute());
     }
     
@@ -300,7 +275,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public void deleteCalendar(String id) throws IOException {
     	this.client.calendars().delete(id).execute();
     }
@@ -315,7 +289,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public void clearCalendar(String id) throws IOException {
     	this.client.calendars().clear(id).execute();
     }
@@ -348,7 +321,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     @Paged
     public ProviderAwarePagingDelegate<Event, AbstractGoogleOAuthConnector> getEvents(
     		final String calendarId,
@@ -356,17 +328,19 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     		final @Optional Integer maxAttendees,
     		final @Optional String orderBy,
     		final @Optional String query,
-    		final @Optional @Default("false") boolean showDeleted,
-    		final @Optional @Default("false") boolean showHiddenInvitations,
-    		final @Optional @Default("true") boolean singleEvents,
+    		final @Default("false") boolean showDeleted,
+    		final @Default("false") boolean showHiddenInvitations,
+    		final @Default("true") boolean singleEvents,
     		final @Optional String timeMin,
     		final @Optional String timeMax,
-    		final @Optional @Default(DateTimeConstants.RFC3339) String datetimeFormat,
-    		final @Optional @Default("UTC") String timezone,
+    		final @Default(DateTimeConstants.RFC3339) String datetimeFormat,
+    		final @Default("UTC") String timezone,
     		final @Optional String lastUpdated,
     		final PagingConfiguration pagingConfiguration) throws IOException {
-    	
+
     	return new TokenBasedPagingDelegate<Event>() {
+
+
             @Override
             protected List<Event> doGetPage(AbstractGoogleOAuthConnector connector) throws IOException {
                 com.google.api.services.calendar.Calendar calendar = (com.google.api.services.calendar.Calendar)connector.getClient();
@@ -406,8 +380,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public Event importEvent(String calendarId, @Optional @Default("#[payload]") Event calendarEvent) throws IOException {
+    public Event importEvent(String calendarId, @Default("#[payload]") Event calendarEvent) throws IOException {
     	return new Event(this.client.events().calendarImport(calendarId, calendarEvent.wrapped()).execute());
     }
     
@@ -422,7 +395,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public void deleteEvent(String calendarId, String eventId) throws IOException {
     	this.client.events().delete(calendarId, eventId).execute();
     }
@@ -439,7 +411,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public Event getEventById(String calendarId, String eventId) throws IOException {
     	return new Event(this.client.events().get(calendarId, eventId).execute());
     }
@@ -456,8 +427,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public Event insertEvent(String calendarId, @Optional @Default("#[payload]") Event calendarEvent) throws IOException {
+    public Event insertEvent(String calendarId, @Default("#[payload]") Event calendarEvent) throws IOException {
     	return new Event(this.client.events().insert(calendarId, calendarEvent.wrapped()).execute());
     }
     
@@ -474,10 +444,9 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public BatchResponse<Event> batchInsertEvent(
     			String calendarId,
-    			@Optional @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
+    		    @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
     	
     	EventBatchCallback callback = new EventBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -506,8 +475,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public BatchResponse<Event> batchUpdateEvent(String calendarId, @Optional @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
+    public BatchResponse<Event> batchUpdateEvent(String calendarId, @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
     	
     	EventBatchCallback callback = new EventBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -535,8 +503,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public void batchDeleteEvent(String calendarId, @Optional @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
+    public void batchDeleteEvent(String calendarId, @Default("#[payload]") Collection<Event> calendarEvents) throws IOException {
     	
     	VoidBatchCallback callback = new VoidBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -562,8 +529,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public BatchResponse<Calendar> batchInsertCalendar(@Optional @Default("#[payload]") Collection<Calendar> calendars) throws IOException {
+    public BatchResponse<Calendar> batchInsertCalendar(@Default("#[payload]") Collection<Calendar> calendars) throws IOException {
     	
     	CalendarBatchCallback callback = new CalendarBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -591,8 +557,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public BatchResponse<Calendar> batchUpdateCalendar(@Optional @Default("#[payload]") Collection<Calendar> calendars) throws IOException {
+    public BatchResponse<Calendar> batchUpdateCalendar(@Default("#[payload]") Collection<Calendar> calendars) throws IOException {
     	
     	CalendarBatchCallback callback = new CalendarBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -619,8 +584,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public void batchDeleteCalendar(@Optional @Default("#[payload]") Collection<Calendar> calendars) throws IOException {
+    public void batchDeleteCalendar(@Default("#[payload]") Collection<Calendar> calendars) throws IOException {
     	
     	VoidBatchCallback callback = new VoidBatchCallback();
     	com.google.api.services.calendar.Calendar client = this.client; 
@@ -655,14 +619,13 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     @Paged
     public ProviderAwarePagingDelegate<Event, AbstractGoogleOAuthConnector> getInstances(
     				final String calendarId,
     				final String eventId,
     				final @Optional Integer maxAttendess,
-    				final @Optional @Default("false") boolean showDeleted,
-    				final @Optional @Default("UTC") String timezone,
+    				final @Default("false") boolean showDeleted,
+    				final @Default("UTC") String timezone,
     				final @Optional String originalStart,
     				final PagingConfiguration pagingConfiguration) throws IOException {
     	
@@ -697,7 +660,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public Event moveEvent(String sourceCalendarId, String eventId, String targetCalendarId) throws IOException {
     	return new Event(this.client.events().move(sourceCalendarId, eventId, targetCalendarId).execute());
     }
@@ -714,7 +676,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public Event quickAddEvent(String calendarId, String text) throws IOException {
     	return new Event(this.client.events().quickAdd(calendarId, text).execute());
     }
@@ -732,8 +693,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public Event updateEvent(String calendarId, String eventId, @Optional @Default("#[payload]") Event calendarEvent) throws IOException {
+    public Event updateEvent(String calendarId, String eventId, @Default("#[payload]") Event calendarEvent) throws IOException {
     	return new Event(this.client.events().update(calendarId, eventId, calendarEvent.wrapped()).execute());
     }
     
@@ -753,13 +713,12 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public FreeBusy getFreeTime(
     		String timeMin,
 			String timeMax,
-			@Optional @Default("#[payload]") List<String> ids,
-			@Optional @Default("UTC") String timezone,
-			@Optional @Default(DateTimeConstants.RFC3339) String datetimeFormat,
+			@Default("#[payload]") List<String> ids,
+			@Default("UTC") String timezone,
+			@Default(DateTimeConstants.RFC3339) String datetimeFormat,
 			@Optional Integer maxCalendarExpansion) throws IOException {
     	
     	FreeBusyRequest query = new FreeBusyRequest();
@@ -805,7 +764,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public AclRule insertAclRule(
     		String calendarId,
 			String scope,
@@ -834,7 +792,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public void deleteAclRule(String calendarId, String ruleId) throws IOException {
     	this.client.acl().delete(calendarId, ruleId).execute();
     }
@@ -851,7 +808,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public AclRule getAclRuleById(String calendarId, String ruleId) throws IOException {
     	return new AclRule(this.client.acl().get(calendarId, ruleId).execute());
     }
@@ -867,7 +823,6 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
     public List<AclRule> getAllAclRules(String calendarId) throws IOException {
     	return AclRule.valueOf(this.client.acl().list(calendarId).execute().getItems(), AclRule.class);
     }
@@ -885,45 +840,44 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
      */
     @Processor
     @OAuthProtected
-	@OAuthInvalidateAccessTokenOn(exception=OAuthTokenExpiredException.class)
-    public AclRule updateAclRule(String calendarId,String ruleId, @Optional @Default("#[payload]") AclRule aclRule) throws IOException {
+    public AclRule updateAclRule(String calendarId,String ruleId, @Default("#[payload]") AclRule aclRule) throws IOException {
     	return new AclRule(this.client.acl().update(calendarId, ruleId, aclRule.wrapped()).execute());
     }
-    
-	public void setScope(String scope) {
-		this.scope = scope;
-	}
 
-	public String getScope() {
-		return scope;
-	}
-	
-	public void setConsumerKey(String consumerKey) {
-		this.consumerKey = consumerKey;
-	}
+    public String getScope() {
+        return scope;
+    }
 
-	public void setConsumerSecret(String consumerSecret) {
-		this.consumerSecret = consumerSecret;
-	}
-	
-	public String getConsumerKey() {
-		return consumerKey;
-	}
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
-	public String getConsumerSecret() {
-		return consumerSecret;
-	}
-	
-	public void setApplicationName(String applicationName) {
-		this.applicationName = applicationName;
-	}
+    public String getConsumerKey() {
+        return consumerKey;
+    }
 
-	public String getApplicationName() {
-		return applicationName;
-	}
+    public void setConsumerKey(String consumerKey) {
+        this.consumerKey = consumerKey;
+    }
 
-	@Override
-	public String getAccessToken() {
+    public String getConsumerSecret() {
+        return consumerSecret;
+    }
+
+    public void setConsumerSecret(String consumerSecret) {
+        this.consumerSecret = consumerSecret;
+    }
+
+    public String getApplicationName() {
+        return applicationName;
+    }
+
+    public void setApplicationName(String applicationName) {
+        this.applicationName = applicationName;
+    }
+
+    @Override
+    public String getAccessToken() {
 		return accessToken;
 	}
 

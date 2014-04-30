@@ -10,61 +10,33 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.CalendarList;
 import org.mule.modules.tests.ConnectorTestUtils;
 
-public class GetCalendarListByIdTestCases extends GoogleCalendarTestParent{
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-	@Before
-	public void setUp() throws Exception {
+public class GetCalendarListByIdTestCases extends GoogleCalendarTestParent {
 
-			loadTestRunMessage("getCalendarListById");
+    @Before
+    public void setUp() throws Exception {
+        initializeTestRunMessage("getCalendarListById");
+    }
 
-			// Create the calendar
-			Calendar calendar = runFlowAndGetPayload("create-calendar");
-			upsertOnTestRunMessage("calendar",calendar);
-			upsertOnTestRunMessage("id", calendar.getId());
+    @Category({SmokeTests.class, RegressionTests.class})
+    @Test
+    public void testGetCalendarListById() {
+        try {
+            CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
 
-	}
-	
-	@Category({SmokeTests.class, RegressionTests.class})
-	@Test
-	public void testGetCalendarListById() {
-		try {
-			
-			Calendar originalCalendar = getTestRunMessageValue("calendar");
-			
-			String createdCalendarId = getTestRunMessageValue("id");
+            assertTrue(returnedCalendarList != null);
+            assertTrue(returnedCalendarList.isPrimary());
 
-			CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
-
-			assertTrue(returnedCalendarList != null);
-			assertTrue(returnedCalendarList.getId().equals(createdCalendarId));
-			assertEquals(returnedCalendarList.getSummary(), originalCalendar.getSummary());
-			
-		} catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-	}
-	
-	@After
-	public void tearDown() throws Exception {
-			// Delete the calendar
-			runFlowAndGetPayload("delete-calendar");
-
-	}
-	
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
 }

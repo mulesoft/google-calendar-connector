@@ -10,64 +10,41 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.Event;
 import org.mule.modules.tests.ConnectorTestUtils;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class DeleteEventTestCases extends GoogleCalendarTestParent {
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-		loadTestRunMessage("deleteEvent");
-		
-		// Insert calendar and get reference to retrieved calendar
-		Calendar calendar = runFlowAndGetPayload("create-calendar");
-		
-		// Replace old calendar instance with new instance
-		upsertOnTestRunMessage("calendarRef", calendar);
-		upsertOnTestRunMessage("calendarId", calendar.getId());
+        initializeTestRunMessage("deleteEvent");
 
-		// Place the returned event and its ID into testObjects for later access
-		Event returnedEvent = runFlowAndGetPayload("insert-event");
-		upsertOnTestRunMessage("event", returnedEvent);
-		upsertOnTestRunMessage("eventId", returnedEvent.getId());
+        // Place the returned event and its ID into testObjects for later access
+        Event returnedEvent = runFlowAndGetPayload("insert-event");
+        upsertOnTestRunMessage("event", returnedEvent);
+        upsertOnTestRunMessage("eventId", returnedEvent.getId());
 
-	}
-	
-	@Category({SmokeTests.class, RegressionTests.class})	
-	@Test
-	public void testDeleteEvent() {
-		try {			
-			// Delete the event
-			runFlowAndGetPayload("delete-event");
-			// Try and look for the event after cancelling it	
-			Event returnedEvent = runFlowAndGetPayload("get-event-by-id");
-			assertTrue(returnedEvent.getStatus().equals("cancelled"));
-			
-		} catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-	}
-	
-	@After
-	public void tearDown() throws Exception {
+    }
 
-			String calendarId = getTestRunMessageValue("calendarId");
-			deleteCalendar(calendarId);
+    @Category({SmokeTests.class, RegressionTests.class})
+    @Test
+    public void testDeleteEvent() {
+        try {
+            // Delete the event
+            runFlowAndGetPayload("delete-event");
+            // Try and look for the event after cancelling it
+            Event returnedEvent = runFlowAndGetPayload("get-event-by-id");
+            assertTrue(returnedEvent.getStatus().equals("cancelled"));
 
-	}
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
 }

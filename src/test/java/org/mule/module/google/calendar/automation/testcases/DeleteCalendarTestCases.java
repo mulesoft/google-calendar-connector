@@ -10,60 +10,52 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class DeleteCalendarTestCases extends GoogleCalendarTestParent {
 
-	@SuppressWarnings("unchecked")
-	@Before
-	public void setUp() throws Exception {
+    @SuppressWarnings("unchecked")
+    @Before
+    public void setUp() throws Exception {
 
-			loadTestRunMessage("deleteCalendar");
+        initializeTestRunMessage("deleteCalendar");
 
-			// Create the calendar)
-			Calendar calendar = runFlowAndGetPayload("create-calendar");
-			upsertOnTestRunMessage("id", calendar.getId());
+        // Create the calendar
+        Calendar calendar = runFlowAndGetPayload("create-calendar");
+        upsertOnTestRunMessage("calendarId", calendar.getId());
 
-	}
-	
-	@Category({SmokeTests.class, RegressionTests.class})
-	@Test
-	public void testDeleteCalendar() {
-		try {
-			// Delete the calendar
-			runFlowAndGetPayload("delete-calendar");
+    }
 
-		}
-		catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-			
-		// Get the calendar, should throw an exception
-		try {		
-			runFlowAndGetPayload("get-calendar-by-id");
-		}
-		catch (Exception e) {
-			if (e.getCause() instanceof GoogleJsonResponseException) {
-				GoogleJsonResponseException googleException = (GoogleJsonResponseException) e.getCause();
-				 // Not found
-				assertTrue(googleException.getStatusCode() == 404);
-				assertTrue(googleException.getStatusMessage().equals("Not Found"));
-			}
-			else fail();
-		}
-	}
-	
+    @Category({SmokeTests.class, RegressionTests.class})
+    @Test
+    public void testDeleteCalendar() {
+        try {
+            // Delete the calendar
+            runFlowAndGetPayload("delete-calendar");
+
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+
+        // Get the calendar, should throw an exception
+        try {
+            runFlowAndGetPayload("get-calendar-by-id");
+        } catch (Exception e) {
+            if (e.getCause() instanceof GoogleJsonResponseException) {
+                GoogleJsonResponseException googleException = (GoogleJsonResponseException) e.getCause();
+                // Not found
+                assertTrue(googleException.getStatusCode() == 404);
+                assertTrue(googleException.getStatusMessage().equals("Not Found"));
+            } else fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
+
 }

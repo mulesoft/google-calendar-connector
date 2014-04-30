@@ -48,21 +48,22 @@ import org.mule.module.google.calendar.automation.testcases.UpdateEventTestCases
 
 @RunWith(Categories.class)
 @IncludeCategory(SmokeTests.class)
-@SuiteClasses({ BatchDeleteCalendarTestCases.class,
-		BatchDeleteEventTestCases.class, 
-		BatchInsertCalendarTestCases.class,
-		BatchInsertEventTestCases.class,
-		CreateCalendarTestCases.class, 
-		DeleteAclRuleTestCases.class,
-		DeleteCalendarTestCases.class, 
-		DeleteEventTestCases.class,
-		GetAclRuleByIdTestCases.class, 
-		GetCalendarByIdTestCases.class,
-		GetCalendarListByIdTestCases.class, 
-		GetCalendarListTestCases.class,
-		GetEventByIdTestCases.class, 
-		GetEventsTestCases.class,
-		InsertAclRuleTestCases.class, 
-		InsertEventTestCases.class})
+@SuiteClasses({
+        BatchDeleteCalendarTestCases.class,
+        BatchDeleteEventTestCases.class,
+        BatchInsertCalendarTestCases.class,
+        BatchInsertEventTestCases.class,
+        CreateCalendarTestCases.class,
+        DeleteAclRuleTestCases.class,
+        DeleteCalendarTestCases.class,
+        DeleteEventTestCases.class,
+        GetAclRuleByIdTestCases.class,
+        GetCalendarByIdTestCases.class,
+        GetCalendarListByIdTestCases.class,
+        GetCalendarListTestCases.class,
+        GetEventByIdTestCases.class,
+        GetEventsTestCases.class,
+        InsertAclRuleTestCases.class,
+        InsertEventTestCases.class})
 public class SmokeTestSuite {
 }

@@ -10,80 +10,68 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.module.google.calendar.model.CalendarList;
 import org.mule.modules.tests.ConnectorTestUtils;
 
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
-public class DeleteCalendarListTestCases extends GoogleCalendarTestParent{
-	
-	
-	@Before
-	public void setUp() throws Exception {
-		try {
-			loadTestRunMessage("deleteCalendarList");
-	
-			Calendar calendar = runFlowAndGetPayload("create-calendar");
-						
-			upsertOnTestRunMessage("calendar", calendar);
-			upsertOnTestRunMessage("id", calendar.getId());
-			
-			//Get Calendar List 
-			CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
-			
-			upsertOnTestRunMessage("calendarList", returnedCalendarList);
-			upsertOnTestRunMessage("color", returnedCalendarList.getColorId());
+public class DeleteCalendarListTestCases extends GoogleCalendarTestParent {
 
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			fail();
-		}
-	}
-	
-	
-	@Category({RegressionTests.class})
-	@Test
-	public void testDeleteCalendarList() {
-		try {
-			runFlowAndGetPayload("delete-calendar-list");
-		}
-		catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-				
-		// Get the calendar list, should throw an exception
-		try {
-			runFlowAndGetPayload("get-calendar-list-by-id");
-		}
-		catch (Exception e) {
-			if (e.getCause() instanceof GoogleJsonResponseException) {
-				GoogleJsonResponseException googleException = (GoogleJsonResponseException) e.getCause();
-				 // Not found
-				assertTrue(googleException.getStatusCode() == 404);
-				assertTrue(googleException.getStatusMessage().equals("Not Found"));
-			}
-			else fail();
-		}
-	}
-		
-	@After
-	public void tearDown() throws Exception {
-			String calendarId = getTestRunMessageValue("id");
-			deleteCalendar(calendarId);
+    @Before
+    public void setUp() throws Exception {
+        try {
+            initializeTestRunMessage("deleteCalendarList");
 
-	}
+            Calendar calendar = runFlowAndGetPayload("create-calendar");
+
+            upsertOnTestRunMessage("calendar", calendar);
+            upsertOnTestRunMessage("calendarId", calendar.getId());
+
+            //Get Calendar List
+            CalendarList returnedCalendarList = runFlowAndGetPayload("get-calendar-list-by-id");
+
+            upsertOnTestRunMessage("calendarList", returnedCalendarList);
+            upsertOnTestRunMessage("color", returnedCalendarList.getColorId());
+
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
+
+
+    @Category({RegressionTests.class})
+    @Test
+    public void testDeleteCalendarList() {
+        try {
+            runFlowAndGetPayload("delete-calendar-list");
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+
+        // Get the calendar list, should throw an exception
+        try {
+            runFlowAndGetPayload("get-calendar-list-by-id");
+        } catch (Exception e) {
+            if (e.getCause() instanceof GoogleJsonResponseException) {
+                GoogleJsonResponseException googleException = (GoogleJsonResponseException) e.getCause();
+                // Not found
+                assertTrue(googleException.getStatusCode() == 404);
+                assertTrue(googleException.getStatusMessage().equals("Not Found"));
+            } else fail(ConnectorTestUtils.getStackTrace(e));
+            ;
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        runFlowAndGetPayload("delete-calendar");
+    }
 
 }

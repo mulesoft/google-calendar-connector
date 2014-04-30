@@ -10,67 +10,51 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.module.google.calendar.model.AclRule;
-import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 public class GetAclRuleByIdTestCases extends GoogleCalendarTestParent {
-	
-	
-	@Before
-	public void setUp() throws Exception {
 
-			loadTestRunMessage("getAclRuleById");
-			
-			// Insert calendar and get reference to retrieved calendar
-			Calendar calendar = runFlowAndGetPayload("create-calendar");
-			
-			// Replace old calendar instance with new instance
-			upsertOnTestRunMessage("calendarRef", calendar);
-			upsertOnTestRunMessage("calendarId", calendar.getId());
-			
-			// Insert the ACL rule				
-			AclRule returnedAclRule = runFlowAndGetPayload("insert-acl-rule");
-			upsertOnTestRunMessage("aclRule", returnedAclRule);	
-			upsertOnTestRunMessage("ruleId", returnedAclRule.getId());
-			
-	}
-	
-	@Category({SmokeTests.class, RegressionTests.class})	
-	@Test
-	public void testGetAclRuleById() {
-		try {
-			String ruleIdBefore = getTestRunMessageValue("ruleId");
 
-			AclRule afterProc = runFlowAndGetPayload("get-acl-rule-by-id");
-			String ruleIdAfter = afterProc.getId();
-			
-			assertEquals(ruleIdBefore,ruleIdAfter);		
-			
-		} catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-	}
-	
-	
-	@After
-	public void tearDown() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-			String calendarId = getTestRunMessageValue("calendarId");
-			deleteCalendar(calendarId);
+        initializeTestRunMessage("getAclRuleById");
 
-	}
+        // Insert the ACL rule
+        AclRule returnedAclRule = runFlowAndGetPayload("insert-acl-rule");
+        upsertOnTestRunMessage("aclRule", returnedAclRule);
+        upsertOnTestRunMessage("ruleId", returnedAclRule.getId());
+
+    }
+
+    @Category({SmokeTests.class, RegressionTests.class})
+    @Test
+    public void testGetAclRuleById() {
+        try {
+            String ruleIdBefore = getTestRunMessageValue("ruleId");
+
+            AclRule afterProc = runFlowAndGetPayload("get-acl-rule-by-id");
+            String ruleIdAfter = afterProc.getId();
+
+            assertEquals(ruleIdBefore, ruleIdAfter);
+
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
+
+
+    @After
+    public void tearDown() throws Exception {
+        runFlowAndGetPayload("delete-acl-rule");
+    }
 
 }

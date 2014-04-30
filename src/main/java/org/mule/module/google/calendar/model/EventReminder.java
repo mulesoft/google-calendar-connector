@@ -12,6 +12,8 @@ package org.mule.module.google.calendar.model;
 
 import org.mule.modules.google.api.model.BaseWrapper;
 
+import java.io.IOException;
+
 
 /**
  * Wrapper for {@link com.google.api.services.calendar.model.EventReminder}
@@ -57,7 +59,7 @@ public class EventReminder extends BaseWrapper<com.google.api.services.calendar.
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 }

@@ -10,6 +10,7 @@
 
 package org.mule.module.google.calendar.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.mule.modules.google.api.model.BaseWrapper;
@@ -59,7 +60,7 @@ public class Reminders extends BaseWrapper<com.google.api.services.calendar.mode
 		return wrapped.toString();
 	}
 
-	public String toPrettyString() {
+	public String toPrettyString() throws IOException{
 		return wrapped.toPrettyString();
 	}
 }

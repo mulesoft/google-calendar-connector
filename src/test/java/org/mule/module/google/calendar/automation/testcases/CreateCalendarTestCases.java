@@ -10,57 +10,52 @@
 
 package org.mule.module.google.calendar.automation.testcases;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import java.util.Map;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
-import org.mule.api.MuleEvent;
-import org.mule.api.processor.MessageProcessor;
 import org.mule.module.google.calendar.model.Calendar;
 import org.mule.modules.tests.ConnectorTestUtils;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 public class CreateCalendarTestCases extends GoogleCalendarTestParent {
 
-	@SuppressWarnings("unchecked")
-	@Before
-	public void setUp() throws Exception {
+    @SuppressWarnings("unchecked")
+    @Before
+    public void setUp() throws Exception {
 
-			loadTestRunMessage("createCalendar");
+        initializeTestRunMessage("createCalendar");
 
-	}
-	
-	@Category({SmokeTests.class, RegressionTests.class})
-	@Test
-	public void testCreateCalendar() {
-		try {
-			
-			Calendar originalCalendar = getTestRunMessageValue("calendarRef");
-			Calendar createdCalendar = runFlowAndGetPayload("create-calendar");
+    }
 
-			assertTrue(createdCalendar != null);
-			assertTrue(createdCalendar.getSummary().equals(originalCalendar.getSummary()));
+    @Category({SmokeTests.class, RegressionTests.class})
+    @Test
+    public void testCreateCalendar() {
+        try {
 
-			upsertOnTestRunMessage("id", createdCalendar.getId());
+            Calendar originalCalendar = getTestRunMessageValue("calendarRef");
+            Calendar createdCalendar = runFlowAndGetPayload("create-calendar");
 
-			Calendar returnedCalendar = runFlowAndGetPayload("get-calendar-by-id");
-			assertTrue(returnedCalendar != null);
-			assertTrue(returnedCalendar.getId().equals(createdCalendar.getId()));
-		}
-		catch (Exception e) {
-			fail(ConnectorTestUtils.getStackTrace(e));
-		}
-	}
-	
-	@After
-	public void tearDown() throws Exception {
+            assertTrue(createdCalendar != null);
+            assertTrue(createdCalendar.getSummary().equals(originalCalendar.getSummary()));
 
-		runFlowAndGetPayload("delete-calendar");
+            upsertOnTestRunMessage("calendarId", createdCalendar.getId());
 
-	}
-	
+            Calendar returnedCalendar = runFlowAndGetPayload("get-calendar-by-id");
+            assertTrue(returnedCalendar != null);
+            assertTrue(returnedCalendar.getId().equals(createdCalendar.getId()));
+        } catch (Exception e) {
+            fail(ConnectorTestUtils.getStackTrace(e));
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+        runFlowAndGetPayload("delete-calendar");
+
+    }
+
 }
