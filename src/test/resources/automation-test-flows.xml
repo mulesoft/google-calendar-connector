@@ -5,149 +5,149 @@
 	xmlns:http="http://www.mulesoft.org/schema/mule/http"
 	xmlns:google-calendars="http://www.mulesoft.org/schema/mule/google-calendars"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-current.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/google-calendars http://www.mulesoft.org/schema/mule/google-calendars/current/mule-google-calendars.xsd">
 
 	<context:property-placeholder location="${GOOGLE_CALENDAR_CREDENTIALS}" />
 
-	
 	<google-calendars:config-with-oauth	name="Google_Calendars" consumerKey="${google.calendars.consumer.key}"
 		consumerSecret="${google.calendars.consumer.secret}" doc:name="Google Calendars" applicationName="${google.calendars.application.name}">
-		<google-calendars:oauth-callback-config domain="${google.calendars.domain}" localPort="${google.calendars.localPort}" remotePort="${google.calendars.remotePort}" path="${google.calendars.path}}" />
+		<google-calendars:oauth-callback-config domain="${google.calendars.domain}" localPort="${google.calendars.localPort}" remotePort="${google.calendars.remotePort}" path="${google.calendars.path}" />
 	</google-calendars:config-with-oauth>
 
 	<flow name="create-calendar" doc:name="create-calendar">
-		<google-calendars:create-calendar calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" config-ref="Google_Calendars"/>
+		<google-calendars:create-calendar calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" config-ref="Google_Calendars" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="delete-calendar" doc:name="delete-calendar">
-	    <google-calendars:delete-calendar id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars"/>
+	    <google-calendars:delete-calendar id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="clear-calendar" doc:name="clear-calendar">
-	    <google-calendars:clear-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" />
+	    <google-calendars:clear-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-calendar-by-id" doc:name="get-calendar-by-id">
-	    <google-calendars:get-calendar-by-id id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars" />
+	    <google-calendars:get-calendar-by-id id="#[payload.calendarId]" accessTokenId="accessTokenId" config-ref="Google_Calendars" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-calendar-list" doc:name="get-calendar-list">
-	    <google-calendars:get-calendar-list config-ref="Google_Calendars" accessTokenId="accessTokenId" />
+	    <google-calendars:get-calendar-list config-ref="Google_Calendars" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-calendar-list-by-id" doc:name="get-calendar-list-by-id">
-		<google-calendars:get-calendar-list-by-id config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" />
+		<google-calendars:get-calendar-list-by-id config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="update-calendar-list" doc:name="update-calendar-list">
-		<google-calendars:update-calendar-list config-ref="Google_Calendars" calendarList-ref="#[payload.calendarListRef]"  id="#[payload.calendarId]" accessTokenId="accessTokenId" />
+		<google-calendars:update-calendar-list config-ref="Google_Calendars" calendarList-ref="#[payload.calendarListRef]"  id="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="delete-calendar-list" doc:name="delete-calendar-list">
-		<google-calendars:delete-calendar-list config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId"/>
+		<google-calendars:delete-calendar-list config-ref="Google_Calendars" id="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-insert-calendar" doc:name="batch-insert-calendar">
-	    <google-calendars:batch-insert-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:batch-insert-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-delete-calendar" doc:name="batch-delete-calendar">
-	    <google-calendars:batch-delete-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:batch-delete-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-update-calendar" doc:name="batch-update-calendar">
-	    <google-calendars:batch-update-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:batch-update-calendar config-ref="Google_Calendars" calendars-ref="#[payload.calendarsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="insert-event" doc:name="insert-event">
-	    <google-calendars:insert-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId"/>
+	    <google-calendars:insert-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
-	<flow name="get-event-by-id" doc:name="find-event-by-id">
-	    <google-calendars:get-event-by-id config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" />
+	<flow name="get-event-by-id" doc:name="get-event-by-id">
+	    <google-calendars:get-event-by-id config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="delete-event" doc:name="delete-event">
-	    <google-calendars:delete-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" />
+	    <google-calendars:delete-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="quick-add-event" doc:name="quick-add-event">
-	    <google-calendars:quick-add-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" text="#[payload.text]" accessTokenId="accessTokenId" />
+	    <google-calendars:quick-add-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" text="#[payload.text]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-insert-event" doc:name="batch-insert-event">
-	    <google-calendars:batch-insert-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId"/>
+	    <google-calendars:batch-insert-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="move-event" doc:name="move-event">
-	    <google-calendars:move-event config-ref="Google_Calendars" eventId="#[payload.eventId]" sourceCalendarId="#[payload.calendarId]" targetCalendarId="#[payload.targetCalendarId]" accessTokenId="accessTokenId"  />
+	    <google-calendars:move-event config-ref="Google_Calendars" eventId="#[payload.eventId]" sourceCalendarId="#[payload.calendarId]" targetCalendarId="#[payload.targetCalendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="update-event" doc:name="update-event">
-	    <google-calendars:update-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId"/>
+	    <google-calendars:update-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="import-event" doc:name="import-event">
-	    <google-calendars:import-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:import-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvent-ref="#[payload.calendarEventRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-delete-event" doc:name="batch-delete-event">
-	    <google-calendars:batch-delete-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:batch-delete-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="batch-update-event" doc:name="batch-update-event">
-	    <google-calendars:batch-update-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId" />
+	    <google-calendars:batch-update-event config-ref="Google_Calendars" calendarId="#[payload.calendarId]" calendarEvents-ref="#[payload.calendarEventsRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="update-calendar" doc:name="update-calendar">
-		<google-calendars:update-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" />
+		<google-calendars:update-calendar config-ref="Google_Calendars" id="#[payload.calendarId]" calendar-ref="#[payload.calendarRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 
 	<flow name="get-free-time" doc:name="get-free-time">
-	    <google-calendars:get-free-time config-ref="Google_Calendars" timeMin="#[payload.timeMin]" timeMax="#[payload.timeMax]" datetimeFormat="#[payload.datetimeFormat]" timezone="#[payload.timezone]" accessTokenId="accessTokenId">
+	    <google-calendars:get-free-time config-ref="Google_Calendars" timeMin="#[payload.timeMin]" timeMax="#[payload.timeMax]" datetimeFormat="#[payload.datetimeFormat]" timezone="#[payload.timezone]" accessTokenId="accessTokenId" doc:name="Google Calendars">
 	    	<google-calendars:ids ref="#[payload.ids]"/>
 	    </google-calendars:get-free-time>
 	</flow>
 	
 	<flow name="insert-acl-rule" doc:name="insert-acl-rule">
-		<google-calendars:insert-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" scope="#[payload.scope]" scopeType="#[payload.scopeType]" role="#[payload.role]"  accessTokenId="accessTokenId" />
+		<google-calendars:insert-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" scope="#[payload.scope]" scopeType="#[payload.scopeType]" role="#[payload.role]"  accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 		
 	<flow name="get-acl-rule-by-id" doc:name="get-acl-rule-by-id">
-		<google-calendars:get-acl-rule-by-id config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" accessTokenId="accessTokenId" />		
+		<google-calendars:get-acl-rule-by-id config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>		
 	</flow>
 		
 	<flow name="update-acl-rule" doc:name="update-acl-rule">
-		<google-calendars:update-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" aclRule-ref="#[payload.aclRuleRef]" accessTokenId="accessTokenId" />
+		<google-calendars:update-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" aclRule-ref="#[payload.aclRuleRef]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="delete-acl-rule" doc:name="delete-acl-rule">
-		<google-calendars:delete-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" accessTokenId="accessTokenId" />
+		<google-calendars:delete-acl-rule config-ref="Google_Calendars" calendarId="#[payload.calendarId]" ruleId="#[payload.ruleId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-events" doc:name="get-events">
 		<google-calendars:get-events config-ref="Google_Calendars"
 			calendarId="#[payload.calendarId]" showDeleted="#[payload.showDeleted]"
-			accessTokenId="accessTokenId" />
+			accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-all-acl-rules" doc:name="get-all-acl-rules">
-		<google-calendars:get-all-acl-rules config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId"/>
+		<google-calendars:get-all-acl-rules config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-all-events" doc:name="get-all-events">
-	    <google-calendars:get-events config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId" />
+	    <google-calendars:get-events config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-events-using-query" doc:name="get-events-using-query">
-	    <google-calendars:get-events config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId" query="#[payload.query]" />
+	    <google-calendars:get-events config-ref="Google_Calendars" calendarId="#[payload.calendarId]" accessTokenId="accessTokenId" query="#[payload.query]" doc:name="Google Calendars"/>
 	</flow>
 	
 	<flow name="get-instances" doc:name="get-instances">
-		<google-calendars:get-instances config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" />
+		<google-calendars:get-instances config-ref="Google_Calendars" calendarId="#[payload.calendarId]" eventId="#[payload.eventId]" accessTokenId="accessTokenId" doc:name="Google Calendars"/>
 	</flow>
 </mule>
 
