@@ -27,3 +27,9 @@ Known Issues in this release
 ------------------------------
 
  - Avoid executing Regression/Smoke test suites multiple times in a single day in order to avoid "Calendar usage limits exceeded." error.
+
+1.5.0
+=====
+
+ - Implemented on Mule Devkit version 3.4.3.
+ - Initial Version.
