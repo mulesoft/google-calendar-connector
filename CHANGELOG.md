@@ -22,6 +22,38 @@ Closed Issues in this release
     - If a test is not functionally designed to test calendar creation or deletion, it just uses the default/primary calendar.
     - If a test is working on an event, it uses different test data to any other test that uses an event.
     - Added sleep time (10 sec) between each operation to slow down the hits to the google api.
+ - The list of operations supported by this version of the connector are 
+    - createCalendar
+    - getCalendarList
+    - getCalendarListById
+    - deleteCalendarList
+    - updateCalendarList
+    - getCalendarById
+    - updateCalendar
+    - deleteCalendar
+    - clearCalendar
+    - getEvents
+    - importEvent
+    - deleteEvent
+    - getEventById
+    - insertEvent
+    - batchInsertEvent
+    - batchUpdateEvent
+    - batchDeleteEvent
+    - batchInsertCalendar
+    - batchUpdateCalendar
+    - batchDeleteCalendar
+    - getInstances
+    - moveEvent
+    - quickAddEvent
+    - updateEvent
+    - getFreeTime
+    - insertAclRule
+    - deleteAclRule
+    - getAclRuleById
+    - getAllAclRules
+    - updateAclRule
+
 
 Known Issues in this release
 ------------------------------
