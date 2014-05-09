@@ -23,37 +23,36 @@ Closed Issues in this release
     - If a test is working on an event, it uses different test data to any other test that uses an event.
     - Added sleep time (10 sec) between each operation to slow down the hits to the google api.
  - The list of operations supported by this version of the connector are 
-    - createCalendar
-    - getCalendarList
-    - getCalendarListById
-    - deleteCalendarList
-    - updateCalendarList
-    - getCalendarById
-    - updateCalendar
-    - deleteCalendar
-    - clearCalendar
-    - getEvents
-    - importEvent
-    - deleteEvent
-    - getEventById
-    - insertEvent
-    - batchInsertEvent
-    - batchUpdateEvent
-    - batchDeleteEvent
-    - batchInsertCalendar
-    - batchUpdateCalendar
-    - batchDeleteCalendar
-    - getInstances
-    - moveEvent
-    - quickAddEvent
-    - updateEvent
-    - getFreeTime
-    - insertAclRule
-    - deleteAclRule
-    - getAclRuleById
-    - getAllAclRules
-    - updateAclRule
-
+    - Create Calendar
+    - Get Calendar List
+    - Get Calendar List By Id
+    - Delete Calendar List
+    - Update Calendar List
+    - Get Calendar By Id
+    - Update Calendar
+    - Delete Calendar
+    - Clear Calendar
+    - Get Events
+    - Import Event
+    - Delete Event
+    - Get Event By Id
+    - Insert Event
+    - Batch Insert Event
+    - Batch Update Event
+    - Batch Delete Event
+    - Batch Insert Calendar
+    - Batch Update Calendar
+    - Batch Delete Calendar
+    - Get Instances
+    - Move Event
+    - Quick Add Event
+    - Update Event
+    - Get Free Time
+    - Insert Acl Rule
+    - Delete Acl Rule
+    - Get Acl Rule By Id
+    - Get All Acl Rules
+    - Update Acl Rule
 
 Known Issues in this release
 ------------------------------
