@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<connector name="Google Calendars">
+    <properties>
+    <connectivity-support>true</connectivity-support>
+    <OAuth-authentication>true</OAuth-authentication>
+    <metadata>static</metadata>
+    <datasense-enabled>true</datasense-enabled>
+    <transformer>false</transformer>
+  </properties>
+    <oauthConfig>
+        <required caption="Name" group="Basic Settings" javaType="java.lang.String" name="name" type="name">Google_Calendar</required>
+        <required caption="Consumer Key" group="General" javaType="java.lang.String" name="consumerKey" prefix="google-calendars" type="string">ConsumerKey</required>
+        <required caption="Consumer Secret" group="General" javaType="java.lang.String" name="consumerSecret" prefix="google-calendars" type="string">ConsumerSecret</required>
+        <required caption="Application Name" group="General" javaType="java.lang.String" name="applicationName" prefix="google-calendars" type="string">Google_Calendar</required>
+    </oauthConfig>
+    <message-processors>
+        <authorize name="Authorize">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </authorize>
+        <unauthorize name="Unauthorize">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </unauthorize>
+        <create-calendar name="Create calendar">
+            <datamapper input="Calendar" output="Calendar"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </create-calendar>
+        <get-calendar-list name="Get calendar list">
+            <datamapper input="ProviderAwarePagingDelegate&lt;CalendarList,AbstractGoogleOAuthConnector&gt;" output=""/>
+            <auto-paging>true</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </get-calendar-list>
+        <get-calendar-list-by-id name="Get calendar list by id">
+            <datamapper input="CalendarList" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </get-calendar-list-by-id>
+        <delete-calendar-list name="Delete calendar list">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </delete-calendar-list>
+        <update-calendar-list name="Update calendar list">
+            <datamapper input="CalendarList" output="CalendarList"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </update-calendar-list>
+        <get-calendar-by-id name="Get calendar by id">
+            <datamapper input="Calendar" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </get-calendar-by-id>
+        <update-calendar name="Update calendar">
+            <datamapper input="Calendar" output="Calendar"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </update-calendar>
+        <delete-calendar name="Delete calendar">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </delete-calendar>
+        <clear-calendar name="Clear calendar">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </clear-calendar>
+        <get-events name="Get events">
+            <datamapper input="ProviderAwarePagingDelegate&lt;Event,AbstractGoogleOAuthConnector&gt;" output="Integer"/>
+            <auto-paging>true</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </get-events>
+        <import-event name="Import event">
+            <datamapper input="Event" output="Event"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </import-event>
+        <delete-event name="Delete event">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string">er56tyu67859e</required>
+            </attributes>
+            <childElements/>
+        </delete-event>
+        <get-event-by-id name="Get event by id">
+            <datamapper input="Event" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string">2we45rt67yopvmro4man54mdvm</required>
+            </attributes>
+            <childElements/>
+        </get-event-by-id>
+        <insert-event name="Insert event">
+            <datamapper input="Event" output="Event"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </insert-event>
+        <batch-insert-event name="Batch insert event">
+            <datamapper input="BatchResponse&lt;Event&gt;" output="Collection&lt;Event&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </batch-insert-event>
+        <batch-update-event name="Batch update event">
+            <datamapper input="BatchResponse&lt;Event&gt;" output="Collection&lt;Event&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </batch-update-event>
+        <batch-delete-event name="Batch delete event">
+            <datamapper input="" output="Collection&lt;Event&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </batch-delete-event>
+        <batch-insert-calendar name="Batch insert calendar">
+            <datamapper input="BatchResponse&lt;Calendar&gt;" output="Collection&lt;Calendar&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </batch-insert-calendar>
+        <batch-update-calendar name="Batch update calendar">
+            <datamapper input="BatchResponse&lt;Calendar&gt;" output="Collection&lt;Calendar&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </batch-update-calendar>
+        <batch-delete-calendar name="Batch delete calendar">
+            <datamapper input="" output="Collection&lt;Calendar&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes/>
+            <childElements/>
+        </batch-delete-calendar>
+        <get-instances name="Get instances">
+            <datamapper input="ProviderAwarePagingDelegate&lt;Event,AbstractGoogleOAuthConnector&gt;" output="Integer"/>
+            <auto-paging>true</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string">q2w3e4rdfgvbbnmjy678tyhj</required>
+            </attributes>
+            <childElements/>
+        </get-instances>
+        <move-event name="Move event">
+            <datamapper input="Event" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Source Calendar Id" group="General" javaType="java.lang.String" name="sourceCalendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string">34erftgbnhjyugfvdcxsedawd</required>
+                <required caption="Target Calendar Id" group="General" javaType="java.lang.String" name="targetCalendarId" type="string">anotherRandomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </move-event>
+        <quick-add-event name="Quick add event">
+            <datamapper input="Event" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Text" group="General" javaType="java.lang.String" name="text" type="string">Sample calendar event</required>
+            </attributes>
+            <childElements/>
+        </quick-add-event>
+        <update-event name="Update event">
+            <datamapper input="Event" output="Event"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string">21qwsdcvxdfrt5673edxszaq</required>
+            </attributes>
+            <childElements/>
+        </update-event>
+        <get-free-time name="Get free time">
+            <datamapper input="FreeBusy" output="List&lt;String&gt;"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Time Min" group="General" javaType="java.lang.String" name="timeMin" type="string">2013-12-10T00:00:00Z</required>
+                <required caption="Time Max" group="General" javaType="java.lang.String" name="timeMax" type="string">2013-12-25T00:00:00Z</required>
+            </attributes>
+            <childElements/>
+        </get-free-time>
+        <insert-acl-rule name="Insert acl rule">
+            <datamapper input="AclRule" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Scope" group="General" javaType="java.lang.String" name="scope" type="string">mulesoft.com</required>
+                <required caption="Scope Type" group="General" javaType="org.mule.module.google.calendar.ScopeType" name="scopeType" type="enum">DOMAIN</required>
+                <required caption="Role" group="General" javaType="org.mule.module.google.calendar.ScopeRole" name="role" type="enum">owner</required>
+            </attributes>
+            <childElements/>
+        </insert-acl-rule>
+        <delete-acl-rule name="Delete acl rule">
+            <datamapper input="" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string">23wedsxcvftghyjklooprm</required>
+            </attributes>
+            <childElements/>
+        </delete-acl-rule>
+        <get-acl-rule-by-id name="Get acl rule by id">
+            <datamapper input="AclRule" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string">23wedsxcvftghyjklooprm</required>
+            </attributes>
+            <childElements/>
+        </get-acl-rule-by-id>
+        <get-all-acl-rules name="Get all acl rules">
+            <datamapper input="List&lt;AclRule&gt;" output=""/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+            </attributes>
+            <childElements/>
+        </get-all-acl-rules>
+        <update-acl-rule name="Update acl rule">
+            <datamapper input="AclRule" output="AclRule"/>
+            <auto-paging>false</auto-paging>
+            <query-support>false</query-support>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string">randomId@mulesoft.com</required>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string">23wsdxcvgbhnjmkliop</required>
+            </attributes>
+            <childElements/>
+        </update-acl-rule>
+    </message-processors>
+</connector>

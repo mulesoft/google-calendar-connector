@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<connector name="Google Calendars">
+    <global-config>
+        <config-with-oauth>
+            <attributes>
+                <optional caption="Name" group="Basic Settings" javaType="java.lang.String" name="name" type="name"/>
+                <required caption="Consumer Key" group="General" javaType="java.lang.String" name="consumerKey" type="string"/>
+                <required caption="Consumer Secret" group="General" javaType="java.lang.String" name="consumerSecret" type="string"/>
+                <optional caption="Application Name" default="Mule-GoogleCalendarConnector/1.0" group="General" javaType="java.lang.String" name="applicationName" type="string"/>
+                <optional caption="Scope" default="https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/calendar" group="General" javaType="java.lang.String" name="scope" type="string"/>
+                <optional caption="Client Factory Reference" group="General" javaType="org.mule.module.google.calendar.GoogleCalendarClientFactory" name="clientFactory-ref" type="string"/>
+                <optional caption="On No Token" default="EXCEPTION" group="General" javaType="java.lang.String" name="onNoToken" type="enum"/>
+            </attributes>
+            <childElements>
+                <required name="oauth-callback-config">
+                    <attributes controlled="complex">
+                        <optional name="localPort"/>
+                        <optional name="remotePort"/>
+                        <optional name="domain"/>
+                        <optional default="false" name="async"/>
+                        <optional name="path"/>
+                        <optional name="connector-ref"/>
+                        <optional name="defaultAccessTokenId"/>
+                    </attributes>
+                    <attributes controlled="useReference">
+                        <required name="ref"/>
+                    </attributes>
+                </required>
+                <optional name="oauth-store-config">
+                    <attributes controlled="complex">
+                        <required name="objectStore-ref"/>
+                    </attributes>
+                    <attributes controlled="useReference">
+                        <required name="ref"/>
+                    </attributes>
+                </optional>
+            </childElements>
+        </config-with-oauth>
+    </global-config>
+    <message-processors>
+        <authorize>
+            <attributes>
+                <optional caption="State" group="General" javaType="java.lang.String" name="state" type="string"/>
+                <optional caption="Access_type" default="online" group="Additional Authorization Parameters" javaType="org.mule.modules.google.AccessType" name="access_type" type="enum"/>
+                <optional caption="Force_prompt" default="auto" group="Additional Authorization Parameters" javaType="org.mule.modules.google.ForcePrompt" name="force_prompt" type="enum"/>
+                <optional caption="Access Token Id" group="General" javaType="java.lang.String" name="accessTokenId" type="string"/>
+            </attributes>
+        </authorize>
+        <unauthorize>
+            <attributes>
+                <optional caption="Access Token Id" group="General" javaType="java.lang.String" name="accessTokenId" type="string"/>
+            </attributes>
+        </unauthorize>
+        <create-calendar>
+            <attributes>
+                <optional caption="Calendar Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.Calendar" name="calendar-ref" type="string"/>
+            </attributes>
+        </create-calendar>
+        <get-calendar-list>
+            <attributes>
+                <optional caption="Show Hidden" default="false" group="General" javaType="boolean" name="showHidden" type="boolean"/>
+                <optional caption="Fetch Size" default="100" group="Paging" javaType="java.lang.String" name="fetchSize" type="string"/>
+            </attributes>
+        </get-calendar-list>
+        <get-calendar-list-by-id>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+            </attributes>
+        </get-calendar-list-by-id>
+        <delete-calendar-list>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+            </attributes>
+        </delete-calendar-list>
+        <update-calendar-list>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+                <optional caption="Calendar List Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.CalendarList" name="calendarList-ref" type="string"/>
+            </attributes>
+        </update-calendar-list>
+        <get-calendar-by-id>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+            </attributes>
+        </get-calendar-by-id>
+        <update-calendar>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+                <optional caption="Calendar Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.Calendar" name="calendar-ref" type="string"/>
+            </attributes>
+        </update-calendar>
+        <delete-calendar>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+            </attributes>
+        </delete-calendar>
+        <clear-calendar>
+            <attributes>
+                <required caption="Id" group="General" javaType="java.lang.String" name="id" type="string"/>
+            </attributes>
+        </clear-calendar>
+        <get-events>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Ical U I D" group="General" javaType="java.lang.String" name="icalUID" type="string"/>
+                <optional caption="Max Attendees" group="General" javaType="java.lang.Integer" name="maxAttendees" type="integer"/>
+                <optional caption="Order By" group="General" javaType="java.lang.String" name="orderBy" type="string"/>
+                <optional caption="Query" group="General" javaType="java.lang.String" name="query" type="string"/>
+                <optional caption="Show Deleted" default="false" group="General" javaType="boolean" name="showDeleted" type="boolean"/>
+                <optional caption="Show Hidden Invitations" default="false" group="General" javaType="boolean" name="showHiddenInvitations" type="boolean"/>
+                <optional caption="Single Events" default="true" group="General" javaType="boolean" name="singleEvents" type="boolean"/>
+                <optional caption="Time Min" group="General" javaType="java.lang.String" name="timeMin" type="string"/>
+                <optional caption="Time Max" group="General" javaType="java.lang.String" name="timeMax" type="string"/>
+                <optional caption="Datetime Format" default="yyyy-MM-dd'T'HH:mm:ss'Z'" group="General" javaType="java.lang.String" name="datetimeFormat" type="string"/>
+                <optional caption="Timezone" default="UTC" group="General" javaType="java.lang.String" name="timezone" type="string"/>
+                <optional caption="Last Updated" group="General" javaType="java.lang.String" name="lastUpdated" type="string"/>
+                <optional caption="Fetch Size" default="100" group="Paging" javaType="java.lang.String" name="fetchSize" type="string"/>
+            </attributes>
+        </get-events>
+        <import-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Calendar Event Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.Event" name="calendarEvent-ref" type="string"/>
+            </attributes>
+        </import-event>
+        <delete-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string"/>
+            </attributes>
+        </delete-event>
+        <get-event-by-id>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string"/>
+            </attributes>
+        </get-event-by-id>
+        <insert-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Calendar Event Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.Event" name="calendarEvent-ref" type="string"/>
+            </attributes>
+        </insert-event>
+        <batch-insert-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Calendar Events Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" name="calendarEvents-ref" type="string"/>
+            </attributes>
+        </batch-insert-event>
+        <batch-update-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Calendar Events Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" name="calendarEvents-ref" type="string"/>
+            </attributes>
+        </batch-update-event>
+        <batch-delete-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <optional caption="Calendar Events Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Event&gt;" name="calendarEvents-ref" type="string"/>
+            </attributes>
+        </batch-delete-event>
+        <batch-insert-calendar>
+            <attributes>
+                <optional caption="Calendars Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" name="calendars-ref" type="string"/>
+            </attributes>
+        </batch-insert-calendar>
+        <batch-update-calendar>
+            <attributes>
+                <optional caption="Calendars Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" name="calendars-ref" type="string"/>
+            </attributes>
+        </batch-update-calendar>
+        <batch-delete-calendar>
+            <attributes>
+                <optional caption="Calendars Reference" default="#[payload]" group="General" javaType="java.util.Collection&lt;org.mule.module.google.calendar.model.Calendar&gt;" name="calendars-ref" type="string"/>
+            </attributes>
+        </batch-delete-calendar>
+        <get-instances>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string"/>
+                <optional caption="Max Attendess" group="General" javaType="java.lang.Integer" name="maxAttendess" type="integer"/>
+                <optional caption="Show Deleted" default="false" group="General" javaType="boolean" name="showDeleted" type="boolean"/>
+                <optional caption="Timezone" default="UTC" group="General" javaType="java.lang.String" name="timezone" type="string"/>
+                <optional caption="Original Start" group="General" javaType="java.lang.String" name="originalStart" type="string"/>
+                <optional caption="Fetch Size" default="100" group="Paging" javaType="java.lang.String" name="fetchSize" type="string"/>
+            </attributes>
+        </get-instances>
+        <move-event>
+            <attributes>
+                <required caption="Source Calendar Id" group="General" javaType="java.lang.String" name="sourceCalendarId" type="string"/>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string"/>
+                <required caption="Target Calendar Id" group="General" javaType="java.lang.String" name="targetCalendarId" type="string"/>
+            </attributes>
+        </move-event>
+        <quick-add-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Text" group="General" javaType="java.lang.String" name="text" type="string"/>
+            </attributes>
+        </quick-add-event>
+        <update-event>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Event Id" group="General" javaType="java.lang.String" name="eventId" type="string"/>
+                <optional caption="Calendar Event Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.Event" name="calendarEvent-ref" type="string"/>
+            </attributes>
+        </update-event>
+        <get-free-time>
+            <attributes>
+                <required caption="Time Min" group="General" javaType="java.lang.String" name="timeMin" type="string"/>
+                <required caption="Time Max" group="General" javaType="java.lang.String" name="timeMax" type="string"/>
+                <optional caption="Timezone" default="UTC" group="General" javaType="java.lang.String" name="timezone" type="string"/>
+                <optional caption="Datetime Format" default="yyyy-MM-dd'T'HH:mm:ss'Z'" group="General" javaType="java.lang.String" name="datetimeFormat" type="string"/>
+                <optional caption="Max Calendar Expansion" group="General" javaType="java.lang.Integer" name="maxCalendarExpansion" type="integer"/>
+            </attributes>
+            <childElements/>
+        </get-free-time>
+        <insert-acl-rule>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Scope" group="General" javaType="java.lang.String" name="scope" type="string"/>
+                <required caption="Scope Type" group="General" javaType="org.mule.module.google.calendar.ScopeType" name="scopeType" type="enum"/>
+                <required caption="Role" group="General" javaType="org.mule.module.google.calendar.ScopeRole" name="role" type="enum"/>
+            </attributes>
+        </insert-acl-rule>
+        <delete-acl-rule>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string"/>
+            </attributes>
+        </delete-acl-rule>
+        <get-acl-rule-by-id>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string"/>
+            </attributes>
+        </get-acl-rule-by-id>
+        <get-all-acl-rules>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+            </attributes>
+        </get-all-acl-rules>
+        <update-acl-rule>
+            <attributes>
+                <required caption="Calendar Id" group="General" javaType="java.lang.String" name="calendarId" type="string"/>
+                <required caption="Rule Id" group="General" javaType="java.lang.String" name="ruleId" type="string"/>
+                <optional caption="Acl Rule Reference" default="#[payload]" group="General" javaType="org.mule.module.google.calendar.model.AclRule" name="aclRule-ref" type="string"/>
+            </attributes>
+        </update-acl-rule>
+    </message-processors>
+    <inbound-endpoint/>
+    <outbound-endpoints/>
+</connector>
