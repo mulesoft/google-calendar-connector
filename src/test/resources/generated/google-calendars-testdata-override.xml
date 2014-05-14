@@ -36,7 +36,7 @@
             <childElements/>
         </create-calendar>
         <get-calendar-list name="Get calendar list">
-            <datamapper input="ProviderAwarePagingDelegate&lt;CalendarList,AbstractGoogleOAuthConnector&gt;" output=""/>
+            <datamapper input="List&lt;CalendarList&gt;" output=""/>
             <auto-paging>true</auto-paging>
             <query-support>false</query-support>
             <attributes/>
@@ -106,7 +106,7 @@
             <childElements/>
         </clear-calendar>
         <get-events name="Get events">
-            <datamapper input="ProviderAwarePagingDelegate&lt;Event,AbstractGoogleOAuthConnector&gt;" output="Integer"/>
+            <datamapper input="List&lt;Event&gt;" output=""/>
             <auto-paging>true</auto-paging>
             <query-support>false</query-support>
             <attributes>
@@ -153,7 +153,7 @@
             <childElements/>
         </insert-event>
         <batch-insert-event name="Batch insert event">
-            <datamapper input="BatchResponse&lt;Event&gt;" output="Collection&lt;Event&gt;"/>
+            <datamapper input="BatchResponse" output="List&lt;Event&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes>
@@ -162,7 +162,7 @@
             <childElements/>
         </batch-insert-event>
         <batch-update-event name="Batch update event">
-            <datamapper input="BatchResponse&lt;Event&gt;" output="Collection&lt;Event&gt;"/>
+            <datamapper input="BatchResponse" output="List&lt;Event&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes>
@@ -171,7 +171,7 @@
             <childElements/>
         </batch-update-event>
         <batch-delete-event name="Batch delete event">
-            <datamapper input="" output="Collection&lt;Event&gt;"/>
+            <datamapper input="" output="List&lt;Event&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes>
@@ -180,28 +180,28 @@
             <childElements/>
         </batch-delete-event>
         <batch-insert-calendar name="Batch insert calendar">
-            <datamapper input="BatchResponse&lt;Calendar&gt;" output="Collection&lt;Calendar&gt;"/>
+            <datamapper input="BatchResponse" output="List&lt;Calendar&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes/>
             <childElements/>
         </batch-insert-calendar>
         <batch-update-calendar name="Batch update calendar">
-            <datamapper input="BatchResponse&lt;Calendar&gt;" output="Collection&lt;Calendar&gt;"/>
+            <datamapper input="BatchResponse" output="List&lt;Calendar&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes/>
             <childElements/>
         </batch-update-calendar>
         <batch-delete-calendar name="Batch delete calendar">
-            <datamapper input="" output="Collection&lt;Calendar&gt;"/>
+            <datamapper input="" output="List&lt;Calendar&gt;"/>
             <auto-paging>false</auto-paging>
             <query-support>false</query-support>
             <attributes/>
             <childElements/>
         </batch-delete-calendar>
         <get-instances name="Get instances">
-            <datamapper input="ProviderAwarePagingDelegate&lt;Event,AbstractGoogleOAuthConnector&gt;" output="Integer"/>
+            <datamapper input="List&lt;Event&gt;" output=""/>
             <auto-paging>true</auto-paging>
             <query-support>false</query-support>
             <attributes>
