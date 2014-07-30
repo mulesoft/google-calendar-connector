@@ -10,13 +10,15 @@
 
 package org.mule.module.google.calendar;
 
-import org.mule.modules.google.oauth.invalidation.InvalidationAwareCredential;
-
 import com.google.api.client.auth.oauth2.BearerToken;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson.JacksonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
+import org.apache.commons.lang.StringUtils;
+import org.mule.modules.google.CommonsUtils;
+import org.mule.modules.google.api.proxy.ProxyOptions;
+import org.mule.modules.google.oauth.invalidation.InvalidationAwareCredential;
 
 /**
  * 
@@ -26,16 +28,20 @@ import com.google.api.services.calendar.Calendar;
 public class DefaultGoogleCalendarClientFactory implements GoogleCalendarClientFactory {
 
 	/**
-	 * @see org.mule.module.google.calendar.GoogleCalendarClientFactory#newClient(java.lang.String, java.lang.String)
+	 * @see org.mule.module.google.calendar.GoogleCalendarClientFactory#newClient(java.lang.String, java.lang.String, org.mule.modules.google.api.proxy.ProxyOptions)
 	 */
 	@Override
-	public Calendar newClient(String accessToken, String applicationName) {
+	public Calendar newClient(String accessToken, String applicationName, ProxyOptions proxyOptions) {
 		Credential credential = new InvalidationAwareCredential(BearerToken.authorizationHeaderAccessMethod());
 		credential.setAccessToken(accessToken);
-		
-		return new com.google.api.services.calendar.Calendar.Builder(new NetHttpTransport(), new JacksonFactory(), credential)
-						.setApplicationName(applicationName)
-						.build();
+
+        NetHttpTransport.Builder httpTransportBuilder = new NetHttpTransport.Builder();
+
+        if (StringUtils.isNotEmpty(proxyOptions.getHost())) {
+            httpTransportBuilder.setProxy(CommonsUtils.createProxy(proxyOptions));
+        }
+
+        return new Calendar.Builder(httpTransportBuilder.build(), new JacksonFactory(), credential).setApplicationName(applicationName).build();
 	}
 
 }

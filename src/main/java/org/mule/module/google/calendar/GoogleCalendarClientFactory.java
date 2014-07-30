@@ -11,6 +11,7 @@
 package org.mule.module.google.calendar;
 
 import com.google.api.services.calendar.Calendar;
+import org.mule.modules.google.api.proxy.ProxyOptions;
 
 /**
  * 
@@ -19,6 +20,6 @@ import com.google.api.services.calendar.Calendar;
  */
 public interface GoogleCalendarClientFactory {
 	
-	public Calendar newClient(String accessToken, String applicationName);
+	public Calendar newClient(String accessToken, String applicationName, ProxyOptions proxyOptions);
 
 }

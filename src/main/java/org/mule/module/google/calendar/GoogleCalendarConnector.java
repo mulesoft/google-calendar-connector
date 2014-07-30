@@ -54,6 +54,7 @@ import org.mule.modules.google.api.client.batch.VoidBatchCallback;
 import org.mule.modules.google.api.datetime.DateTimeConstants;
 import org.mule.modules.google.api.datetime.DateTimeUtils;
 import org.mule.modules.google.api.pagination.PaginationUtils;
+import org.mule.modules.google.api.proxy.ProxyOptions;
 import org.mule.modules.google.oauth.invalidation.OAuthTokenExpiredException;
 
 import com.google.api.client.googleapis.batch.BatchRequest;
@@ -139,6 +140,20 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
     @Configurable
     @Optional
     private GoogleCalendarClientFactory clientFactory;
+
+    /**
+     * Proxy Host
+     */
+    @Configurable
+    @Optional
+    private String proxyHost;
+
+    /**
+     * Proxy Port
+     */
+    @Configurable
+    @Optional
+    private Integer proxyPort;
     
     @OAuthAccessToken
     private String accessToken;
@@ -150,7 +165,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	
 	/**
 	 * Initializes the connector. if no clientFactory was provided, then a default
-	 * {@link org.mule.module.google.calendar.DefaultGoogleCalendarClientFactory.DefaultGoogleCalendarClientFactor}
+	 * {@link org.mule.module.google.calendar.DefaultGoogleCalendarClientFactory}
 	 * wil be used instead
 	 */
 	@Start
@@ -167,7 +182,7 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	
 	@OAuthPostAuthorization
 	public void postAuth() {
-		this.client = this.clientFactory.newClient(this.getAccessToken(), this.getApplicationName());
+		this.client = this.clientFactory.newClient(this.getAccessToken(), this.getApplicationName(), new ProxyOptions(getProxyHost(), getProxyPort()));
 	}
 	
     /**
@@ -974,5 +989,20 @@ public class GoogleCalendarConnector extends AbstractGoogleOAuthConnector {
 	public void setIdentifierPolicy(IdentifierPolicy identifierPolicy) {
 		this.identifierPolicy = identifierPolicy;
 	}
-	
+
+    public String getProxyHost() {
+        return proxyHost;
+    }
+
+    public void setProxyHost(String proxyHost) {
+        this.proxyHost = proxyHost;
+    }
+
+    public Integer getProxyPort() {
+        return proxyPort;
+    }
+
+    public void setProxyPort(Integer proxyPort) {
+        this.proxyPort = proxyPort;
+    }
 }
