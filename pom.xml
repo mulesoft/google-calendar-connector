@@ -22,6 +22,7 @@
 		<devkit.studio.package.skip>false</devkit.studio.package.skip>
 		<connector.test.version>2.0.3</connector.test.version>
         <google.commons.version>2.0.0-SNAPSHOT</google.commons.version>
+		<runtimeVersion>4.3.0-20231026</runtimeVersion>
     </properties>
 
 	<dependencies>
